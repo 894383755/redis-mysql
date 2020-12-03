@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+         http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd ">
+	<!-- 引入属性文件 -->
+	 <context:property-placeholder location="classpath:redis-cluster.properties" /> 
+	<!--redisPool配置 -->
+	 <bean id="redisProperties" class="com.kd.redis.config.RedisProperties">
+	        
+	    <property name="nodes" value="${zkAddr}"/>
+	    <property name="auth" value="${auth}"/>
+		<!-- 最大连接数 -->
+		<property name="maxTotal" value="${redis.maxTotal}" />
+		<!-- 最大空闲连接数 -->
+		<property name="maxIdle" value="${redis.maxIdle}" />
+		<!-- 最小空闲连接数 -->
+		<property name="minIdle" value="${redis.minIdle}"/>
+		<!-- 每次释放连接的最大数目 -->
+		<!-- <property name="numTestsPerEvictionRun" value="${redis.numTestsPerEvictionRun}" /> -->
+		<!-- 释放连接的扫描间隔(单位:毫秒) -->
+		<property name="connectionTimeout" value="${redis.connectionTimeout}" />
+		<!-- 连接最小空闲时间(单位:毫秒) -->
+		<property name="maxAttempts" value="${redis.maxAttempts}" />
+		<!-- 连接空闲多久后释放,当空闲时间大于该值并且空闲连接大于最大空闲连接时直接释放连接 -->
+		<property name="soTimeout" value="${redis.soTimeout}" />
+		<!-- 获取连接时最大等待毫秒数,如果该值小于0,则阻塞不确定的时长,默认值-1 -->
+		<property name="maxWaitMillis" value="${redis.maxWaitMillis}" />
+		
+<!-- 		在获取连接时检查连接有效性,默认为false  -->
+	<!-- 	<property name="testOnBorrow" value="${redis.testOnBorrow}" /> -->
+	<!-- 	在连接空闲时检查连接有效性,默认为false -->
+<!-- 		<property name="testWhileIdle" value="${redis.testWhileIdle}" /> -->
+		<!-- 连接耗尽是否阻塞,false代表抛异常,true代表阻塞直到超时,默认为true -->
+<!-- 		<property name="blockWhenExhausted" value="${redis.blockWhenExhausted}" /> -->
+	</bean>
+	
+	 <bean id="redisConfig" class="com.kd.redis.config.RedisConfig">
+	  <constructor-arg name="redisProperties" ref="redisProperties"/>
+	 </bean>
+
+<!-- 	配置redis集群
+	 <bean id="codisPool" class="com.kd.codis.codiscluter.CodisPool" init-method="build">
+        连接池配置对象
+        <property name="jedisPoolConfig" ref="jedisPoolConfig"/>
+        注册中心地址
+        <property name="zkAddr" value="${zkAddr}"/>
+        集群密码
+        <property name="auth" value="${auth}"/>
+        集群名称/在注册中心的路径
+        <property name="zkDir" value="${zkDir}"/>
+        单机redis
+        <property name="aloneHost" value="${redis.host}"></property>
+        <property name="alonePort" value="${redis.port}"></property>
+        判断单机还是集群
+        <property name="redisType" value="${redis.type}"></property>
+    </bean>  -->
+    
+  <!--    <bean id="jedisClusterPoolConfig" class="com.kd.codis.codiscluter.JedisClusterPoolConfig" >
+  		 <property name="jedisPoolConfig" ref="jedisPoolConfig"/>
+      </bean> -->
+	
+</beans>

@@ -1,0 +1,361 @@
+2020-11-19 10:53:12.408 WARN  [AdminClientConfig] The configuration 'key.deserializer' was supplied but isn't a known config.
+2020-11-19 10:53:12.411 WARN  [AdminClientConfig] The configuration 'value.deserializer' was supplied but isn't a known config.
+2020-11-19 10:53:12.411 WARN  [AdminClientConfig] The configuration 'group.id' was supplied but isn't a known config.
+2020-11-19 10:53:12.411 WARN  [AdminClientConfig] The configuration 'max.poll.interval.ms' was supplied but isn't a known config.
+2020-11-19 10:53:12.411 WARN  [AdminClientConfig] The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2020-11-19 10:53:28.283 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:53:28.283 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:53:33.511 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:53:49.300 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:53:49.301 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:53:54.539 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:54:10.315 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:54:10.315 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:54:15.560 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:54:31.365 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:54:31.365 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:54:36.604 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:54:52.402 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:54:52.403 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:54:57.644 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:55:13.407 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:55:13.407 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:55:18.647 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:55:34.411 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:55:34.412 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:55:39.652 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:55:55.415 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:55:55.418 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:56:00.658 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:56:16.419 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:56:16.421 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:56:21.661 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:56:37.423 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:56:37.424 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:56:42.667 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:56:58.428 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:56:58.429 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:57:03.670 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:57:19.432 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:57:19.433 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:57:22.493 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10009ms for sessionid 0x0
+2020-11-19 10:57:24.675 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:57:32.596 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 10:57:40.436 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:57:40.436 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:57:42.698 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 10:57:45.679 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:57:53.801 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11003ms for sessionid 0x0
+2020-11-19 10:58:01.437 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:58:01.440 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:58:03.904 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 10:58:06.681 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:58:14.005 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 10:58:22.442 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:58:22.443 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:58:25.107 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11002ms for sessionid 0x0
+2020-11-19 10:58:27.685 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:58:28.163 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:58:35.208 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 10:58:43.447 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:58:43.447 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:58:45.310 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 10:58:48.691 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:58:49.165 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:58:55.410 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10000ms for sessionid 0x0
+2020-11-19 10:59:04.452 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:59:04.452 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:59:05.521 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10003ms for sessionid 0x0
+2020-11-19 10:59:09.695 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:59:10.167 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:59:15.623 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 10:59:25.455 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:59:25.456 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:59:25.725 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 10:59:30.699 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 10:59:31.169 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:59:36.828 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11003ms for sessionid 0x0
+2020-11-19 10:59:46.458 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:59:46.458 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 10:59:46.930 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 10:59:51.705 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:59:52.173 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 10:59:57.031 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:00:07.462 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:00:07.464 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:00:08.133 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11002ms for sessionid 0x0
+2020-11-19 11:00:12.706 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:00:13.175 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:00:18.235 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:00:28.337 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:00:28.465 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:00:28.469 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:00:33.710 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:00:34.178 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:00:38.437 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10000ms for sessionid 0x0
+2020-11-19 11:00:49.469 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:00:49.476 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:00:49.543 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:00:54.716 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:00:55.180 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:00:59.646 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:01:09.749 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10003ms for sessionid 0x0
+2020-11-19 11:01:10.475 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:01:10.480 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:01:15.719 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:01:16.185 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:01:20.852 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11002ms for sessionid 0x0
+2020-11-19 11:01:30.954 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:01:31.478 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:01:31.482 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:01:36.721 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:01:37.188 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:01:41.056 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:01:52.159 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11002ms for sessionid 0x0
+2020-11-19 11:01:52.482 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:01:52.483 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:01:57.727 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:01:58.191 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:02:02.260 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:02:12.361 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:02:13.486 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:02:13.486 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:02:18.732 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:02:19.194 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:02:22.462 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10000ms for sessionid 0x0
+2020-11-19 11:02:34.489 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:02:34.490 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:02:34.570 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10003ms for sessionid 0x0
+2020-11-19 11:02:39.735 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:02:40.198 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:02:44.672 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:02:54.774 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:02:55.494 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:02:55.494 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:03:00.739 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:03:01.201 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:03:05.877 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11002ms for sessionid 0x0
+2020-11-19 11:03:15.978 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:03:16.497 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:03:16.498 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:03:21.745 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:03:22.205 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:03:26.080 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:03:37.182 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11001ms for sessionid 0x0
+2020-11-19 11:03:37.499 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:03:37.503 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:03:42.747 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:03:43.210 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:03:47.283 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:03:57.385 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:03:58.502 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:03:58.510 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:04:03.753 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:04:04.214 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:04:07.487 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:04:53.417 WARN  [AdminClientConfig] The configuration 'key.deserializer' was supplied but isn't a known config.
+2020-11-19 11:04:53.418 WARN  [AdminClientConfig] The configuration 'value.deserializer' was supplied but isn't a known config.
+2020-11-19 11:04:53.418 WARN  [AdminClientConfig] The configuration 'group.id' was supplied but isn't a known config.
+2020-11-19 11:04:53.418 WARN  [AdminClientConfig] The configuration 'max.poll.interval.ms' was supplied but isn't a known config.
+2020-11-19 11:04:53.418 WARN  [AdminClientConfig] The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2020-11-19 11:05:09.343 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:05:09.343 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:05:14.521 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:05:30.350 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:05:30.350 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:05:35.525 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:05:51.355 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:05:51.356 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:05:56.529 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:06:12.362 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:06:12.369 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:06:17.531 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:06:33.365 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:06:33.372 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:06:38.536 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:06:54.368 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:06:54.374 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:06:59.539 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:07:15.370 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:07:15.376 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:07:20.543 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:07:36.373 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:07:36.378 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:07:41.548 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:07:57.376 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:07:57.381 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:08:02.552 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:08:18.379 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:08:18.385 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:08:23.554 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:08:39.388 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:08:39.388 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:08:44.558 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:09:00.390 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:09:00.391 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:09:03.466 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10008ms for sessionid 0x0
+2020-11-19 11:09:05.563 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:09:13.569 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:09:21.392 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:09:21.395 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:09:23.670 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:09:26.566 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:09:34.773 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11002ms for sessionid 0x0
+2020-11-19 11:09:42.397 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:09:42.399 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:09:44.875 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:09:47.568 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:09:54.977 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:10:03.400 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:10:03.402 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:10:06.079 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11002ms for sessionid 0x0
+2020-11-19 11:10:08.571 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:10:09.162 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:10:16.182 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:10:24.404 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:10:24.406 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:10:26.284 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:10:29.574 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:10:30.169 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:10:36.384 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10000ms for sessionid 0x0
+2020-11-19 11:10:45.408 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:10:45.409 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:10:46.492 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10003ms for sessionid 0x0
+2020-11-19 11:10:50.579 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:10:51.173 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:10:56.594 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:11:06.411 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:11:06.413 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:11:06.697 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:11:11.582 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:11:12.176 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:11:17.798 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11001ms for sessionid 0x0
+2020-11-19 11:11:27.417 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:11:27.419 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:11:27.901 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:11:32.586 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:11:33.181 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:11:38.003 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:11:48.422 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:11:48.423 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:11:49.106 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11002ms for sessionid 0x0
+2020-11-19 11:11:53.590 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:11:54.184 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:11:59.207 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:12:09.310 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:12:09.424 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:12:09.425 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:12:14.593 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:12:15.187 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:12:19.410 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10000ms for sessionid 0x0
+2020-11-19 11:12:30.427 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:12:30.427 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:12:30.517 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10003ms for sessionid 0x0
+2020-11-19 11:12:35.598 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:12:36.195 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:12:40.618 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10000ms for sessionid 0x0
+2020-11-19 11:12:50.720 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:12:51.429 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:12:51.430 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:12:56.603 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:12:57.199 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:13:01.822 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11002ms for sessionid 0x0
+2020-11-19 11:13:11.924 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:13:12.430 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:13:12.432 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:13:17.608 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:13:18.202 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:13:22.025 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:13:33.127 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11001ms for sessionid 0x0
+2020-11-19 11:13:33.433 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:13:33.436 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:13:38.610 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:13:39.206 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:13:43.229 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:13:53.330 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:13:54.437 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:13:54.440 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:13:59.616 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:14:00.209 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:14:03.431 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10000ms for sessionid 0x0
+2020-11-19 11:14:15.443 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:14:15.444 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:14:15.536 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:14:20.617 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:14:21.211 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:14:25.638 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:14:35.738 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10000ms for sessionid 0x0
+2020-11-19 11:14:36.445 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:14:36.447 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:14:41.622 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:14:42.213 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:14:46.842 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11003ms for sessionid 0x0
+2020-11-19 11:14:56.943 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:14:57.447 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:14:57.452 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:15:02.627 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:15:03.216 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:15:07.045 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:15:18.148 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11002ms for sessionid 0x0
+2020-11-19 11:15:18.451 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:15:18.455 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:15:23.631 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:15:24.220 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:15:28.249 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:15:38.350 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:15:39.458 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:15:39.470 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:15:44.634 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:15:45.223 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:15:48.452 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:16:00.462 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:16:00.473 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:16:01.557 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:16:05.641 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:16:06.225 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:16:11.659 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:16:21.465 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:16:21.478 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:16:21.761 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:16:26.644 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:16:27.229 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:16:32.864 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11003ms for sessionid 0x0
+2020-11-19 11:16:42.468 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:16:42.482 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:16:42.966 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:16:47.647 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:16:48.231 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:16:53.067 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:17:03.471 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:17:03.486 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:17:04.168 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11001ms for sessionid 0x0
+2020-11-19 11:17:08.651 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:17:09.235 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:17:14.270 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:17:24.371 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:17:24.474 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:17:24.489 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:17:29.654 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:17:30.238 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:17:34.472 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10000ms for sessionid 0x0
+2020-11-19 11:17:45.476 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:17:45.494 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:17:48.577 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10002ms for sessionid 0x0
+2020-11-19 11:17:50.656 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:17:51.240 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:17:58.678 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:18:06.482 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:18:06.496 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:18:08.779 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:18:11.659 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:18:12.246 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:18:19.881 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11002ms for sessionid 0x0
+2020-11-19 11:18:27.486 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -3 could not be established. Broker may not be available.
+2020-11-19 11:18:27.500 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:18:29.983 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:18:32.661 WARN  [NetworkClient] [AdminClient clientId=adminclient-1] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:18:33.249 WARN  [NetworkClient] [Producer clientId=producer-1] Connection to node -1 could not be established. Broker may not be available.
+2020-11-19 11:18:40.084 WARN  [ClientCnxn] Client session timed out, have not heard from server in 10001ms for sessionid 0x0
+2020-11-19 11:18:48.489 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:18:48.504 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_mre_sms] Connection to node -2 could not be established. Broker may not be available.
+2020-11-19 11:18:51.184 WARN  [ClientCnxn] Client session timed out, have not heard from server in 11000ms for sessionid 0x0

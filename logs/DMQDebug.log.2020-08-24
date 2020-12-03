@@ -1,0 +1,4 @@
+2020-08-24 17:07:59  [ MyExecutor-2:13236 ] - [ ERROR ] 发送失败
+org.apache.kafka.common.errors.TimeoutException: Failed to update metadata after 60000 ms.
+2020-08-24 17:10:26  [ MyExecutor-2:160436 ] - [ ERROR ] 发送失败
+org.apache.kafka.common.errors.TimeoutException: Failed to update metadata after 60000 ms.

@@ -1,0 +1,223 @@
+2020-08-26 17:07:12.619 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 3 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:12.619 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 3 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:12.638 WARN  [AdminClientConfig] The configuration 'key.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:12.638 WARN  [AdminClientConfig] The configuration 'value.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:12.648 WARN  [AdminClientConfig] The configuration 'group.id' was supplied but isn't a known config.
+2020-08-26 17:07:12.648 WARN  [AdminClientConfig] The configuration 'max.poll.interval.ms' was supplied but isn't a known config.
+2020-08-26 17:07:12.648 WARN  [AdminClientConfig] The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2020-08-26 17:07:12.728 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 8 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:12.728 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 9 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:12.728 WARN  [ConsumerCoordinator] [Consumer clientId=consumer-2, groupId=CID_data_sms] The following subscribed topics are not assigned to any members: [kafkatransfer_data_sms] 
+2020-08-26 17:07:12.728 WARN  [ConsumerCoordinator] [Consumer clientId=consumer-3, groupId=CID_mre_sms] The following subscribed topics are not assigned to any members: [mysql_redis_sms] 
+2020-08-26 17:07:12.848 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 12 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:12.848 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 11 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:12.868 WARN  [AdminClientConfig] The configuration 'key.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:12.868 WARN  [AdminClientConfig] The configuration 'value.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:12.868 WARN  [AdminClientConfig] The configuration 'group.id' was supplied but isn't a known config.
+2020-08-26 17:07:12.868 WARN  [AdminClientConfig] The configuration 'max.poll.interval.ms' was supplied but isn't a known config.
+2020-08-26 17:07:12.868 WARN  [AdminClientConfig] The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2020-08-26 17:07:12.968 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 12 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:12.968 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 13 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.068 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 14 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.068 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 13 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.138 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 4 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.180 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 15 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.181 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 14 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.266 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 10 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.266 WARN  [ConsumerCoordinator] [Consumer clientId=consumer-1, groupId=CID_aue_sms] The following subscribed topics are not assigned to any members: [topic_kafkatransfer_aue_sms] 
+2020-08-26 17:07:13.283 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 16 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.283 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 15 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.378 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 12 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.398 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 17 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.398 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 16 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.527 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 17 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.527 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 18 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.548 WARN  [AdminClientConfig] The configuration 'key.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:13.548 WARN  [AdminClientConfig] The configuration 'value.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:13.548 WARN  [AdminClientConfig] The configuration 'group.id' was supplied but isn't a known config.
+2020-08-26 17:07:13.548 WARN  [AdminClientConfig] The configuration 'max.poll.interval.ms' was supplied but isn't a known config.
+2020-08-26 17:07:13.548 WARN  [AdminClientConfig] The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2020-08-26 17:07:13.638 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 13 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.638 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 19 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.638 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 18 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.752 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 20 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.752 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 19 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.778 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 14 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.853 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 20 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.853 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 21 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.880 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 15 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.954 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 22 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.955 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 21 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:13.981 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 16 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.056 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 23 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.057 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 22 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.080 WARN  [AdminClientConfig] The configuration 'key.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:14.080 WARN  [AdminClientConfig] The configuration 'value.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:14.080 WARN  [AdminClientConfig] The configuration 'group.id' was supplied but isn't a known config.
+2020-08-26 17:07:14.080 WARN  [AdminClientConfig] The configuration 'max.poll.interval.ms' was supplied but isn't a known config.
+2020-08-26 17:07:14.080 WARN  [AdminClientConfig] The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2020-08-26 17:07:14.157 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 24 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.158 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 23 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.183 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 17 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.259 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 25 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.260 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 24 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.361 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 26 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.362 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 25 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.384 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 18 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.464 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 27 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.465 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 26 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.486 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 19 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.566 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 28 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.567 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 27 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.588 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 20 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.667 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 29 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.669 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 28 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.690 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 21 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.711 WARN  [AdminClientConfig] The configuration 'key.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:14.711 WARN  [AdminClientConfig] The configuration 'value.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:14.711 WARN  [AdminClientConfig] The configuration 'group.id' was supplied but isn't a known config.
+2020-08-26 17:07:14.711 WARN  [AdminClientConfig] The configuration 'max.poll.interval.ms' was supplied but isn't a known config.
+2020-08-26 17:07:14.711 WARN  [AdminClientConfig] The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2020-08-26 17:07:14.769 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 30 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.770 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 29 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.871 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 31 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.873 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 30 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.891 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 22 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.972 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 32 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:14.974 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 31 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.010 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 23 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.073 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 33 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.074 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 32 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.112 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 24 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.173 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 34 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.176 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 33 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.215 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 25 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.275 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 35 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.277 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 34 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.321 WARN  [AdminClientConfig] The configuration 'key.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:15.321 WARN  [AdminClientConfig] The configuration 'value.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:15.321 WARN  [AdminClientConfig] The configuration 'group.id' was supplied but isn't a known config.
+2020-08-26 17:07:15.321 WARN  [AdminClientConfig] The configuration 'max.poll.interval.ms' was supplied but isn't a known config.
+2020-08-26 17:07:15.321 WARN  [AdminClientConfig] The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2020-08-26 17:07:15.377 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 36 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.379 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 35 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.422 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 26 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.480 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 37 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.481 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 36 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.582 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 38 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.582 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 37 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.587 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 27 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.684 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 38 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.684 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 39 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.689 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 28 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.785 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 39 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.786 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 40 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.790 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 29 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.886 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 41 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.886 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 42 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.888 WARN  [AdminClientConfig] The configuration 'key.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:15.888 WARN  [AdminClientConfig] The configuration 'value.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:15.888 WARN  [AdminClientConfig] The configuration 'group.id' was supplied but isn't a known config.
+2020-08-26 17:07:15.888 WARN  [AdminClientConfig] The configuration 'max.poll.interval.ms' was supplied but isn't a known config.
+2020-08-26 17:07:15.888 WARN  [AdminClientConfig] The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2020-08-26 17:07:15.987 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 42 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:15.987 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 43 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.089 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 44 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.089 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 43 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.090 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 30 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.189 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 45 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.191 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 44 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.191 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 31 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.291 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 46 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.292 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 45 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.293 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 33 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.393 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 46 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.393 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 47 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.395 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 34 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.461 WARN  [AdminClientConfig] The configuration 'key.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:16.461 WARN  [AdminClientConfig] The configuration 'value.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:16.461 WARN  [AdminClientConfig] The configuration 'group.id' was supplied but isn't a known config.
+2020-08-26 17:07:16.461 WARN  [AdminClientConfig] The configuration 'max.poll.interval.ms' was supplied but isn't a known config.
+2020-08-26 17:07:16.461 WARN  [AdminClientConfig] The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2020-08-26 17:07:16.496 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 48 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.496 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 47 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.598 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 49 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.598 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 48 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.695 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 35 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.700 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 50 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.700 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 49 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.797 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 36 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.800 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 50 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.801 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 51 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.898 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 37 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.902 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 51 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:16.903 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 52 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.000 WARN  [AdminClientConfig] The configuration 'key.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:17.000 WARN  [AdminClientConfig] The configuration 'value.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:17.000 WARN  [AdminClientConfig] The configuration 'group.id' was supplied but isn't a known config.
+2020-08-26 17:07:17.000 WARN  [AdminClientConfig] The configuration 'max.poll.interval.ms' was supplied but isn't a known config.
+2020-08-26 17:07:17.000 WARN  [AdminClientConfig] The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2020-08-26 17:07:17.003 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 52 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.005 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 53 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.098 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 38 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.106 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 53 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.106 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 54 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.208 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 55 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.208 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 54 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.266 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 39 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.309 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 55 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.314 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 56 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.366 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 40 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.412 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 56 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.412 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 57 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.468 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 41 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.514 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 58 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.514 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 57 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.568 WARN  [AdminClientConfig] The configuration 'key.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:17.568 WARN  [AdminClientConfig] The configuration 'value.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:17.568 WARN  [AdminClientConfig] The configuration 'group.id' was supplied but isn't a known config.
+2020-08-26 17:07:17.568 WARN  [AdminClientConfig] The configuration 'max.poll.interval.ms' was supplied but isn't a known config.
+2020-08-26 17:07:17.568 WARN  [AdminClientConfig] The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2020-08-26 17:07:17.616 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 59 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.616 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 58 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.668 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 42 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.717 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 59 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.719 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 60 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.787 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 43 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.818 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 60 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.820 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 61 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.889 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 44 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.919 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 61 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.920 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 62 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:17.990 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 45 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.021 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 62 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.022 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 63 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.089 WARN  [AdminClientConfig] The configuration 'key.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:18.089 WARN  [AdminClientConfig] The configuration 'value.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:18.089 WARN  [AdminClientConfig] The configuration 'group.id' was supplied but isn't a known config.
+2020-08-26 17:07:18.089 WARN  [AdminClientConfig] The configuration 'max.poll.interval.ms' was supplied but isn't a known config.
+2020-08-26 17:07:18.089 WARN  [AdminClientConfig] The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2020-08-26 17:07:18.122 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 63 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.123 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 64 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.191 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 46 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.238 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 65 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.238 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 64 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.318 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 47 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.348 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 65 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.348 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 66 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.428 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 48 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.467 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 67 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.467 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 66 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.528 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 49 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.568 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 67 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.568 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 68 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.628 WARN  [AdminClientConfig] The configuration 'key.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:18.628 WARN  [AdminClientConfig] The configuration 'value.deserializer' was supplied but isn't a known config.
+2020-08-26 17:07:18.628 WARN  [AdminClientConfig] The configuration 'group.id' was supplied but isn't a known config.
+2020-08-26 17:07:18.628 WARN  [AdminClientConfig] The configuration 'max.poll.interval.ms' was supplied but isn't a known config.
+2020-08-26 17:07:18.628 WARN  [AdminClientConfig] The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2020-08-26 17:07:18.669 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 69 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.669 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 68 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.766 WARN  [NetworkClient] [Consumer clientId=consumer-1, groupId=CID_aue_sms] Error while fetching metadata with correlation id 50 : {topic_kafkatransfer_aue_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.798 WARN  [NetworkClient] [Consumer clientId=consumer-3, groupId=CID_mre_sms] Error while fetching metadata with correlation id 70 : {mysql_redis_sms=UNKNOWN_TOPIC_OR_PARTITION}
+2020-08-26 17:07:18.798 WARN  [NetworkClient] [Consumer clientId=consumer-2, groupId=CID_data_sms] Error while fetching metadata with correlation id 69 : {kafkatransfer_data_sms=UNKNOWN_TOPIC_OR_PARTITION}

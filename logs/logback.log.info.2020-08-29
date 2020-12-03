@@ -1,0 +1,9 @@
+09:47:17.068 [MyExecutor-2-SendThread(192.100.1.71:2181)] INFO  org.apache.zookeeper.ClientCnxn - Opening socket connection to server 192.100.1.71/192.100.1.71:2181. Will not attempt to authenticate using SASL (unknown error)
+09:47:40.283 [MyExecutor-2-SendThread(192.100.1.77:2181)] INFO  org.apache.zookeeper.ClientCnxn - Opening socket connection to server 192.100.1.77/192.100.1.77:2181. Will not attempt to authenticate using SASL (unknown error)
+09:47:41.556 [MyExecutor-2-SendThread(192.100.1.77:2181)] INFO  org.apache.zookeeper.ClientCnxn - Socket connection established to 192.100.1.77/192.100.1.77:2181, initiating session
+09:47:44.109 [MyExecutor-2-SendThread(192.100.1.77:2181)] INFO  org.apache.zookeeper.ClientCnxn - Unable to reconnect to ZooKeeper service, session 0x2740adb9a6d036b has expired, closing socket connection
+09:47:44.955 [MyExecutor-2-EventThread] INFO  org.apache.zookeeper.ZooKeeper - Initiating client connection, connectString=192.100.1.71:2181,192.100.1.74:2181,192.100.1.77:2181 sessionTimeout=30000 watcher=org.I0Itec.zkclient.ZkClient@11e3fff
+09:47:46.825 [MyExecutor-2-EventThread] INFO  org.apache.zookeeper.ClientCnxn - EventThread shut down for session: 0x2740adb9a6d036b
+09:47:47.664 [MyExecutor-2-SendThread(192.100.1.77:2181)] INFO  org.apache.zookeeper.ClientCnxn - Opening socket connection to server 192.100.1.77/192.100.1.77:2181. Will not attempt to authenticate using SASL (unknown error)
+09:47:48.083 [MyExecutor-2-SendThread(192.100.1.77:2181)] INFO  org.apache.zookeeper.ClientCnxn - Socket connection established to 192.100.1.77/192.100.1.77:2181, initiating session
+09:47:48.504 [MyExecutor-2-SendThread(192.100.1.77:2181)] INFO  org.apache.zookeeper.ClientCnxn - Session establishment complete on server 192.100.1.77/192.100.1.77:2181, sessionid = 0x372e522b5f005d5, negotiated timeout = 30000
