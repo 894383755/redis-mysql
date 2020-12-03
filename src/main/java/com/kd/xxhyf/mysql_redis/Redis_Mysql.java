@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.kd.xxhyf.main.core.Run;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import com.kd.redis.config.RedisConfig;
@@ -36,7 +38,16 @@ public class Redis_Mysql {
 	private Connection connection;
 	
 	@Async
+	@Scheduled(fixedDelay = 20000)
 	public void start(){
+		//是否准备好了，准备好了就启动
+		while(Run.getReady()){
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 		LOGGER.debug("开始同步");
 	//	List<Map<String, Object>> list = connection.findForDruid("SELECT * FROM OMPSE.SYS_TABLEINFO WHERE ID LIKE '1%' "
 	//			+ "UNION ALL SELECT * FROM OMPSE.SYS_TABLEINFO  WHERE ID LIKE '2%'; ");

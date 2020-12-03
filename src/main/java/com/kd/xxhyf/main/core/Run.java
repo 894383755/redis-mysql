@@ -37,6 +37,8 @@ public class Run {
 	
 	private static final Logger LOGGER =  LoggerFactory.getLogger(Run.class);
 
+	private volatile static boolean  ready = false;
+
 	@Autowired
 	private Static_model static_model;
 	
@@ -60,7 +62,8 @@ public class Run {
 	@SuppressWarnings("static-access")
 	private Jedis jedis =redisConfig.getJedis();
 //	private JedisCluster jedis =redisConfig.getJedisCluster();
-	
+
+
 	/**
 	 * 服务启停
 	 */
@@ -98,10 +101,15 @@ public class Run {
 			// TODO: handle exception
 			LOGGER.error(e.getMessage());
 		}
-		redis_Mysql.start();//初始化静态信息同步到codis
+		ready = ready;
+		//redis_Mysql.start();//初始化静态信息同步到codis
 		static_model.start();//静态模型入库
 		synchro.start();//静态模型同步
 		synchroData.start();
 		//notice.start();//待办任务
+	}
+
+	public static boolean getReady() {
+		return ready;
 	}
 }
