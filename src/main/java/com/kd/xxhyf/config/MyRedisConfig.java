@@ -49,12 +49,26 @@ public class MyRedisConfig {
 
     @Bean
     public JedisCluster getJedisCluster(RedisConfig redisConfig){
-        return redisConfig.getJedisCluster();
+        try {
+            return redisConfig.getJedisCluster();
+        }catch (Exception e){
+            return null;
+        }
     }
 
     @Bean
     public Jedis getJedis(RedisConfig redisConfig){
-        return redisConfig.getJedis();
+        try {
+            return redisConfig.getJedis();
+        }catch (Exception e){
+            return null;
+        }
     }
 
+    @Bean
+    public void hasJedisOrJedisCluster(JedisCluster jedisCluster,Jedis jedis){
+        if (jedisCluster == null && jedis == null){
+            throw new RuntimeException("无法获取Jedis或JedisCluster连接");
+        }
+    }
 }
