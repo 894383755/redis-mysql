@@ -58,9 +58,7 @@ public class Run {
 	
 	@Autowired
 	private Notice notice;
-	
-	@SuppressWarnings("static-access")
-	private Jedis jedis =redisConfig.getJedis();
+
 //	private JedisCluster jedis =redisConfig.getJedisCluster();
 
 
@@ -69,12 +67,23 @@ public class Run {
 	 */
 	@PostConstruct
 	public void start(){
-		//初始化codis中存储的静态模型的最大ID,用于静态模型入库时获取ID使用，避免多线程导致ID重复问题
-		/*String redisType = codisPool.getRedisType();
-		if ("2".equals(redisType)) {
-			codisPool.build();
-		}*/
+		init();
+		ready = ready;
+		redis_Mysql.start();//初始化静态信息同步到codis
+		static_model.start();//静态模型入库
+		synchro.start();//静态模型同步
+		synchroData.start();
+		notice.start();//待办任务
+	}
+
+	public static boolean getReady() {
+		return ready;
+	}
+
+	public void init(){
 		try  {
+			//初始化codis中存储的静态模型的最大ID,用于静态模型入库时获取ID使用，避免多线程导致ID重复问题
+			Jedis jedis =redisConfig.getJedis();
 			String sql = "SELECT EN_TABLENAME,ID FROM OMPSE.SYS_TABLEINFO WHERE ID LIKE '%0' AND EN_TABLENAME!='RUNNING_FILE_B'";
 			List<Map<String, Object>> list = connection.findForDruid(sql);
 			for (int i = 0; i < list.size(); i++) {
@@ -101,15 +110,5 @@ public class Run {
 			// TODO: handle exception
 			LOGGER.error(e.getMessage());
 		}
-		ready = ready;
-		//redis_Mysql.start();//初始化静态信息同步到codis
-		static_model.start();//静态模型入库
-		synchro.start();//静态模型同步
-		synchroData.start();
-		//notice.start();//待办任务
-	}
-
-	public static boolean getReady() {
-		return ready;
 	}
 }

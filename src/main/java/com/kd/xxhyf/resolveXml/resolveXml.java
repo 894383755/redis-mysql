@@ -71,19 +71,14 @@ public class resolveXml {
 			int count = 0;
 			for(Element e:listElement){
 		    	List<Attribute> listAttr1=e.attributes();//当前节点的所有属性的list  
-		    	String keyName="";
+		    	StringBuilder keyName= new StringBuilder();
 		    	 for(Attribute attr1:listAttr1){//遍历当前节点的所有属性   
-				        String value=attr1.getValue();//属性的值  
-				        if("".equals(keyName)){
-				        	keyName=value+"_";
-				        }else{
-				        	keyName=keyName+value;
-				        }
-				        
+		    	 	String value=attr1.getValue();//属性的值
+					keyName.append(value).append("_");
 				 }
 		    	 List<Map<String, Object>> valueList=getValueList(e);
-		    	 keyName = keyName+"_"+count;
-		    	 map.put(keyName, valueList);
+				 keyName.append(count);
+		    	 map.put(keyName.toString(), valueList);
 		    	 count ++;
 			}
 		} catch (Exception e) {
