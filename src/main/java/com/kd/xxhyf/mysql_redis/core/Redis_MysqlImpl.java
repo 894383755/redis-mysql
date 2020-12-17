@@ -13,6 +13,7 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 
@@ -33,10 +34,10 @@ public class Redis_MysqlImpl implements Runnable {
 	private Map<String, Object> map;
 	private ObjectMapper objectmapper = new ObjectMapper();
 
-	@SuppressWarnings("static-access")
-//	private JedisCluster jedis = redisConfig.getJedisCluster();
+	@Autowired
+	private JedisCluster jedis;
 
-	 private Jedis jedis =redisConfig.getJedis();
+	//private Jedis jedis =redisConfig.getJedis();
 	public Redis_MysqlImpl() { // 无参构造方法
 
 	}

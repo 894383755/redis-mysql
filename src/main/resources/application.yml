@@ -8,10 +8,19 @@ server:
 #    port: 6669
 
 jdbc:
-  url: jdbc:kingbase://123.56.70.34:54321/OMPSE
-  driverClass: com.kingbase.Driver
-  username: SYSTEM
-  password: SYSTEM
+  #url=jdbc:dm://192.100.132.39:12345/OMPSE
+  url: jdbc:dm://192.100.1.82:12345/OMPSE
+  ##url=jdbc:dm://41.10.84.183:12345/OMPSE
+  ##url=jdbc:dm://100.10.100.19:12345/OMPSE
+  ##url=jdbc:dm://10.12.3.200:12345/OMPSE
+  driverClass: dm.jdbc.driver.DmDriver
+  username: SYSDBA
+  password: SYSDBA
+
+  #url: jdbc:kingbase://123.56.70.34:54321/OMPSE
+  #driverClass: com.kingbase.Driver
+  #username: SYSTEM
+  #password: SYSTEM
   initialSize: 1
   minIdle: 1
   maxActive: 20

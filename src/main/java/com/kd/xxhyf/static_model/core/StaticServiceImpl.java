@@ -43,11 +43,11 @@ public class StaticServiceImpl implements Runnable{
 	
 	private Connection connection;
 	
-	
+	@Autowired
 	private RedisConfig redisConfig;
-	@SuppressWarnings("static-access")
-//	private JedisCluster jedis =redisConfig.getJedisCluster();
-	private Jedis jedis =redisConfig.getJedis();
+	@Autowired
+	private JedisCluster jedis ;
+	//private Jedis jedis =redisConfig.getJedis();
 	
 	private ObjectMapper objectmapper = new ObjectMapper();
 	

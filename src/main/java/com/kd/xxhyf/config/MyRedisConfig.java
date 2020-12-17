@@ -6,6 +6,8 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisCluster;
 
 @Configuration
 @Data
@@ -44,4 +46,15 @@ public class MyRedisConfig {
         redisProperties.setMaxWaitMillis(maxWaitMillis);
         return new RedisConfig(redisProperties);
     }
+
+    @Bean
+    public JedisCluster getJedisCluster(RedisConfig redisConfig){
+        return redisConfig.getJedisCluster();
+    }
+
+    @Bean
+    public Jedis getJedis(RedisConfig redisConfig){
+        return redisConfig.getJedis();
+    }
+
 }

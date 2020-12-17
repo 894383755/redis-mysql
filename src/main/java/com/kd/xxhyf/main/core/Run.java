@@ -59,8 +59,9 @@ public class Run {
 	@Autowired
 	private Notice notice;
 
-//	private JedisCluster jedis =redisConfig.getJedisCluster();
-
+	@Autowired
+	private JedisCluster jedis;
+    //private Jedis jedis = redisConfig.getJedis();
 
 	/**
 	 * 服务启停
@@ -83,7 +84,7 @@ public class Run {
 	public void init(){
 		try  {
 			//初始化codis中存储的静态模型的最大ID,用于静态模型入库时获取ID使用，避免多线程导致ID重复问题
-			Jedis jedis =redisConfig.getJedis();
+
 			String sql = "SELECT EN_TABLENAME,ID FROM OMPSE.SYS_TABLEINFO WHERE ID LIKE '%0' AND EN_TABLENAME!='RUNNING_FILE_B'";
 			List<Map<String, Object>> list = connection.findForDruid(sql);
 			for (int i = 0; i < list.size(); i++) {
