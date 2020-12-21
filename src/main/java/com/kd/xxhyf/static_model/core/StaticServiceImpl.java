@@ -69,13 +69,11 @@ public class StaticServiceImpl implements Runnable{
 	 */
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		Map<String, List<Map<String, Object>>> map = new HashMap<String, List<Map<String,Object>>>();
 		try {
 			map = resolveXml.statusXml(receiveString);//解析XML,组合成map集合
 			System.out.println("map=="+map);
 		} catch (Exception e) {
-			// TODO: handle exception
 			LOGGER.error(receiveString+"---"+e.getMessage());
 			System.err.println(receiveString);
 		}
@@ -83,23 +81,17 @@ public class StaticServiceImpl implements Runnable{
 		Set<String> ids=map.keySet();//获取map中的所有key
 		LOGGER.debug("解析XML获取的数据KEY的个数:"+ids.size());
 		for (String key : ids) {
+			//解析id和表号
 			String[] id = key.split("_");//key是设备ID和表号 组成的
 			String device=id[0];//设备ID
-			System.out.println("id="+id+"   device="+device);
-			String type=id[1];//表号			
+			String type=id[1];//表号
+			LOGGER.debug("id="+id+"   device="+device);
+
 			Map<String,String> redismap = new HashMap<String,String>();
-			
 			redismap.putAll(jedis.hgetAll(REDISKEY+type));//获取到相应表号的 域信息
 			if(!"".equals(device.trim())){//判断XML里的域是否在域信息表中存在
-				/*if(type.equals("101300")){//更新表数据
-					//update1(device, type, map.get(key));
-					update(device, type, map.get(key));
-				}else{
-					update(device, type, map.get(key),redismap);
-				}*/
 				update(device, type, map.get(key),redismap);
 			}else{
-				
 				insert_data(device, type, map.get(key),redismap);//插入到静态模型表
 			}
 			

@@ -3,11 +3,14 @@ package com.kd.xxhyf.config;
 import com.kd.redis.config.RedisConfig;
 import com.kd.redis.config.RedisProperties;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
+
+import javax.annotation.PostConstruct;
 
 @Configuration
 @Data
@@ -65,10 +68,4 @@ public class MyRedisConfig {
         }
     }
 
-    @Bean
-    public void hasJedisOrJedisCluster(JedisCluster jedisCluster,Jedis jedis){
-        if (jedisCluster == null && jedis == null){
-            throw new RuntimeException("无法获取Jedis或JedisCluster连接");
-        }
-    }
 }

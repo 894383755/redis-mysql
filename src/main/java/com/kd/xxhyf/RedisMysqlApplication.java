@@ -8,10 +8,6 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-//@MapperScan("com.kd.xxhyf.mapper")
-//@ComponentScan({"com.kd.xxhyf","com.kd.codis"})
-
-//@ImportResource({"classpath:conf/spring-*.xml,"})
 public class RedisMysqlApplication {
     public static void main(String[] args) {
             SpringApplication.run(RedisMysqlApplication.class, args);

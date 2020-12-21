@@ -74,7 +74,7 @@ public class Run {
 		static_model.start();//静态模型入库
 		synchro.start();//静态模型同步
 		synchroData.start();
-		notice.start();//待办任务
+		//notice.start();//待办任务
 	}
 
 	public static boolean getReady() {
