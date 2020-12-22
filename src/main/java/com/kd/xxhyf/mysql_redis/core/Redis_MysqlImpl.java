@@ -34,8 +34,8 @@ public class Redis_MysqlImpl implements Runnable {
 	private Map<String, Object> map;
 	private ObjectMapper objectmapper = new ObjectMapper();
 
-	@Autowired
-	private JedisCluster jedis;
+	//@Autowired
+	private JedisCluster jedis = redisConfig.getJedisCluster();
 
 	//private Jedis jedis =redisConfig.getJedis();
 	public Redis_MysqlImpl() { // 无参构造方法
@@ -477,7 +477,7 @@ public class Redis_MysqlImpl implements Runnable {
 					jedis.del(id);
 				jedis.hmset(id, mapInfo);
 			}
-			System.err.println("---同步视图ALARMMODEL成功------");
+			LOGGER.info("---同步视图ALARMMODEL成功------");
 
 			// 同步VIEW_HISDB_MODEL_DATA
 			String vhmSql = "SELECT * FROM OMPSE.VIEW_HISDB_MODEL_DATA";
@@ -491,7 +491,7 @@ public class Redis_MysqlImpl implements Runnable {
 						m.get("ID") + "", json);
 
 			}
-			System.err.println("---同步视图VIEW_HISDB_MODEL_DATA成功------");
+			LOGGER.info("---同步视图VIEW_HISDB_MODEL_DATA成功------");
 			// Hash类型同步数据库视图VIEW_REALDB_MODEL_DATA
 			String vrmSql = "SELECT * FROM OMPSE.VIEW_REALDB_MODEL_DATA";
 			List<Map<String, Object>> vrmList = connection.findForDruid(vrmSql);
@@ -503,7 +503,7 @@ public class Redis_MysqlImpl implements Runnable {
 				jedis.hset(REDISKEY + "VIEW_REALDB_MODEL_DATA", m.get("ID")
 						+ "", json);
 			}
-			System.err.println("---同步视图VIEW_HISDB_MODEL_DATA成功------");
+			LOGGER.info("---同步视图VIEW_HISDB_MODEL_DATA成功------");
 			// Hash类型同步数据库视图APPMODEL
 			String apmSql = "SELECT * FROM OMPSE.APPMODEL";
 			List<Map<String, Object>> apmList = connection.findForDruid(apmSql);
@@ -514,7 +514,7 @@ public class Redis_MysqlImpl implements Runnable {
 				String json = objectmapper.writeValueAsString(m);
 				jedis.hset(REDISKEY + "APPMODEL", m.get("ID") + "", json);
 			}
-			System.err.println("---同步视图APPMODEL成功------");
+			LOGGER.info("---同步视图APPMODEL成功------");
 			// Hash类型同步数据库视图 PROCESSMODEL
 			String pmSql = "SELECT * FROM OMPSE.PROCESSMODEL";
 			List<Map<String, Object>> pmList = connection.findForDruid(pmSql);
@@ -526,7 +526,7 @@ public class Redis_MysqlImpl implements Runnable {
 				jedis.hset(REDISKEY + "PROCESSMODEL", m.get("NODEPROCESSID")
 						+ "", json);
 			}
-			System.err.println("---同步视图PROCESSMODEL成功------");
+			LOGGER.info("---同步视图PROCESSMODEL成功------");
 			// Hash类型同步数据库视图 VIEW_SERVICE_FRIST
 			String vsfSql = "SELECT * FROM OMPSE.VIEW_SERVICE_FRIST";
 			List<Map<String, Object>> vsfList = connection.findForDruid(vsfSql);
@@ -538,7 +538,7 @@ public class Redis_MysqlImpl implements Runnable {
 				jedis.hset(REDISKEY + "VIEW_SERVICE_FRIST", m.get("SERVICEID")
 						+ "", json);
 			}
-			System.err.println("---同步视图PROCESSMODEL成功------");
+			LOGGER.info("---同步视图PROCESSMODEL成功------");
 
 			// 获取采集项配置信息（Hash类型）VIEW_REALDB_ALARM_MODEL_DATA
 			String vramdSql = "SELECT * FROM OMPSE.VIEW_REALDB_ALARM_MODEL_DATA";
@@ -552,7 +552,7 @@ public class Redis_MysqlImpl implements Runnable {
 				jedis.hset(REDISKEY + "VIEW_REALDB_ALARM_MODEL_DATA",
 						m.get("JUDGE_ID") + "", json);
 			}
-			System.err.println("---同步视图VIEW_REALDB_ALARM_MODEL_DATA成功------");
+			LOGGER.info("---同步视图VIEW_REALDB_ALARM_MODEL_DATA成功------");
 
 			// 获取采集项配置信息（Hash类型）VIEW_REALDB_ALARM_MODEL_DATA
 			String fkSql = "SELECT * FROM OMPSE.SYS_FK";
@@ -564,7 +564,7 @@ public class Redis_MysqlImpl implements Runnable {
 				String json = objectmapper.writeValueAsString(m);
 				jedis.hset(REDISKEY + "VIEW_SYS_FK", m.get("ID") + "", json);
 			}
-			System.err.println("---同步视图VIEW_SYS_FK成功------");
+			LOGGER.info("---同步视图VIEW_SYS_FK成功------");
 
 		} catch (Exception e) {
 			// TODO: handle exception

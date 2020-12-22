@@ -89,19 +89,6 @@ public class Static_model {
 			while (true) {
 				// 从Broker拉取消息,拉取超时时间设置为100ms
 				Thread.sleep(5000);
-				
-//				String xml ="<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>"
-//						+ "<lists>"
-//						+ "<list device=\"\" type=\"51150\">"
-//								+ "<CONTEXT_ID>realtime,realtime,realtime,realtime,realtime,realtime,realtime,realtime,realtime,sys,sys,sys,sys,sys,sys,sys,sys,realtime,realtime,realtime,realtime,realtime,realtime,realtime,realtime,realtime,realtime,realtime,realtime,realtime,realtime,realtime,sys,realtime,realtime,realtime,realtime,realtime,realtime,realtime</CONTEXT_ID>"
-//								+ "<APP_ID>public,public,public,public,public,public,data_srv,data_srv,data_srv,base_srv,base_srv,base_srv,base_srv,base_srv,base_srv,base_srv,base_srv,public,public,public,public,public,public,public,public,data_srv,data_srv,data_srv,data_srv,data_srv,data_srv,data_srv,base_srv,sms_scms,sms_scada,data_srv,public,public,sms_fes,sms_scada</APP_ID>"
-//								+ "<PROCESS_ID>rtdb_srv,rtdb_pub,rtdb_sca,rtdbmodi,caseserver,down_daemon,down_srv,dbmodify,sqlsp_srv,sys_nicmonitor,procm,procm_mon,msg_bus,sys_srv,sys_alarm,remote_exed,sys_app,warnserver,priv_srv,locator,midmmi,middata,midbrow,evt_sender,evt_recv,model_modify,tri_rtdb_client,ftpserv,midhs,dbmonitor,db_commit,remote_alarm,sys_info,smsfilesrv,smsalarmserver,sync_srv,In_proxy_t,Out_proxy_t,smsdataserver,smsdmailrecv</PROCESS_ID>"
-//								+ "<NODEID>710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007,710199010600000007</NODEID>"
-//								+ "<time></time>"
-//								+ "</list>"
-//								+ "</lists>";
-//				taskExecutor.execute(new StaticServiceImpl(xml,connection,redisConfig));
-
 				ConsumerRecords<String, String> records = consumer.receive();
 			
 					for (ConsumerRecord<String, String> record : records) {

@@ -81,17 +81,18 @@ public class Run {
 		return ready;
 	}
 
+	/**
+	 * 初始化codis中存储的静态模型的最大ID,用于静态模型入库时获取ID使用，避免多线程导致ID重复问题
+	 */
 	public void init(){
 		try  {
-			//初始化codis中存储的静态模型的最大ID,用于静态模型入库时获取ID使用，避免多线程导致ID重复问题
-
 			String sql = "SELECT EN_TABLENAME,ID FROM OMPSE.SYS_TABLEINFO WHERE ID LIKE '%0' AND EN_TABLENAME!='RUNNING_FILE_B'";
 			List<Map<String, Object>> list = connection.findForDruid(sql);
 			for (int i = 0; i < list.size(); i++) {
 				String id = list.get(i).get("ID")+"";
-				String maxId = "SELECT MAX(SUBSTR(ID,11,8)) AS NUM FROM OMPSE."+list.get(i).get("EN_TABLENAME");
+				String maxIdSql = "SELECT MAX(SUBSTR(ID,11,8)) AS NUM FROM OMPSE."+list.get(i).get("EN_TABLENAME");
 				try {
-					List<Map<String, Object>> list2 = connection.findForDruid(maxId);
+					List<Map<String, Object>> list2 = connection.findForDruid(maxIdSql);
 					if(list2.size()>0){
 						Object object = list2.get(0).get("NUM");
 						if(object==null||"".equals(object)){
@@ -104,7 +105,7 @@ public class Run {
 					}
 				} catch (Exception e) {
 					// TODO: handle exception
-					LOGGER.error(maxId);
+					LOGGER.error(maxIdSql);
 				}
 			}
 		}catch (Exception e) {

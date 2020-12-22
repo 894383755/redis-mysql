@@ -58,8 +58,8 @@ public class Redis_Mysql {
 		LOGGER.debug("开始同步告警配置信息");
 		Redis_MysqlImpl redis_MysqlImpl = new Redis_MysqlImpl(redisConfig, new HashMap<String, Object>(), connection);
 		redis_MysqlImpl.runing_data("null");
-		redis_MysqlImpl.server();
-		redis_MysqlImpl.syn_view();
+		redis_MysqlImpl.server();//t同步服务器数据
+		redis_MysqlImpl.syn_view();//同步视图
 		redis_MysqlImpl.synNowRunDateNeedStaticDataToCodis();
 		redis_MysqlImpl.synDeviceId();
 	}

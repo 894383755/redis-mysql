@@ -1,7 +1,10 @@
+# 版本
+1.0
 # redis-mysql
 科东-同步服务
+## 转换操作
+### 
 ## 各个包功能
-* codis.codiscluter    			Spring注入codis配置信息
 * xxhyf    						信息化研发  该包下同步服务的业务逻辑，下面是各个包的介绍
 * xxhyf.database.connection   	数据库连接池
 * xxhyf.main   					同步服务的启动项
@@ -16,3 +19,25 @@
 * xxhyf.synchro					同步服务
 * xxhyf.synchro.core              同步服务业务实现
 * xxhyf.util                      工具类
+## 总体流程
+1. RedisMysqlApplication springboot启动
+2. Run 运行
+    1. 各个线程任务初始化
+    2. 执行各个任务线程
+        * 静态模型
+        * 模型同步
+        * 模型入库 static_model
+            1. 从kafka获取xml
+            2. 解析xml，转换成map
+            3. 对于每个key 解析出ID和表号
+                1. 获取到相应表号的域信息
+                2. 插入或更新金泰模型表
+                    1. 将查找映射名称从数据查找出来
+                    2. 
+        * 同步数据
+        * 代办任务
+# 信息
+## 作者
+王俊磊
+# 需求
+* 对某个表同步不同步有开关

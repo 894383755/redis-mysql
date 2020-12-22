@@ -7,10 +7,17 @@ server:
 #  server:
 #    port: 6669
 
+config:
+  rediskey: HeNan_
+  #rediskey: FJ_
+  #rediskey: XiNan_
+
+
 jdbc:
   ### -----------达梦-------------------
   #url: jdbc:dm://192.100.132.39:12345/OMPSE
-  url: jdbc:dm://192.100.1.82:12345/OMPSE_XINAN
+  #url: jdbc:dm://192.100.1.82:12345/OMPSE_XINAN
+  url: jdbc:dm://192.100.1.82:12345/OMPSE_HN
   ##url: jdbc:dm://41.10.84.183:12345/OMPSE
   ##url: jdbc:dm://100.10.100.19:12345/OMPSE
   ##url: jdbc:dm://10.12.3.200:12345/OMPSE

@@ -43,10 +43,10 @@ public class StaticServiceImpl implements Runnable{
 	
 	private Connection connection;
 	
-	@Autowired
+	//@Autowired
 	private RedisConfig redisConfig;
-	@Autowired
-	private JedisCluster jedis ;
+	//@Autowired
+	private JedisCluster jedis = redisConfig.getJedisCluster();
 	//private Jedis jedis =redisConfig.getJedis();
 	
 	private ObjectMapper objectmapper = new ObjectMapper();
@@ -134,7 +134,7 @@ public class StaticServiceImpl implements Runnable{
 						 if(nodeid.length()>18){
 							 nodeid = nodeid.substring(0, 18);
 						 }
-						 
+
 						 try  {
 							 nodeid = jedis.hget(REDISKEY+nodeid, "NODEID");
 						 }catch (Exception e) {
@@ -154,7 +154,7 @@ public class StaticServiceImpl implements Runnable{
 				
 				for (String key : set) {
 					Boolean boolean1 = redismap.containsKey(key.toUpperCase());
-					 if(boolean1){
+					if(boolean1){
 						 //判断表中是否已存在的字段(根据redis)如果存在更新数据库，redis插入
 						 //判断该字段是否是引用显示
 						 if(key.equals("ID")){
@@ -162,7 +162,7 @@ public class StaticServiceImpl implements Runnable{
 						 }
 						 String v = null;
 						 try {
-							 v = value(type, key, map.get(key)+"",nodeid.length()>18?nodeid.substring(0,18):nodeid);
+							 v = value(type, key, map.get(key)+"");
 						} catch (Exception e) {
 							// TODO: handle exception
 							LOGGER.warn(receiveString); 
@@ -240,7 +240,7 @@ public class StaticServiceImpl implements Runnable{
 					LOGGER.error(tablename+"缺少信息未能成功插入!!!");
 				}
 			}
-			
+		System.out.println("ok");
 	}
 
 	/**
@@ -279,7 +279,7 @@ public class StaticServiceImpl implements Runnable{
 					Boolean boolean1 = redismap.containsKey(key.toUpperCase());
 					 if(boolean1){
 					
-						 String v = value(type, key, map.get(key)+"",nodeid);
+						 String v = value(type, key, map.get(key)+"");
 						 if(v!=null){
 							 v= v.replaceAll( "\\\\",   "\\\\\\\\");
 							 value +=key+"='"+v+"' ,";
@@ -316,7 +316,7 @@ public class StaticServiceImpl implements Runnable{
 	 * @param value
 	 * @return
 	 */
-	public String value(String tableid,String col,String value,String nodeid){
+	public String value(String tableid,String col,String value){
 		
 		//String sql ="SELECT * FROM OMPSE.SYS_FIELDINFO WHERE TABLE_ID = '"+tableid+"' AND FIELDNAME =  '"+col+"'";
 		String sql ="SELECT * FROM OMPSE.SYS_FK WHERE TABLE_ID = '"+tableid+"' AND FIELDNAME =  '"+col+"'";
@@ -329,7 +329,7 @@ public class StaticServiceImpl implements Runnable{
 			if("null".equals(fk_front)||"".equals(fk_front)){
 				return ""+value+"";
 			}else{
-				return fk_value(fk_id, fk_front, value,nodeid);
+				return fk_value(fk_id, fk_front, value);
 			}
 			
 		}else{
@@ -342,11 +342,10 @@ public class StaticServiceImpl implements Runnable{
 	 * @param fk_id
 	 * @param fk_front
 	 * @param value
-	 * @param nodeid
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public String fk_value(String fk_id,String fk_front,String value,String nodeid ){
+	public String fk_value(String fk_id,String fk_front,String value){
 		JSONObject map = new JSONObject();
 		JSONObject FIELDNAMEMap = new JSONObject();
 		try  {//保证每次获取得codis连接均可用
@@ -392,7 +391,7 @@ public class StaticServiceImpl implements Runnable{
 					return null;
 				}
 			}else{
-				return fk_value(fk_ids, fk_fronts, value,nodeid);
+				return fk_value(fk_ids, fk_fronts, value);
 			}
 
 	}
