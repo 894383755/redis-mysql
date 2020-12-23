@@ -2,8 +2,6 @@ package com.kd.xxhyf.mysql_redis.core;
 
 import java.util.ArrayList;
 
-import static com.kd.xxhyf.util.staticConst.dbPrefix.REDISKEY;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import redis.clients.jedis.Jedis;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisCluster;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,58 +21,36 @@ import com.kd.redis.config.RedisConfig;
 import com.kd.xxhyf.database.connection.Connection;
 import com.kd.xxhyf.util.Util;
 
-public class Redis_MysqlImpl implements Runnable {
+@Component
+public class Redis_MysqlImpl {
 
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(Redis_MysqlImpl.class);
 
-	private RedisConfig redisConfig;
+	@Value("${config.rediskey}")
+	private String REDISKEY;
 
-	private Connection connection; // 加载 数据库 执行类
+	@Autowired
+	private Connection connection;
 
-	private Map<String, Object> map;
 	private ObjectMapper objectmapper = new ObjectMapper();
 
-	//@Autowired
-	private JedisCluster jedis = redisConfig.getJedisCluster();
-
+	@Autowired
+	private JedisCluster jedis ;
 	//private Jedis jedis =redisConfig.getJedis();
-	public Redis_MysqlImpl() { // 无参构造方法
 
-	}
 
-	// 构造方法
-	public Redis_MysqlImpl(RedisConfig redisConfig, Map<String, Object> map,
-						   Connection connection) {
-		this.redisConfig = redisConfig;
-		this.map = map;
-		this.connection = connection;
-	}
-
-	// 重写的线程run方法
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub sys_FIELDinfo
-		String tableId = map.get("ID") + "";
+	public void run(String tableId) {
 		if (null == tableId || "null".equals(tableId) || "".equals(tableId))
 			return;
 		// 根据表ID查询表名，表字段和字段类型
-		/*
-		 * String FIELDname =
-		 * "SELECT B.FIELDNAME,B.TYPE,A.EN_TABLENAME,A.CHN_TABLENAME  FROM OMPSE.SYS_TABLEINFO AS A,OMPSE.SYS_FIELDINFO AS B WHERE A.ID = B.TABLE_ID AND A.ID = '"
-		 * + tableId + "'";// 查找字段的属性和表明
-		 */
-
 		String FIELDname = "SELECT B.FIELDNAME,B.TYPE,A.EN_TABLENAME,A.CHN_TABLENAME  FROM OMPSE.SYS_TABLEINFO AS A,OMPSE.SYS_FK AS B WHERE A.ID = B.TABLE_ID AND A.ID = '"
 				+ tableId + "'";
-
-		System.err.println(FIELDname);
+		LOGGER.debug(FIELDname);
 		List<Map<String, Object>> list = connection.findForDruid(FIELDname);
 
 		if (list.size() != 0) {
 			Map<String, String> map = new HashMap<String, String>();
-
-			// {tablename:server,id:int(20),name:varchat(20)}
 			for (int i = 0; i < list.size(); i++) {
 				Map<String, Object> map2 = list.get(i);
 				map.put(map2.get("FIELDNAME") + "", map2.get("TYPE") + "");// 将字段名作为KEY，字段类型作为
@@ -91,7 +68,7 @@ public class Redis_MysqlImpl implements Runnable {
 				jedis.hmset(REDISKEY + tableId + "", map); // {tableId:{tablename:server,id:int(20),name:varchat(20)}}
 				// 添加map
 			} catch (Exception e) {
-				// TODO: handle exception
+				LOGGER.error(e.getMessage());
 			}
 			if (tableId.substring(tableId.length() - 1, tableId.length())
 					.equals("0")) { // 判断是不是静态信表 0是静态表
@@ -107,7 +84,7 @@ public class Redis_MysqlImpl implements Runnable {
 	/**
 	 * 获取静态表数据
 	 *
-	 * @param nodeId
+	 * @param paramTableId
 	 */
 	public void static_data(String paramTableId) {
 		try {// 获取到可用的redis连接
@@ -575,7 +552,7 @@ public class Redis_MysqlImpl implements Runnable {
 	/**
 	 * 获取配置信息
 	 *
-	 * @param value为SQL
+	 * @param value 为SQL
 	 */
 	public void runing_data(String value) {
 		String sql2 = "SELECT * FROM OMPSE.SYS_REDISINFO "; // 同步告警阈值的 codis查询表

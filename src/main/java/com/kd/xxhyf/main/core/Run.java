@@ -8,9 +8,9 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 
 import com.kd.redis.config.RedisConfig;
@@ -21,7 +21,6 @@ import com.kd.xxhyf.static_model.Static_model;
 import com.kd.xxhyf.synchro.Synchro;
 import com.kd.xxhyf.synchro_data.SynchroData;
 
-import static com.kd.xxhyf.util.staticConst.dbPrefix.REDISKEY;
 
 
 /**
@@ -37,7 +36,8 @@ public class Run {
 	
 	private static final Logger LOGGER =  LoggerFactory.getLogger(Run.class);
 
-	private volatile static boolean  ready = false;
+	@Value("${config.rediskey}")
+	private String REDISKEY;
 
 	@Autowired
 	private Static_model static_model;
@@ -47,9 +47,6 @@ public class Run {
 	
 	@Autowired
 	private Connection connection;
-	
-	@Autowired
-	private RedisConfig redisConfig;
 	
 	@Autowired
 	private Synchro synchro;
@@ -68,23 +65,20 @@ public class Run {
 	 */
 	@PostConstruct
 	public void start(){
+		LOGGER.info("开始执行所有任务");
 		init();
-		ready = ready;
-		redis_Mysql.start();//初始化静态信息同步到codis
-		static_model.start();//静态模型入库
-		synchro.start();//静态模型同步
-		synchroData.start();
+		redis_Mysql.run();//初始化静态信息同步到codis
+		static_model.run();//静态模型入库
+		//synchro.start();//静态模型同步
+		//synchroData.start();
 		//notice.start();//待办任务
-	}
-
-	public static boolean getReady() {
-		return ready;
 	}
 
 	/**
 	 * 初始化codis中存储的静态模型的最大ID,用于静态模型入库时获取ID使用，避免多线程导致ID重复问题
 	 */
 	public void init(){
+		LOGGER.info("开始执行初始化");
 		try  {
 			String sql = "SELECT EN_TABLENAME,ID FROM OMPSE.SYS_TABLEINFO WHERE ID LIKE '%0' AND EN_TABLENAME!='RUNNING_FILE_B'";
 			List<Map<String, Object>> list = connection.findForDruid(sql);
@@ -112,5 +106,6 @@ public class Run {
 			// TODO: handle exception
 			LOGGER.error(e.getMessage());
 		}
+		LOGGER.info("结束执行初始化");
 	}
 }

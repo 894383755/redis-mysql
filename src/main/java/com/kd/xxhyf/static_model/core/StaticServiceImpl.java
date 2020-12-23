@@ -15,12 +15,10 @@ import net.sf.json.JSONObject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
-import static com.kd.xxhyf.util.staticConst.dbPrefix.REDISKEY;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kd.redis.config.RedisConfig;
@@ -48,6 +46,9 @@ public class StaticServiceImpl implements Runnable{
 	//@Autowired
 	private JedisCluster jedis = redisConfig.getJedisCluster();
 	//private Jedis jedis =redisConfig.getJedis();
+
+	@Value("${config.rediskey}")
+	private String REDISKEY;
 	
 	private ObjectMapper objectmapper = new ObjectMapper();
 	

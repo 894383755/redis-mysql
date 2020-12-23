@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import com.kd.kafkautill.service.DmqConsumer;
@@ -43,23 +44,9 @@ public class Static_model {
 	private ThreadPoolTaskExecutor taskExecutor;
 	
 	private DmqConsumer consumer = null;
-	
+
 	@Async
-	public void start(){
-		this.run();
-		while (true) {
-			try {
-				LOGGER.info("静态数据周期性监控消费者");
-				this.monitor();
-				Thread.sleep(60*1000);
-			} catch (Exception e) {
-				// TODO: handle exception
-				LOGGER.error("静态数据监控异常",e);
-			}
-		}
-		
-	}
-	
+	@Scheduled(fixedDelay = 20000)
 	public void run(){
 		try {
 			Properties props = new Properties();
@@ -109,16 +96,6 @@ public class Static_model {
 			// TODO: handle exception
 			consumer = null;
 			LOGGER.warn("静态数据消费者出现异常信息",e);
-		}
-	}
-	
-	/**
-	  * 监控Kafka注册失败后再次重新注册
-	 */
-	public void monitor (){
-		if(null==consumer){
-			LOGGER.error("静态数据重新注册");
-			this.run();
 		}
 	}
 	

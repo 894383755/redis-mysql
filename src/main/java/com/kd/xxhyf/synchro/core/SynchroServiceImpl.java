@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.kd.redis.config.RedisConfig;
@@ -31,6 +32,9 @@ public class SynchroServiceImpl implements Runnable{
 	private String receiveString;//接收的数据xml
 	
 	private Connection connection;//数据库连接池
+
+	@Autowired
+	private Redis_MysqlImpl redis_MysqlImpl;
 	
 	public SynchroServiceImpl(){
 		
@@ -59,11 +63,8 @@ public class SynchroServiceImpl implements Runnable{
 			Set<String> ids = map.keySet();//遍历Map
 			
 			String tableOrSql = map.get("TABLEORSQL")+""; //获取到数据中表号
-			
-			Map<String, Object> map2 = new HashMap<String, Object>();
-			map2.put("ID", tableOrSql);
-			Redis_MysqlImpl redis_MysqlImpl = new  Redis_MysqlImpl(redisConfig, map2, connection);
-			redis_MysqlImpl.run();
+
+			redis_MysqlImpl.run(tableOrSql);
 			redis_MysqlImpl.runing_data("null");
 			//redis_MysqlImpl.server();
 			redis_MysqlImpl.syn_view();

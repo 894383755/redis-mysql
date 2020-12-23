@@ -23,9 +23,18 @@
 1. RedisMysqlApplication springboot启动
 2. Run 运行
     1. 各个线程任务初始化
+        * 查询每个表的最大id 存储到redis
+        1. 获取SYS_TABLEINFO表的所有id和表名
+        2. 通过表明查询该表的最大id
+        3. 将最大id存储到 REDISKEY+id+"_num" 下
     2. 执行各个任务线程
-        * 静态模型
-        * 模型同步
+        * 静态模型 static_model
+        * 模型同步 redis_Mysql
+            1. 获取SYS_TABLEINFO表的所有id和表名
+            2. 通过表id查询该表名，表字段和字段类型
+            3. 将该表名，表字段和字段类型存储到 REDISKEY + tableId 下
+            4. 判断表是否是静态信息表（id末尾为0）
+                1. （static_data（））
         * 模型入库 static_model
             1. 从kafka获取xml
             2. 解析xml，转换成map

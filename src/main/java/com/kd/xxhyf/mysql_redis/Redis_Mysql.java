@@ -36,32 +36,27 @@ public class Redis_Mysql {
 	
 	@Autowired
 	private Connection connection;
+
+	@Autowired
+	Redis_MysqlImpl redis_MysqlImpl;
 	
 	@Async
 	@Scheduled(fixedDelay = 20000)
-	public void start(){
-		//是否准备好了，准备好了就启动
-		while(Run.getReady()){
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		LOGGER.debug("开始同步");
+	public void run(){
+		LOGGER.info("开始同步任务");
 	//	List<Map<String, Object>> list = connection.findForDruid("SELECT * FROM OMPSE.SYS_TABLEINFO WHERE ID LIKE '1%' "
 	//			+ "UNION ALL SELECT * FROM OMPSE.SYS_TABLEINFO  WHERE ID LIKE '2%'; ");
 		List<Map<String, Object>> list = connection.findForDruid("SELECT * FROM OMPSE.SYS_TABLEINFO");
 		for (int i = 0; i < list.size(); i++) {
-			taskExecutor1.execute(new Redis_MysqlImpl(redisConfig, list.get(i),connection));
+			redis_MysqlImpl.run(list.get(i).toString());
 		}
 		LOGGER.debug("开始同步告警配置信息");
-		Redis_MysqlImpl redis_MysqlImpl = new Redis_MysqlImpl(redisConfig, new HashMap<String, Object>(), connection);
 		redis_MysqlImpl.runing_data("null");
 		redis_MysqlImpl.server();//t同步服务器数据
 		redis_MysqlImpl.syn_view();//同步视图
 		redis_MysqlImpl.synNowRunDateNeedStaticDataToCodis();
 		redis_MysqlImpl.synDeviceId();
+		LOGGER.info("结束同步任务");
 	}
 
 }
