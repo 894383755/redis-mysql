@@ -1,9 +1,7 @@
 package com.kd.xxhyf.synchro_data.core;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import com.kd.redis.config.RedisConfig;
-import com.kd.xxhyf.database.connection.Connection;
+import com.kd.xxhyf.bean.Connection;
 import com.kd.xxhyf.mysql_redis.core.Redis_MysqlImpl;
-import com.kd.xxhyf.resolveXml.resolveXml;
+import com.kd.xxhyf.util.resolveXml;
 
 /**
  * 

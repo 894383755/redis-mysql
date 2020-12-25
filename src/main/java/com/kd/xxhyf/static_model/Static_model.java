@@ -9,12 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import com.kd.kafkautill.service.DmqConsumer;
 import com.kd.kafkautill.utill.DmqFactory;
-import com.kd.redis.config.RedisConfig;
-import com.kd.xxhyf.database.connection.Connection;
 import com.kd.xxhyf.static_model.core.StaticServiceImpl;
 import com.kd.xxhyf.static_model.entity.ComsumerEntiy;
 

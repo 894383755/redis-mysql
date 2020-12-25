@@ -1,4 +1,4 @@
-package com.kd.xxhyf.resolveXml;
+package com.kd.xxhyf.util;
 
 import java.util.HashMap;
 import java.util.Iterator;

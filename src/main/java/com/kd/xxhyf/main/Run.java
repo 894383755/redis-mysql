@@ -1,4 +1,4 @@
-package com.kd.xxhyf.main.core;
+package com.kd.xxhyf.main;
 
 import java.util.List;
 import java.util.Map;
@@ -12,11 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisCluster;
-
-import com.kd.redis.config.RedisConfig;
-import com.kd.xxhyf.database.connection.Connection;
+import com.kd.xxhyf.bean.Connection;
 import com.kd.xxhyf.mysql_redis.Redis_Mysql;
 import com.kd.xxhyf.notice.Notice;
 import com.kd.xxhyf.static_model.Static_model;

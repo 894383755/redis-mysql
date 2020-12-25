@@ -9,13 +9,9 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
-import com.kd.redis.config.RedisConfig;
-import com.kd.xxhyf.database.connection.Connection;
 import com.kd.xxhyf.synchro_data.core.SynchroDataServiceImpl;
 import com.kd.xxhyf.synchro_data.entity.ComsumerEntiy;
 

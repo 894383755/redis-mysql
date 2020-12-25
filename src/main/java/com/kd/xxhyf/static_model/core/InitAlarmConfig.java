@@ -1,7 +1,7 @@
 package com.kd.xxhyf.static_model.core;
 
 import com.kd.redis.config.RedisConfig;
-import com.kd.xxhyf.database.connection.Connection;
+import com.kd.xxhyf.bean.Connection;
 
 public class InitAlarmConfig implements Runnable {
 

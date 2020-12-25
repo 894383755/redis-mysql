@@ -1,15 +1,11 @@
 package com.kd.xxhyf.static_model.core;
 
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TimeZone;
 
 import net.sf.json.JSONObject;
 
@@ -21,12 +17,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-import redis.clients.jedis.JedisCluster;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kd.redis.config.RedisConfig;
-import com.kd.xxhyf.database.connection.Connection;
-import com.kd.xxhyf.resolveXml.resolveXml;
+import com.kd.xxhyf.bean.Connection;
+import com.kd.xxhyf.util.resolveXml;
 import redis.clients.jedis.JedisCommands;
 
 /**

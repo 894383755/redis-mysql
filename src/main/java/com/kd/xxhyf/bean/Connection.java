@@ -1,4 +1,4 @@
-package com.kd.xxhyf.database.connection;
+package com.kd.xxhyf.bean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,14 +24,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class Connection {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(Connection.class);
-
 	@Autowired
-	private JdbcTemplate template;   
-	
-//	@Autowired
-//	private JdbcTemplate template_s; 
-	
-	
+	private JdbcTemplate template;
+
 	/**
 	 * 数据源一的sql只执行返回结果集
 	 * @param sql
@@ -48,26 +43,7 @@ public class Connection {
 		}
 		return list2;
 	}
-	
-	
-/*	*//**
-	 * 数据源二的sql只执行返回结果集
-	 * @param sql
-	 * @param obj
-	 * @return
-	 *//*
-	public List<Map<String, Object>> findForDruid_s(String sql,Object ... obj){
-		List<Map<String, Object>> list2 = new ArrayList<Map<String, Object>>();
-		try {
-			list2 = template_s.queryForList(sql);
-		} catch (Exception e) {
-			// TODO: handle exception
-			LOGGER.error(e.getMessage());
-		}
-		return list2;
-	}
-	*/
-	
+
 	/**
 	 * 数据源一的 增删改
 	 * 执行单条SQL
@@ -77,16 +53,6 @@ public class Connection {
 	public void execute(String sql){
 		template.execute(sql);
 	}
-	
-	/**
-	 * 数据源二的 增删改
-	 * 执行单条SQL
-	 * @param sql
-	 * @return
-	 */
-	/*public void execute_s(String sql){
-		template_s.execute(sql);
-	}*/
 	
 	/**
 	 * 数据源一的 增删改 遍历执行
@@ -109,25 +75,4 @@ public class Connection {
 		
 		return b;
 	}
-	
-	/**
-	 * 数据源二的 增删改 遍历执行
-	 * 执行多条SQL
-	 * @param sql
-	 * @return
-	 */
-	/*public boolean execute_s(List<String> sql){
-		boolean b = false;
-		for (int i = 0; i < sql.size(); i++) {
-			try {
-				execute_s(sql.get(i));
-			} catch (Exception e) {
-				// TODO: handle exception
-				LOGGER.warn(e.getMessage());
-				b = false;
-			}
-		}
-		
-		return b;
-	}*/
 }

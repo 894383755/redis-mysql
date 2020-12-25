@@ -1,7 +1,7 @@
 package com.kd.xxhyf.static_model;
 
 import com.kd.redis.config.RedisConfig;
-import com.kd.xxhyf.database.connection.Connection;
+import com.kd.xxhyf.bean.Connection;
 import com.kd.xxhyf.static_model.core.StaticServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

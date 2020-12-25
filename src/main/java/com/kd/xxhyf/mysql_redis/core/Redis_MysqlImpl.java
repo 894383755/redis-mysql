@@ -15,11 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import redis.clients.jedis.JedisCluster;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kd.redis.config.RedisConfig;
-import com.kd.xxhyf.database.connection.Connection;
+import com.kd.xxhyf.bean.Connection;
 import com.kd.xxhyf.util.Util;
 import redis.clients.jedis.JedisCommands;
 
