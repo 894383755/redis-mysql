@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import com.kd.redis.config.RedisConfig;
@@ -32,37 +33,15 @@ public class Synchro {
 	private static final Logger LOGGER =  LoggerFactory.getLogger(Synchro.class);
 	
 	@Autowired
-	private ThreadPoolTaskExecutor taskExecutor1;
-	
-	@Autowired
-	private RedisConfig redisConfig;
-	
-	@Autowired
-	private Connection connection;
+	private SynchroServiceImpl synchroServiceImpl;
 	
 	@Autowired
 	private ComsumerEntiy comsumerEntiy_t;
 
-//	private DmqConsumer consumer = null;
 	private KafkaConsumer<String, String> consumer = null;
 	
 	@Async
-	public void start(){
-		this.run();
-		while (true) {
-			try {
-				LOGGER.info("codis同步周期性监控消费者");
-				this.monitor();
-				Thread.sleep(60*1000);
-			} catch (Exception e) {
-				// TODO: handle exception
-				LOGGER.error("codis同步监控异常",e);
-			}
-		}
-		
-	}
-	
-	@SuppressWarnings("resource")
+	@Scheduled(fixedDelay = 20000)
 	public void run (){
 		try {
 			Properties props = new Properties();
@@ -102,7 +81,7 @@ public class Synchro {
 					// record.timestamp();
 					 //System.out.println(records.count()+"---------开始接收");
 					System.err.println("++++++++++++++++++++++++++++++++++++"+record.value());
-					 taskExecutor1.execute(new SynchroServiceImpl(record.value(),connection,redisConfig));
+					 synchroServiceImpl.run(record.value());
 					count++;
 					LOGGER.info("修改Codis目前已接收："+count+"条数据");
 					
@@ -115,18 +94,6 @@ public class Synchro {
 			// TODO: handle exception
 			consumer = null;
 			LOGGER.warn("codis同步消费者出现异常信息",e);
-		}
-	}
-	
-	
-	/**
-	 * 监控Kafka注册失败后再次重新注册
-	 */
-	public void monitor (){
-		if(null==consumer){
-			System.err.println("codis同步重新注册");
-			LOGGER.error("codis同步重新注册");
-			this.run();
 		}
 	}
 }

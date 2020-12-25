@@ -73,8 +73,7 @@ class Static_modelTest {
                 "</list>\n" +
                 "</lists>";
 
-        StaticServiceImpl staticService = new StaticServiceImpl(str, connection, redisConfig);
-        staticService.run();
+        staticService.run(str);
 
 
 /*        StaticServiceImpl staticService = new StaticServiceImpl();

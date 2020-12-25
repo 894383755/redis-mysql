@@ -33,15 +33,9 @@ public class Static_model {
 			
 	@Autowired
 	private ComsumerEntiy comsumerEntiy;
-	
+
 	@Autowired
-	private RedisConfig redisConfig;
-	
-	@Autowired
-	private Connection connection;
-	
-	@Autowired
-	private ThreadPoolTaskExecutor taskExecutor;
+	private StaticServiceImpl staticServiceImpl;
 	
 	private DmqConsumer consumer = null;
 
@@ -83,7 +77,7 @@ public class Static_model {
 						String value=record.value()+"";
 						try {
 								LOGGER.debug(value);
-								taskExecutor.execute(new StaticServiceImpl(record.value(),connection,redisConfig));
+								staticServiceImpl.run(record.value());
 						} catch (Exception e) {
 							LOGGER.error(value+"----",e);
 						}

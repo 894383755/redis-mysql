@@ -15,7 +15,10 @@ import net.sf.json.JSONObject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import redis.clients.jedis.JedisCluster;
@@ -24,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kd.redis.config.RedisConfig;
 import com.kd.xxhyf.database.connection.Connection;
 import com.kd.xxhyf.resolveXml.resolveXml;
+import redis.clients.jedis.JedisCommands;
 
 /**
  * 
@@ -33,43 +37,25 @@ import com.kd.xxhyf.resolveXml.resolveXml;
  *
  */
 @Component
-public class StaticServiceImpl implements Runnable{
+public class StaticServiceImpl {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(StaticServiceImpl.class);
-	
-	private String receiveString;
-	
+
+	@Autowired
 	private Connection connection;
-	
-	//@Autowired
-	private RedisConfig redisConfig;
-	//@Autowired
-	private JedisCluster jedis = redisConfig.getJedisCluster();
-	//private Jedis jedis =redisConfig.getJedis();
+
+	@Qualifier("getJedisCommands")
+	@Autowired
+	private JedisCommands jedis;
 
 	@Value("${config.rediskey}")
 	private String REDISKEY;
-	
-	private ObjectMapper objectmapper = new ObjectMapper();
-	
-	public static Set<String> set = new HashSet<>();
-	
-	public StaticServiceImpl(){
-		
-	}
-	
-	public StaticServiceImpl(String receiveString,Connection connection,RedisConfig redisConfig){
-			this.receiveString = receiveString;
-			this.connection = connection;
-			this.redisConfig = redisConfig;
-			
-	}
 
 	/**
 	 * 多线程处理静态信息
 	 */
-	@Override
-	public void run() {
+	@Async
+	public void run(String receiveString) {
 		Map<String, List<Map<String, Object>>> map = new HashMap<String, List<Map<String,Object>>>();
 		try {
 			map = resolveXml.statusXml(receiveString);//解析XML,组合成map集合
@@ -166,7 +152,6 @@ public class StaticServiceImpl implements Runnable{
 							 v = value(type, key, map.get(key)+"");
 						} catch (Exception e) {
 							// TODO: handle exception
-							LOGGER.warn(receiveString); 
 						}
 						 if(v!=null){
 							 v= v.replaceAll( "\\\\",   "\\\\\\\\");
@@ -190,10 +175,10 @@ public class StaticServiceImpl implements Runnable{
 						 }else{
 							 
 							 if("null".equals(map.get(key)+"")||"".equals(map.get(key)+"")||null==map.get(key)){
-								 LOGGER.error(key+"数据为空将不做处理"+receiveString);
+								 LOGGER.error(key+"数据为空将不做处理");
 							 }else{
 								// System.err.println(type);
-								 LOGGER.error(key+"数据为空将不做处理"+receiveString);
+								 LOGGER.error(key+"数据为空将不做处理");
 								b = false;
 							 }
 						 }

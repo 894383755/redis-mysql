@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisCluster;
@@ -20,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kd.redis.config.RedisConfig;
 import com.kd.xxhyf.database.connection.Connection;
 import com.kd.xxhyf.util.Util;
+import redis.clients.jedis.JedisCommands;
 
 @Component
 public class Redis_MysqlImpl {
@@ -35,9 +37,9 @@ public class Redis_MysqlImpl {
 
 	private ObjectMapper objectmapper = new ObjectMapper();
 
+	@Qualifier("getJedisCommands")
 	@Autowired
-	private JedisCluster jedis ;
-	//private Jedis jedis =redisConfig.getJedis();
+	private JedisCommands jedis;
 
 
 	public void run(String tableId) {
@@ -203,6 +205,7 @@ public class Redis_MysqlImpl {
 				jedis.set(key, tableId);
 			}
 			System.err.println("----同步 CONF_COLLECTION_INDB 的 tableId成功-----");
+
 			// 同步 AUS_APP_B表 的 Id
 			String appSql = "SELECT ID,VALUE,ENG_NAME FROM OMPSE.AUS_APP_B";
 			List<Map<String, Object>> appList = connection.findForDruid(appSql);
@@ -469,6 +472,7 @@ public class Redis_MysqlImpl {
 
 			}
 			LOGGER.info("---同步视图VIEW_HISDB_MODEL_DATA成功------");
+
 			// Hash类型同步数据库视图VIEW_REALDB_MODEL_DATA
 			String vrmSql = "SELECT * FROM OMPSE.VIEW_REALDB_MODEL_DATA";
 			List<Map<String, Object>> vrmList = connection.findForDruid(vrmSql);
@@ -481,6 +485,7 @@ public class Redis_MysqlImpl {
 						+ "", json);
 			}
 			LOGGER.info("---同步视图VIEW_HISDB_MODEL_DATA成功------");
+
 			// Hash类型同步数据库视图APPMODEL
 			String apmSql = "SELECT * FROM OMPSE.APPMODEL";
 			List<Map<String, Object>> apmList = connection.findForDruid(apmSql);
@@ -492,6 +497,7 @@ public class Redis_MysqlImpl {
 				jedis.hset(REDISKEY + "APPMODEL", m.get("ID") + "", json);
 			}
 			LOGGER.info("---同步视图APPMODEL成功------");
+
 			// Hash类型同步数据库视图 PROCESSMODEL
 			String pmSql = "SELECT * FROM OMPSE.PROCESSMODEL";
 			List<Map<String, Object>> pmList = connection.findForDruid(pmSql);
@@ -504,6 +510,7 @@ public class Redis_MysqlImpl {
 						+ "", json);
 			}
 			LOGGER.info("---同步视图PROCESSMODEL成功------");
+
 			// Hash类型同步数据库视图 VIEW_SERVICE_FRIST
 			String vsfSql = "SELECT * FROM OMPSE.VIEW_SERVICE_FRIST";
 			List<Map<String, Object>> vsfList = connection.findForDruid(vsfSql);

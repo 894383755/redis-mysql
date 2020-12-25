@@ -8,9 +8,11 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 
 import com.kd.redis.config.RedisConfig;
@@ -20,7 +22,7 @@ import com.kd.xxhyf.notice.Notice;
 import com.kd.xxhyf.static_model.Static_model;
 import com.kd.xxhyf.synchro.Synchro;
 import com.kd.xxhyf.synchro_data.SynchroData;
-
+import redis.clients.jedis.JedisCommands;
 
 
 /**
@@ -56,9 +58,9 @@ public class Run {
 	@Autowired
 	private Notice notice;
 
+	@Qualifier("getJedisCommands")
 	@Autowired
-	private JedisCluster jedis;
-    //private Jedis jedis = redisConfig.getJedis();
+	private JedisCommands jedis;
 
 	/**
 	 * 服务启停
@@ -69,9 +71,9 @@ public class Run {
 		init();
 		redis_Mysql.run();//初始化静态信息同步到codis
 		static_model.run();//静态模型入库
-		//synchro.start();//静态模型同步
-		//synchroData.start();
-		//notice.start();//待办任务
+		synchro.run();//静态模型同步
+		synchroData.run();
+		notice.run();//待办任务
 	}
 
 	/**

@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kd.xxhyf.database.connection.Connection;
 import com.kd.xxhyf.resolveXml.resolveXml;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 
 /**
  * 处理 待办任务service
@@ -24,28 +26,14 @@ import com.kd.xxhyf.resolveXml.resolveXml;
  * 2018年9月20日 下午4:58:31
  *
  */
-public class NoticeImpl implements Runnable{
+@Component
+public class NoticeImpl {
 
-	private Connection connection;//数据库连接池
-	
-	private String receiveString;//采集数据
-	
-	public NoticeImpl(){//无参数构造方法
-		
-	}
-	
-	/**
-	 * 有参构造方法
-	 * @param receiveString
-	 * @param connection
-	 */
-	public NoticeImpl(String receiveString,Connection connection){
-		this.receiveString = receiveString;
-		this.connection = connection;
-	}
+	@Autowired
+	private Connection connection;
 
-	@Override
-	public void run() {//线程启动方法
+	@Async
+	public void run(String receiveString) {//线程启动方法
 		// TODO Auto-generated method stub
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//转换时间格式

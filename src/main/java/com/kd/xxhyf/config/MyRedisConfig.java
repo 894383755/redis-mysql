@@ -3,14 +3,14 @@ package com.kd.xxhyf.config;
 import com.kd.redis.config.RedisConfig;
 import com.kd.redis.config.RedisProperties;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.jboss.netty.util.internal.ReusableIterator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
+import redis.clients.jedis.JedisCommands;
 
-import javax.annotation.PostConstruct;
 
 @Configuration
 @Data
@@ -65,6 +65,17 @@ public class MyRedisConfig {
             return redisConfig.getJedis();
         }catch (Exception e){
             return null;
+        }
+    }
+
+    @Bean
+    public JedisCommands getJedisCommands(RedisConfig redisConfig){
+        JedisCluster jedisCluster = redisConfig.getJedisCluster();
+        if(jedisCluster != null){
+            return jedisCluster;
+        }else {
+
+            return redisConfig.getJedis();
         }
     }
 

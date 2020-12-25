@@ -31,10 +31,14 @@
         * 静态模型 static_model
         * 模型同步 redis_Mysql
             1. 获取SYS_TABLEINFO表的所有id和表名
-            2. 通过表id查询该表名，表字段和字段类型
-            3. 将该表名，表字段和字段类型存储到 REDISKEY + tableId 下
-            4. 判断表是否是静态信息表（id末尾为0）
-                1. （static_data（））
+            2. redis_MysqlImpl.run
+                2. 通过表id查询该表名，表字段和字段类型
+                3. 将该表名，表字段和字段类型存储到 REDISKEY + tableId 下
+                4. 判断表是否是静态信息表（id末尾为0）
+                    1. （static_data（））
+            5. redis_MysqlImpl.runing_data
+                1.查询 REDISINFO 表
+                2.
         * 模型入库 static_model
             1. 从kafka获取xml
             2. 解析xml，转换成map
@@ -42,7 +46,8 @@
                 1. 获取到相应表号的域信息
                 2. 插入或更新金泰模型表
                     1. 将查找映射名称从数据查找出来
-                    2. 
+                    2. 每条数据的sql参数 存放在redis key为：REDISKEY + sql + "_key"下
+                    3. 每条数据的sql执行，
         * 同步数据
         * 代办任务
 # 信息

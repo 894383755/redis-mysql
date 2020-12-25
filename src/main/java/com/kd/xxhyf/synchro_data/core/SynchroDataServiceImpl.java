@@ -8,6 +8,7 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import com.kd.redis.config.RedisConfig;
 import com.kd.xxhyf.database.connection.Connection;
@@ -24,32 +25,20 @@ import com.kd.xxhyf.resolveXml.resolveXml;
  *
  */
 @Component
-public class SynchroDataServiceImpl implements Runnable{
+public class SynchroDataServiceImpl {
 	
 	private static final Logger LOGGER =  LoggerFactory.getLogger(SynchroDataServiceImpl.class);
-	
+
+	@Autowired
 	private RedisConfig redisConfig;
-	
-	private String receiveString;//接收的数据xml
-	
-	private Connection connection;//数据库连接池
+	@Autowired
+	private Connection connection;
 
 	@Autowired
 	private Redis_MysqlImpl redis_MysqlImpl;
-	
-	public SynchroDataServiceImpl(){
-		
-	}
-	
-	public SynchroDataServiceImpl(String receiveString,Connection connection, RedisConfig redisConfig){
-		this.receiveString = receiveString;
-		this.redisConfig = redisConfig;
-		this.connection = connection;
-		
-	}
-	
-	@Override
-	public void run() {
+
+	@Async
+	public void run(String receiveString) {
 		// TODO Auto-generated method stub
 			Map<String, Object> map = new HashMap<String, Object>();
 			try {		

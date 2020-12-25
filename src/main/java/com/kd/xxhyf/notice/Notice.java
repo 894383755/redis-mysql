@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import com.kd.kafkautill.service.DmqConsumer;
@@ -31,34 +32,15 @@ public class Notice {
 	private static final Logger LOGGER =  LoggerFactory.getLogger(Notice.class);
 	
 	@Autowired
-	private ThreadPoolTaskExecutor taskExecutor1;
-	
-	@Autowired
-	private RedisConfig redisConfig;
-	
-	@Autowired
-	private Connection connection;
-	
+	private NoticeImpl noticeImpl;
+
 	@Autowired
 	private ComsumerEntiy comsumerEntiy_n;
 	
 	private DmqConsumer consumer = null;
 	
 	@Async
-	public void start(){
-		this.run();
-		while (true) {
-			try {
-				LOGGER.info("待办任务周期性监控消费者");
-				this.monitor();
-				Thread.sleep(60*1000);
-			} catch (Exception e) {
-				// TODO: handle exception
-				LOGGER.error("待办任务监控异常",e);
-			}
-		}
-	}
-	
+	@Scheduled(fixedDelay = 20000)
 	public void run (){
 		try {
 			Properties props = new Properties();
@@ -95,7 +77,7 @@ public class Notice {
 					// record.timestamp();
 					 //System.out.println(records.count()+"---------开始接收");
 					LOGGER.debug("待办收到的消息："+record.value());
-					taskExecutor1.execute(new NoticeImpl(record.value(), connection));
+					noticeImpl.run(record.value());
 					count++;
 					LOGGER.info("修改Notice目前已接收："+count+"条数据");
 				}
@@ -107,16 +89,6 @@ public class Notice {
 			// TODO: handle exception
 			consumer = null;
 			LOGGER.warn("待办任务消费者出现异常信息",e);
-		}
-	}
-	
-	/**
-	 * 监控Kafka注册失败后再次重新注册
-	 */
-	public void monitor(){
-		if(null==consumer){
-			LOGGER.error("待办任务重新注册");
-			this.run();
 		}
 	}
 
