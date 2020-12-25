@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="kingbasejdbc4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib-old/kingbasejdbc4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
