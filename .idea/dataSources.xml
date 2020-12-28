@@ -2,20 +2,20 @@
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
     <data-source source="LOCAL" name="DmData Source - jdbc:dm://192.100.1.82:12345/OMPSE_XINAN" uuid="8a0aea0b-e414-4939-b4a6-378bdb446bb0">
-      <driver-ref>java.sql.Driver</driver-ref>
       <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
       <jdbc-driver>dm.jdbc.driver.DmDriver</jdbc-driver>
       <jdbc-url>jdbc:dm://192.100.1.82:12345/OMPSE_XINAN</jdbc-url>
     </data-source>
     <data-source source="LOCAL" name="DmData Source - jdbc:dm://192.100.1.82:12345/OMPSE" uuid="b021c00b-0849-4f17-b717-bc8bbc1cccbf">
-      <driver-ref>java.sql.Driver</driver-ref>
       <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
       <jdbc-driver>dm.jdbc.driver.DmDriver</jdbc-driver>
       <jdbc-url>jdbc:dm://192.100.1.82:12345/OMPSE</jdbc-url>
     </data-source>
     <data-source source="LOCAL" name="DmData Source - jdbc:dm://192.100.1.82:12345/OMPSE_HN" uuid="d1722821-fb57-4094-b3f4-c9ea5b79fe4f">
-      <driver-ref>java.sql.Driver</driver-ref>
       <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
       <jdbc-driver>dm.jdbc.driver.DmDriver</jdbc-driver>
       <jdbc-url>jdbc:dm://192.100.1.82:12345/OMPSE_HN</jdbc-url>
     </data-source>
