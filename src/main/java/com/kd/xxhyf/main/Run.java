@@ -48,6 +48,7 @@ public class Run {
 	
 	@Autowired
 	private Synchro synchro;
+
 	@Autowired
 	private SynchroData synchroData;
 	
@@ -65,11 +66,11 @@ public class Run {
 	public void start(){
 		LOGGER.info("开始执行所有任务");
 		init();
-		redis_Mysql.run();//初始化静态信息同步到codis
-		static_model.run();//静态模型入库
-		synchro.run();//静态模型同步
-		synchroData.run();
-		notice.run();//待办任务
+		//redis_Mysql.run();//初始化静态信息同步到codis
+		//static_model.run();//静态模型入库
+		//synchro.run();//静态模型同步
+		//synchroData.run();
+		//notice.run();//待办任务
 	}
 
 	/**

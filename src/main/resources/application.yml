@@ -11,6 +11,15 @@ config:
   rediskey: HeNan_
   #rediskey: FJ_
   #rediskey: XiNan_
+  redis_mysql:
+    enable: true
+  scheduledEnable:
+    - "redis_mysql"
+    - "static_model"
+    - "synchro"
+    - "synchroData"
+    - "notice"
+
 
 
 jdbc:
@@ -130,3 +139,10 @@ kafka:
   topicNotice: kafkatransfer_notice_sms
   #静态数据触发更新
   topicSynchroData: kafkatransfer_data_sms
+
+thread:
+  corePoolSize: 20
+  maxPoolSize: 50
+  queueCapacity: 1000
+  keepAliveSeconds: 30
+  rejectedExecutionHandler: CallerRunsPolicy

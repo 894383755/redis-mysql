@@ -3,9 +3,11 @@ package com.kd.xxhyf.mysql_redis;
 import java.util.List;
 import java.util.Map;
 
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -22,23 +24,20 @@ import com.kd.xxhyf.mysql_redis.core.Redis_MysqlImpl;
  *
  */
 @Component
+@Data
 public class Redis_Mysql {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(Redis_Mysql.class);
-	
-	@Autowired
-	private ThreadPoolTaskExecutor taskExecutor1;
-	
-	@Autowired
-	private RedisConfig redisConfig;
+
+	@Value("${config.redis_mysql.enable}")
+	private boolean redisMysqlEnable;
 	
 	@Autowired
 	private Connection connection;
 
 	@Autowired
 	Redis_MysqlImpl redis_MysqlImpl;
-	
-	@Async
+
 	@Scheduled(fixedDelay = 20000)
 	public void run(){
 		LOGGER.info("开始同步任务");
