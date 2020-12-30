@@ -11,7 +11,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.kd.xxhyf.bean.Connection;
+import com.kd.xxhyf.util.Connection;
 import com.kd.xxhyf.util.resolveXml;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;

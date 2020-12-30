@@ -6,6 +6,10 @@
 ### 
 ## 各个包功能
 * xxhyf    						信息化研发  该包下同步服务的业务逻辑，下面是各个包的介绍
+* xxhyf.aop                     拦截包
+* xxhyf.annotation              注解包
+* xxhyf.entity                  实体包
+* xxhyf.config                  配置包
 * xxhyf.database.connection   	数据库连接池
 * xxhyf.main   					同步服务的启动项
 * xxhyf.main.core.Run             控制启动那个功能模块
@@ -14,11 +18,12 @@
 * xxhyf.notice					待办任务入库
 * xxhyf.notice.core               待办任务入库的业务实现
 * xxhyf.resolveXml				xml解析方法（工具）
-* xxhyf.static_model				静态模型入库
+* xxhyf.static_model			  静态模型入库
 * xxhyf.static_model.core         静态模型入库服务业务实现
 * xxhyf.synchro					同步服务
 * xxhyf.synchro.core              同步服务业务实现
 * xxhyf.util                      工具类
+
 ## 总体流程
 1. RedisMysqlApplication springboot启动
 2. start 运行（通过@PostConstruct）
@@ -27,8 +32,7 @@
         1. 获取SYS_TABLEINFO表的所有id和表名
         2. 通过表明查询该表的最大id
         3. 将最大id存储到 REDISKEY+id+"_num" 下
-    2. 执行各个任务线程
-        * 静态模型 static_model
+    2. 执行各个任务线程（通过执行计划）
         * 模型同步 redis_Mysql
             1. 获取SYS_TABLEINFO表的所有id和表名
             2. redis_MysqlImpl.run
@@ -71,10 +75,29 @@
                     1. 将查找映射名称从数据查找出来
                     2. 每条数据的sql参数 存放在redis key为：REDISKEY + sql + "_key"下
                     3. 每条数据的sql执行，
-                    4. 
-        * 同步数据
-        * 代办任务
-
+        * 同步数据 SynchroData
+             1. 从kafka获取xml
+                2. 解析xml，转换成map
+                3. 对于每个key 解析出ID和表号
+                4. 和redis_mysql 执行相同代码
+        * 同步服务 Synchro
+              1. 和SynchroData相同，但kafka分组不同
+        * 代办任务 notice
+            1. 从kafka中获取数据
+            2. 解析xml，转换成map
+            3. 对于每个key 解析出ID和表号
+                1. 获取标号，根据"_"分割
+                3. 查找SYS_NOTICE表下NOTICE_DESC对应值是否有数据，无则继续
+                2. 对于每条数据（在SYS_NOTICE表插入数据）
+                    * 1：新增 OPT参数为 add
+                    * 2：更新 OPT参数为 update
+                    * 3：退回 OPT参数为 back
+                    * 4: 通知 OPT参数为 notice
+3. 各项拦截
+    1. 对所有的计划经行拦截，判断是否开启计划
+        * 开启方式为配置yml
+        * 只有类名则说明该类全部都允许
+        * 类名.方法名说明允许指定方法名
 ## 表说明
 * SYS_REDISINFO ：同步告警阈值的 codis查询表
 * AUS_APP_NODE_B 应用节点模型

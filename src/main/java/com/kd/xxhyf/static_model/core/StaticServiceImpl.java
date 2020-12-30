@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-import com.kd.xxhyf.bean.Connection;
+import com.kd.xxhyf.util.Connection;
 import com.kd.xxhyf.util.resolveXml;
 import redis.clients.jedis.JedisCommands;
 

@@ -1,4 +1,4 @@
-package com.kd.xxhyf.bean;
+package com.kd.xxhyf.util;
 
 import java.util.ArrayList;
 import java.util.List;

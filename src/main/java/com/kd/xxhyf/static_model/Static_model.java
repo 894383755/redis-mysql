@@ -36,6 +36,7 @@ public class Static_model {
 	
 	private DmqConsumer consumer = null;
 
+	@Async
 	@Scheduled(fixedDelay = 20000)
 	public void run(){
 		try {
@@ -64,12 +65,8 @@ public class Static_model {
 			int count = 0;
 			LOGGER.info("静态数据服务kafka注册成功");
 			while (true) {
-				// 从Broker拉取消息,拉取超时时间设置为100ms
-				Thread.sleep(5000);
 				ConsumerRecords<String, String> records = consumer.receive();
-			
 					for (ConsumerRecord<String, String> record : records) {
-
 						String value=record.value()+"";
 						try {
 								LOGGER.debug(value);
@@ -80,7 +77,7 @@ public class Static_model {
 						count++;
 						LOGGER.info("静态数据目前已接收："+count+"条数据");
 					}
-					consumer.commitSync();//提交
+				consumer.commitSync();//提交
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

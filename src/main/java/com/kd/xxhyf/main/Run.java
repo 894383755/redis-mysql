@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.kd.xxhyf.bean.Connection;
+import com.kd.xxhyf.util.Connection;
 import com.kd.xxhyf.mysql_redis.Redis_Mysql;
 import com.kd.xxhyf.notice.Notice;
 import com.kd.xxhyf.static_model.Static_model;
@@ -62,7 +62,6 @@ public class Run {
 	/**
 	 * 服务启停
 	 */
-	@PostConstruct
 	public void start(){
 		LOGGER.info("开始执行所有任务");
 		init();
@@ -76,6 +75,7 @@ public class Run {
 	/**
 	 * 初始化codis中存储的静态模型的最大ID,用于静态模型入库时获取ID使用，避免多线程导致ID重复问题
 	 */
+	@PostConstruct
 	public void init(){
 		LOGGER.info("开始执行初始化");
 		try  {

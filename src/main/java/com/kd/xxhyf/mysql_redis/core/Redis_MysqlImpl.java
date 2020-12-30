@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kd.xxhyf.bean.Connection;
+import com.kd.xxhyf.util.Connection;
 import com.kd.xxhyf.util.Util;
 import redis.clients.jedis.JedisCommands;
 

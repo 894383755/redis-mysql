@@ -12,8 +12,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 拦截计划任务
@@ -27,12 +30,28 @@ public class ScheduledAop {
 
     private List<String> scheduledEnable;
 
+    private Map<String,List<String>> scheduledEnableMap = new HashMap<>();
+
+    /**
+     * 解析scheduledEnable文件为map文件
+     */
+    @PostConstruct
+    public void parsingScheduledEnable(){
+        if (scheduledEnable == null){
+            return;
+        }
+        //scheduledEnable.stream().map(e->scheduledEnableMap.put(e,e))
+    }
 
     @Pointcut("@annotation(org.springframework.scheduling.annotation.Scheduled)")
     public void scheduledAspect() {
     }
 
-    @Around("scheduledAspect()")
+    @Pointcut("@annotation(com.kd.xxhyf.annotation.EnableAspectAnnotation)")
+    public void myAnnotationAspect() {
+    }
+
+    @Around("scheduledAspect() || myAnnotationAspect()")
     public Object doInvoke(ProceedingJoinPoint joinPoint) throws Throwable {
         String className = joinPoint.getSignature().getDeclaringType().getSimpleName().toLowerCase();
         String funName = joinPoint.getSignature().getName();
@@ -41,5 +60,7 @@ public class ScheduledAop {
         }
         return null;
     }
+
+
 
 }

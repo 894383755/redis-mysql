@@ -37,6 +37,7 @@ public class SynchroData {
 
 	private KafkaConsumer<String, String> consumer = null;
 
+	@Async
 	@Scheduled(fixedDelay = 20000)
 	public void run (){
 		try {
