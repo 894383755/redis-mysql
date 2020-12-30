@@ -1,8 +1,6 @@
 package com.kd.xxhyf.config;
 
-import com.kd.xxhyf.main.Run;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
@@ -12,9 +10,10 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.Method;
 import java.util.concurrent.Executor;
 
+@Slf4j
 @Component
 public class MyAsyncConfigurer implements AsyncConfigurer {
-    private static final Logger LOGGER =  LoggerFactory.getLogger(MyAsyncConfigurer.class);
+
 
     @Value("${thread.corePoolSize}")
     private int corePoolSize;
@@ -55,11 +54,11 @@ public class MyAsyncConfigurer implements AsyncConfigurer {
 
         @Override
         public void handleUncaughtException(Throwable throwable, Method method, Object... objects) {
-            LOGGER.error("Method name - " + method.getName());
+            log.error("Method name - " + method.getName());
             for (Object object : objects) {
-                LOGGER.error("Parameter value - " + object);
+                log.error("Parameter value - " + object);
             }
-            LOGGER.error("Exception message - " + throwable.getMessage());
+            log.error("Exception message - " + throwable.getMessage());
         }
     }
 }

@@ -55,6 +55,7 @@ public class ScheduledAop {
     public Object doInvoke(ProceedingJoinPoint joinPoint) throws Throwable {
         String className = joinPoint.getSignature().getDeclaringType().getSimpleName().toLowerCase();
         String funName = joinPoint.getSignature().getName();
+        log.debug("拦截成功：className.funName");
         if (!"run".equalsIgnoreCase(funName)||scheduledEnable.contains(className)){
             joinPoint.proceed();
         }

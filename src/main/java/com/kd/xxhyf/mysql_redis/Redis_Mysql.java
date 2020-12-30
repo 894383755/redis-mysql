@@ -25,7 +25,6 @@ public class Redis_Mysql {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(Redis_Mysql.class);
 
-	
 	@Autowired
 	private Connection connection;
 
