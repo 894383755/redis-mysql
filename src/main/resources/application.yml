@@ -1,6 +1,6 @@
 spring:
   profiles:
-    # xinan,fujian,zhengzhou,xinanTest
+    # xinan,fujian,henan,xinanTest
     active: xinanTest
 server:
   port: 8081

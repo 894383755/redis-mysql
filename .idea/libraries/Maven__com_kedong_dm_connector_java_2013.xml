@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.kedong:dm-connector-java:2013">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/kedong/dm-connector-java/2013/dm-connector-java-2013.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/kedong/dm-connector-java/2013/dm-connector-java-2013-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/kedong/dm-connector-java/2013/dm-connector-java-2013-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

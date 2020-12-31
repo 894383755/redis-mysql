@@ -10,7 +10,6 @@
 * xxhyf.annotation              注解包
 * xxhyf.entity                  实体包
 * xxhyf.config                  配置包
-* xxhyf.database.connection   	数据库连接池
 * xxhyf.main   					同步服务的启动项
 * xxhyf.main.core.Run             控制启动那个功能模块
 * xxhyf.mysql_redis				历史库MySQL同步到实时库redis
@@ -98,11 +97,29 @@
         * 开启方式为配置yml
         * 只有类名则说明该类全部都允许
         * 类名.方法名说明允许指定方法名
+        
 ## 表说明
 * SYS_REDISINFO ：同步告警阈值的 codis查询表
 * AUS_APP_NODE_B 应用节点模型
 * AUS_SERVICE_BUS_SERVER_B 服务总线模型
 
+## redis 
+| key | value | 说明 | 存 | 取 |
+| --- | --- | --- | --- | --- |
+| REDISKEY + id + "-SYS_REDISINFO" |  |  |  |  |
+| REDISKEY + sql |  |  |  |  |
+| REDISKEY + sql + "_key" |  keys[i] |  |  |  |
+| REDISKEY + sql + "_rule_" + keys[i] | {key：hkeys[i]，value：hvalues[i]} |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
 
 # 信息
 ## 作者

@@ -557,9 +557,8 @@ public class Redis_MysqlImpl {
 	/**
 	 * 获取配置信息
 	 *
-	 * @param value 为SQL
 	 */
-	public void runing_data(String value) {
+	public void runing_data() {
 		String sql2 = "SELECT * FROM OMPSE.SYS_REDISINFO "; // 同步告警阈值的 codis查询表
 		List<Map<String, Object>> lists = connection.findForDruid(sql2);
 		try {
@@ -578,142 +577,64 @@ public class Redis_MysqlImpl {
 				if (jedis.exists(REDISKEY + id + "-SYS_REDISINFO"))
 					jedis.del(REDISKEY + id + "-SYS_REDISINFO");
 
-				if ("null".equals(value)) {
-					fmap.put(sql, descp); // sql为key,sql的描述为 value
-					// jedis.hdel(fid, sql);
-					String keys[] = key.split(",");
-					String hkeys[] = hkey.split(",");
-					String hvalues[] = hvalue.split(",");
-					jedis.del(REDISKEY + sql);
-					jedis.del(REDISKEY + sql + "_key");
-					for (int i = 0; i < keys.length; i++) {
-						jedis.rpush(REDISKEY + sql + "_key", keys[i]);// 放入list
-						Map<String, String> map2 = new HashMap<String, String>();
-						if (hkeys[i].equals("ALL")) {
-							map2.put("key", "0");
-							map2.put("value", "0");
+				fmap.put(sql, descp); // sql为key,sql的描述为 value
+				// jedis.hdel(fid, sql);
+				String keys[] = key.split(",");
+				String hkeys[] = hkey.split(",");
+				String hvalues[] = hvalue.split(",");
+				jedis.del(REDISKEY + sql);
+				jedis.del(REDISKEY + sql + "_key");
+				for (int i = 0; i < keys.length; i++) {
+					jedis.rpush(REDISKEY + sql + "_key", keys[i]);// 放入list
+					Map<String, String> map2 = new HashMap<String, String>();
+					if (hkeys[i].equals("ALL")) {
+						map2.put("key", "0");
+						map2.put("value", "0");
+					} else {
+						map2.put("key", hkeys[i]);
+						map2.put("value", hvalues[i]);
+					}
+					jedis.hmset(REDISKEY + sql + "_rule_" + keys[i], map2);
+				}
+
+				List<String> rkeys = jedis.lrange(REDISKEY + sql + "_key",
+						0, jedis.llen(REDISKEY + sql + "_key")); // 取出 keys
+				for (int i = 0; i < rkeys.size(); i++) {
+					String rkey = rkeys.get(i);
+					String rule = REDISKEY + sql + "_rule_" + rkey;
+					Map<String, String> rmap = jedis.hgetAll(rule); // 拿出所有的数据
+					String key_2 = rmap.get("key");
+					String value_2 = rmap.get("value");
+					List<Map<String, Object>> list = connection
+							.findForDruid(sql);
+					for (int k = 0; k < list.size(); k++) {
+						Map<String, String> redismap = new HashMap<String, String>();
+						Map<String, Object> map_2 = list.get(k);
+						Set<String> set = map_2.keySet();
+						if (key_2.equals("0")) {
+							for (String string : set) {
+								redismap.put(string, map_2.get(string) + "");
+							}
+							jedis.hmset(REDISKEY + map_2.get(rkey) + "",
+									redismap);
+							jedis.rpush(REDISKEY + sql, map_2.get(rkey)
+									+ "");
+							jedis.rpush(REDISKEY + id + "-SYS_REDISINFO",
+									map_2.get("ID") + "");
 						} else {
-							map2.put("key", hkeys[i]);
-							map2.put("value", hvalues[i]);
-						}
-						jedis.hmset(REDISKEY + sql + "_rule_" + keys[i], map2);
-					}
+							redismap.put(map_2.get(key_2) + "",
+									map_2.get(value_2) + "");
+							// jedis.del(map_2.get(rkey) + "");
 
-					List<String> rkeys = jedis.lrange(REDISKEY + sql + "_key",
-							0, jedis.llen(REDISKEY + sql + "_key")); // 取出 keys
-					// System.err.println(rkeys);
-					for (int i = 0; i < rkeys.size(); i++) {
-						String rkey = rkeys.get(i);
-						String rule = REDISKEY + sql + "_rule_" + rkey;
-						Map<String, String> rmap = jedis.hgetAll(rule); // 拿出所有的数据
-						String key_2 = rmap.get("key");
-						String value_2 = rmap.get("value");
-						List<Map<String, Object>> list = connection
-								.findForDruid(sql);
-						for (int k = 0; k < list.size(); k++) {
-							Map<String, String> redismap = new HashMap<String, String>();
-							Map<String, Object> map_2 = list.get(k);
-							Set<String> set = map_2.keySet();
-							if (key_2.equals("0")) {
-								for (String string : set) {
-									redismap.put(string, map_2.get(string) + "");
-								}
-								// System.err.println(redismap);
-								// LOGGER.warn(map_2.get(rkey) + "");
-								// System.err.println(map_2.get(rkey));
-								// jedis.del(map_2.get(rkey) + "");
-								jedis.hmset(REDISKEY + map_2.get(rkey) + "",
-										redismap);
-								jedis.rpush(REDISKEY + sql, map_2.get(rkey)
-										+ "");
-								jedis.rpush(REDISKEY + id + "-SYS_REDISINFO",
-										map_2.get("ID") + "");
-							} else {
-								redismap.put(map_2.get(key_2) + "",
-										map_2.get(value_2) + "");
-								// jedis.del(map_2.get(rkey) + "");
-
-								jedis.hmset(REDISKEY + map_2.get(rkey) + "",
-										redismap);
-								jedis.rpush(REDISKEY + id + "-SYS_REDISINFO",
-										map_2.get("ID") + "");
-							}
+							jedis.hmset(REDISKEY + map_2.get(rkey) + "",
+									redismap);
+							jedis.rpush(REDISKEY + id + "-SYS_REDISINFO",
+									map_2.get("ID") + "");
 						}
-					}
-					jedis.hmset(REDISKEY + "running_model", fmap);
-				} else {
-					if (sql.indexOf(jedis.hget(REDISKEY + value, "tablename")) >= 0) {
-						Map<String, String> map = new HashMap<String, String>();
-						map.put(sql, descp);
-						jedis.hdel(REDISKEY + fid, sql);
-						jedis.hmset(REDISKEY + fid, map);
-						String keys[] = key.split(",");
-						String hkeys[] = hkey.split(",");
-						String hvalues[] = hvalue.split(",");
-						jedis.del(REDISKEY + sql);
-						jedis.del(REDISKEY + sql + "_key");
-						for (int i = 0; i < keys.length; i++) {
-							jedis.rpush(REDISKEY + sql + "_key", keys[i]);
-							Map<String, String> map2 = new HashMap<String, String>();
-							if (hkeys[i].equals("ALL")) {
-								map2.put("key", "0");
-								map2.put("value", "0");
-							} else {
-								map2.put("key", hkeys[i]);
-								map2.put("value", hvalues[i]);
-							}
-							jedis.hmset(REDISKEY + sql + "_rule_" + keys[i],
-									map2);
-						}
-						List<String> rkeys = jedis.lrange(REDISKEY + sql
-										+ "_key", 0,
-								jedis.llen(REDISKEY + sql + "_key"));
-						for (int i = 0; i < rkeys.size(); i++) {
-							String rkey = rkeys.get(i);
-							String rule = REDISKEY + sql + "_rule_" + rkey;
-							Map<String, String> rmap = jedis.hgetAll(rule);
-							String key_2 = rmap.get("key");
-							String value_2 = rmap.get("value");
-
-							List<Map<String, Object>> list = connection
-									.findForDruid(sql);
-							// 同步SQL的内容
-							for (int k = 0; k < list.size(); k++) {
-								Map<String, String> redismap = new HashMap<String, String>();
-								Map<String, Object> map_2 = list.get(k);
-								Set<String> set = map_2.keySet();
-								if (key_2.equals("0")) {
-									for (String string : set) {
-										redismap.put(string, map_2.get(string)
-												+ "");
-									}
-									LOGGER.warn(map_2.get(rkey) + "");
-									// System.err.println(map_2.get(rkey));
-									// jedis.del(map_2.get(rkey) + "");
-									jedis.hmset(
-											REDISKEY + map_2.get(rkey) + "",
-											redismap);
-									jedis.rpush(REDISKEY + sql, map_2.get(rkey)
-											+ "");
-									jedis.rpush(REDISKEY + id
-											+ "-SYS_REDISINFO", map_2.get("ID")
-											+ "");
-								} else {
-									redismap.put(REDISKEY + map_2.get(key_2)
-											+ "", map_2.get(value_2) + "");
-									// jedis.del(map_2.get(rkey) + "");
-									jedis.hmset(
-											REDISKEY + map_2.get(rkey) + "",
-											redismap);
-									jedis.rpush(REDISKEY + id
-											+ "-SYS_REDISINFO", map_2.get("ID")
-											+ "");
-								}
-							}
-						}
-
 					}
 				}
+				jedis.hmset(REDISKEY + "running_model", fmap);
+
 			}
 			// jedis.hmset("running_model", fmap);
 		} catch (Exception e) {

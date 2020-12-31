@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="dm-connector-java-2013">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib-old/dm-connector-java-2013.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

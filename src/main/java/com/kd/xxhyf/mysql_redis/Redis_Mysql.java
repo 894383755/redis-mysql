@@ -41,7 +41,7 @@ public class Redis_Mysql {
 			redis_MysqlImpl.run(list.get(i).toString());
 		}
 		LOGGER.debug("开始同步告警配置信息");
-		redis_MysqlImpl.runing_data("null");
+		redis_MysqlImpl.runing_data();
 		redis_MysqlImpl.server();//t同步服务器数据
 		redis_MysqlImpl.syn_view();//同步视图
 		redis_MysqlImpl.synNowRunDateNeedStaticDataToCodis();

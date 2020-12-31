@@ -45,7 +45,7 @@ public class SynchroServiceImpl{
 			String tableOrSql = map.get("TABLEORSQL")+""; //获取到数据中表号
 
 			redis_MysqlImpl.run(tableOrSql);
-			redis_MysqlImpl.runing_data("null");
+			redis_MysqlImpl.runing_data();
 			//redis_MysqlImpl.server();
 			redis_MysqlImpl.syn_view();
 			redis_MysqlImpl.synNowRunDateNeedStaticDataToCodis();
