@@ -17,7 +17,17 @@ config:
     - "synchroData"
     - "notice"
 
-
+#配置日志
+logging:
+  #配置日志文件路径
+  level:
+    org.springfromework.web: info
+    com.kd.xxhyf: error
+  file:
+    name: logs\SYNC.log
+  pattern:
+    console: %d{yyyy-MM-dd} [%thread] %-5level %logger{50}:%msg%n
+    file: %d{yyyy-MM-dd} === [%thread] === %-5level === %logger{50} ==== %msg%n
 
 jdbc:
   ### -----------达梦-------------------

@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +23,7 @@ import com.kd.xxhyf.util.Util;
 import redis.clients.jedis.JedisCommands;
 
 @Component
+@Slf4j
 public class Redis_MysqlImpl {
 
 	private static final Logger LOGGER = LoggerFactory
@@ -72,7 +74,7 @@ public class Redis_MysqlImpl {
 			}
 			if (tableId.substring(tableId.length() - 1, tableId.length())
 					.equals("0")) { // 判断是不是静态信表 0是静态表
-				// System.err.println("-------------------------------");
+				// log.info("-------------------------------");
 				static_data(tableId + "");// 获取静态表数据
 			}
 		} else {
@@ -98,7 +100,7 @@ public class Redis_MysqlImpl {
 				System.out.println("");
 			}
 
-			System.err.println("redis开始同步----" + tablename + "-----" + paramTableId);
+			log.info("redis开始同步----" + tablename + "-----" + paramTableId);
 			String jedisTablename = REDISKEY + tablename;
 			List<Map<String, Object>> list = connection.findForDruid(sql);// 获取到tablename中的所有数据
 
@@ -202,7 +204,7 @@ public class Redis_MysqlImpl {
 					jedis.del(key);
 				jedis.set(key, tableId);
 			}
-			System.err.println("----同步 CONF_COLLECTION_INDB 的 tableId成功-----");
+			log.info("----同步 CONF_COLLECTION_INDB 的 tableId成功-----");
 
 			// 同步 AUS_APP_B表 的 Id
 			String appSql = "SELECT ID,VALUE,ENG_NAME FROM OMPSE.AUS_APP_B";
@@ -226,7 +228,7 @@ public class Redis_MysqlImpl {
 
 				jedis.set(key2, id);
 			}
-			System.err.println("----同步 AUS_APP_B表 的 Id成功-----");
+			log.info("----同步 AUS_APP_B表 的 Id成功-----");
 
 			// 同步 AUS_CONTEXT_B表 的 Id
 			String contextSql = "SELECT ID,VALUE,ENG_NAME FROM OMPSE.AUS_CONTEXT_B";
@@ -252,7 +254,7 @@ public class Redis_MysqlImpl {
 				jedis.set(key2, id);
 
 			}
-			System.err.println("---- 同步 AUS_CONTEXT_B表 的 Id-----");
+			log.info("---- 同步 AUS_CONTEXT_B表 的 Id-----");
 
 			// 同步获取服务总线模型的最大ID AUS_SERVICE_BUS_SERVER_B表 的最大 Id
 			String serviceMaxIdSql = "SELECT MAX(ID) maxId FROM OMPSE.AUS_SERVICE_BUS_SERVER_B";
@@ -281,8 +283,7 @@ public class Redis_MysqlImpl {
 				String value = nodeId + serviceName + pNode;
 				jedis.sadd(REDISKEY + "IN_AUS_SERVICE_BUS_SERVER_B", value);
 			}
-			System.err
-					.println("--- 同步 获取判断服务总线模型中是否已存在该模型（List）AUS_SERVICE_BUS_SERVER_B---");
+			log.info("--- 同步 获取判断服务总线模型中是否已存在该模型（List）AUS_SERVICE_BUS_SERVER_B---");
 
 			// 同步应用节点模型的最大ID（AUS_APP_NODE_B）
 			String apMaxIdSql = "SELECT MAX(ID) maxId FROM OMPSE.AUS_APP_NODE_B";
@@ -294,7 +295,7 @@ public class Redis_MysqlImpl {
 			 */
 			jedis.set(REDISKEY + "MAX_ID_AUS_APP_NODE_B", apMaxIdIdList.get(0)
 					.get("maxId") + "");
-			System.err.println("--- 同步应用节点模型的最大ID（AUS_APP_NODE_B）成功------");
+			log.info("--- 同步应用节点模型的最大ID（AUS_APP_NODE_B）成功------");
 
 			// 获取应用节点模型的最大ID（AUS_PROCESS_NODE_B）
 			String aproMaxIdSql = "SELECT MAX(ID) maxId FROM OMPSE.AUS_PROCESS_NODE_B";
@@ -306,8 +307,7 @@ public class Redis_MysqlImpl {
 			 */
 			jedis.set(REDISKEY + "MAX_ID_AUS_PROCESS_NODE_B", aproMaxIdList
 					.get(0).get("maxId") + "");
-			System.err
-					.println("--- 同步应用节点模型的最大ID（MAX_ID_AUS_PROCESS_NODE_B）成功------");
+			log.info("--- 同步应用节点模型的最大ID（MAX_ID_AUS_PROCESS_NODE_B）成功------");
 
 			// 同步 获取判断应用节点模型中是否已存在该模型（List）AUS_APP_NODE_B
 			String appNodeSql = "SELECT CONTEXT_ID,APP_ID,NODEID,P_NODE FROM OMPSE.AUS_APP_NODE_B";
@@ -323,7 +323,7 @@ public class Redis_MysqlImpl {
 				String value = contextId + appId + nodeId + pNode;
 				jedis.sadd(REDISKEY + "IN_AUS_APP_NODE_B", value);
 			}
-			System.err.println("---同步应用节点模型的最大ID（AUS_APP_NODE_B）成功------");
+			log.info("---同步应用节点模型的最大ID（AUS_APP_NODE_B）成功------");
 
 			// 获取判断应用节点模型中是否已存在该模型（List）AUS_PROCESS_NODE_B
 			String aproNodeSql = "SELECT CONTEXT_ID,APP_ID,NODEID,PROCESS_ID FROM OMPSE.AUS_PROCESS_NODE_B";
@@ -341,8 +341,7 @@ public class Redis_MysqlImpl {
 				String value = contextId + appId + nodeId + processId;
 				jedis.sadd(REDISKEY + "IN_AUS_PROCESS_NODE_B", value);
 			}
-			System.err
-					.println("---同步应用节点模型的最大ID（IN_AUS_PROCESS_NODE_B）成功------");
+			log.info("---同步应用节点模型的最大ID（IN_AUS_PROCESS_NODE_B）成功------");
 
 			// 同步 （List）AUS_HISDB_SYSTEM_NODE_B 的id
 			String hisdbSql = "SELECT ID FROM OMPSE.AUS_HISDB_SYSTEM_NODE_B";
@@ -356,8 +355,7 @@ public class Redis_MysqlImpl {
 				String id = map.get("ID") + "";
 				jedis.sadd(REDISKEY + "IN_HISDB_NODE_B", id);
 			}
-			System.err
-					.println("---同步 （List）AUS_HISDB_SYSTEM_NODE_B 的id成功------");
+			log.info("---同步 （List）AUS_HISDB_SYSTEM_NODE_B 的id成功------");
 
 			// 同步NODEID(String类型) AUE_SERVER_B
 			String serverSql = "SELECT ID,IP,HOSTNAME,NAME FROM OMPSE.AUE_SERVER_B";
@@ -377,7 +375,7 @@ public class Redis_MysqlImpl {
 				jedis.set(ip, id);
 
 			}
-			System.err.println("---同步NODEID(String类型) AUE_SERVER_B成功------");
+			log.info("---同步NODEID(String类型) AUE_SERVER_B成功------");
 
 			// 获取ID(String类型)AUS_PROCESS_B表
 			String processSql = "SELECT ID,NAME,ENG_NAME FROM OMPSE.AUS_PROCESS_B";
@@ -395,7 +393,7 @@ public class Redis_MysqlImpl {
 					jedis.del(name2);
 				jedis.set(name2, id);
 			}
-			System.err.println("---同步ID(String类型) AUS_PROCESS_B------");
+			log.info("---同步ID(String类型) AUS_PROCESS_B------");
 
 			// 同步采集项配置信息（Hash类型）CONF_COLLECTION_TARGET
 			String cSql = "SELECT * FROM OMPSE.CONF_COLLECTION_TARGET";
@@ -423,8 +421,7 @@ public class Redis_MysqlImpl {
 
 			}
 
-			System.err
-					.println("---同步采集项配置信息（Hash类型）CONF_COLLECTION_TARGET成功------");
+			log.info("---同步采集项配置信息（Hash类型）CONF_COLLECTION_TARGET成功------");
 
 		} catch (Exception e) {
 			// TODO: handle exception

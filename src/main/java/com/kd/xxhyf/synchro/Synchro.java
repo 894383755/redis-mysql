@@ -65,7 +65,6 @@ public class Synchro {
 			consumer.subscribe(Arrays.asList(comsumerEntiy_t.getTopic()));
 			//consumer.subscribe(comsumerEntiy_t.getTopic());
 			int count = 0;
-			System.err.println("codis同步服务kafka注册成功");
 			LOGGER.info("codis同步服务kafka注册成功");
 			while (true) {
 				// 从Broker拉取消息,拉取超时时间设置为100ms

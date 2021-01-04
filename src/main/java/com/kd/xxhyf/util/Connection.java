@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,9 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Component("connection")
 @Transactional
+@Slf4j
 public class Connection {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(Connection.class);
 	@Autowired
 	private JdbcTemplate template;
 
@@ -39,7 +40,7 @@ public class Connection {
 			list2 = template.queryForList(sql);
 		} catch (Exception e) {
 			// TODO: handle exception
-			LOGGER.error(e.getMessage());
+			log.error(e.getMessage());
 		}
 		return list2;
 	}
@@ -68,7 +69,7 @@ public class Connection {
 				execute(sql.get(i));
 			} catch (Exception e) {
 				// TODO: handle exception
-				LOGGER.warn(e.getMessage());
+				log.warn(e.getMessage());
 				b = false;
 			}
 		}
