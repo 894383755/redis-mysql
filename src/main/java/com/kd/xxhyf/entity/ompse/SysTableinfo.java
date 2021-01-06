@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
-@TableName(schema="OMPSE",value = "SYS_TABLEINFO")
 public class SysTableinfo {
 
   private String id;

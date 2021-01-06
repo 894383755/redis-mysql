@@ -127,10 +127,16 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
         </dependency>
+        <!-- 数据库连接 -->
         <dependency>
             <groupId>com.kedong</groupId>
             <artifactId>dm-connector-java</artifactId>
             <version>2013</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
     </dependencies>
 

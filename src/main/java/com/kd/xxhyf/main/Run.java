@@ -4,8 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 import com.kd.xxhyf.annotation.EnableAspectAnnotation;
+import com.kd.xxhyf.entity.ompse.SysTableinfo;
+import com.kd.xxhyf.mapper.CommonTableMapper;
+import com.kd.xxhyf.mapper.SysTableInfoMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,38 +28,23 @@ import redis.clients.jedis.JedisCommands;
 
 
 /**
- * 
- * @author 刘景涛 E-mail:18615564548@163.com
  *
- * 2018年9月11日 下午2:43:41
+ * @author 王君蕾 2021/1/6
  *
  */
 
 @Component
+@Slf4j
 public class Run {
-	
-	private static final Logger LOGGER =  LoggerFactory.getLogger(Run.class);
+
+	@Resource
+	private SysTableInfoMapper sysTableInfoMapper;
+
+	@Resource
+	private CommonTableMapper commonTableMapper;
 
 	@Value("${config.rediskey}")
 	private String REDISKEY;
-
-	@Autowired
-	private Static_model static_model;
-	
-	@Autowired
-	private Redis_Mysql redis_Mysql;
-	
-	@Autowired
-	private Connection connection;
-	
-	@Autowired
-	private Synchro synchro;
-
-	@Autowired
-	private SynchroData synchroData;
-	
-	@Autowired
-	private Notice notice;
 
 	@Qualifier("getJedisCommands")
 	@Autowired
@@ -66,34 +56,26 @@ public class Run {
 	@PostConstruct
 	@EnableAspectAnnotation
 	public void init(){
-		LOGGER.info("开始执行初始化");
+		log.info("开始执行初始化");
 		try  {
-			String sql = "SELECT EN_TABLENAME,ID FROM OMPSE.SYS_TABLEINFO WHERE ID LIKE '%0' AND EN_TABLENAME!='RUNNING_FILE_B'";
-			List<Map<String, Object>> list = connection.findForDruid(sql);
-			for (int i = 0; i < list.size(); i++) {
-				String id = list.get(i).get("ID")+"";
-				String maxIdSql = "SELECT MAX(SUBSTR(ID,11,8)) AS NUM FROM OMPSE."+list.get(i).get("EN_TABLENAME");
+			List<SysTableinfo> sysTableinfos = sysTableInfoMapper.selectListWhereStaticTable();
+			for (SysTableinfo sysTableinfo : sysTableinfos) {
+				String id = sysTableinfo.getId();
 				try {
-					List<Map<String, Object>> list2 = connection.findForDruid(maxIdSql);
-					if(list2.size()>0){
-						Object object = list2.get(0).get("NUM");
-						if(object==null||"".equals(object)){
-							jedis.set(REDISKEY+id+"_num", "0");
-						}else{
-							jedis.set(REDISKEY+id+"_num", Integer.valueOf(String.valueOf(object))+"");
-						}
+					Integer maxId = commonTableMapper.selectMaxSerialIdWhereTableName(sysTableinfo.getEnTablename());
+					if(maxId != null){
+						jedis.set(REDISKEY+id+"_num", maxId.toString());
 					}else{
 						jedis.set(REDISKEY+id+"_num", "0");
 					}
 				} catch (Exception e) {
-					// TODO: handle exception
-					LOGGER.error(maxIdSql);
+					log.error("获取其异常： selectMaxSerialIdWhereTableName("+sysTableinfo.getEnTablename());
+					throw e;
 				}
 			}
 		}catch (Exception e) {
-			// TODO: handle exception
-			LOGGER.error(e.getMessage());
+			log.error(e.getMessage());
 		}
-		LOGGER.info("结束执行初始化");
+		log.info("结束执行初始化");
 	}
 }

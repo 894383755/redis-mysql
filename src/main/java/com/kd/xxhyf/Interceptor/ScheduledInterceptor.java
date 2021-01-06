@@ -1,4 +1,4 @@
-package com.kd.xxhyf.aop;
+package com.kd.xxhyf.Interceptor;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,6 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +21,7 @@ import java.util.Map;
 @Aspect
 @Data
 @ConfigurationProperties(prefix = "config")
-public class ScheduledAop {
+public class ScheduledInterceptor {
 
     private List<String> scheduledEnable;
 
@@ -42,8 +41,7 @@ public class ScheduledAop {
         String className = joinPoint.getSignature().getDeclaringType().getSimpleName().toLowerCase();
         String methodName = joinPoint.getSignature().getName();
         String fullName = className + "." + methodName;
-        log.debug("拦截成功：className.funName");
-        if (scheduledEnable.contains(className)){
+        if (scheduledEnable.contains(fullName)){
             joinPoint.proceed();
         }
         return null;

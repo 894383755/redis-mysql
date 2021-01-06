@@ -10,6 +10,10 @@ import java.util.List;
 
 @Mapper
 public interface SysTableInfoMapper extends BaseMapper<SysTableinfo> {
-    @Select("SELECT * FROM OMPSE.SYS_TABLEINFO")
-    public List<SysTableinfo> selectAll();
+    /**
+     * 寻找静态表
+     * @return
+     */
+    @Select("SELECT * FROM SYS_TABLEINFO WHERE ID LIKE '%0' AND EN_TABLENAME!='RUNNING_FILE_B'")
+    public List<SysTableinfo> selectListWhereStaticTable();
 }

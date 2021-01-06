@@ -12,7 +12,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableAsync
 @EnableScheduling
 @EnableAspectJAutoProxy
-@MapperScan("com.kd.xxhyf.mapper")
+
 public class RedisMysqlApplication {
     public static void main(String[] args) {
             SpringApplication.run(RedisMysqlApplication.class, args);
