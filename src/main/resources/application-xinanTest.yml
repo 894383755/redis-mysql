@@ -1,5 +1,12 @@
 spring:
   profiles: xinanTest
+
+#  datasource:
+#    driver-class-name: dm.jdbc.driver.DmDriver
+#    url: jdbc:dm://192.100.1.82:12345/OMPSE_XINAN
+#    username: SYSDBA
+#    password: SYSDBA
+
 server:
   port: 8081
 grpc:
@@ -9,11 +16,12 @@ grpc:
 config:
   rediskey: XiNan_
   scheduledEnable:
-    - "redis_mysql"
-    - "static_model"
-    - "synchro"
-    - "synchroData"
-    #- "notice"
+    - "Run.init"
+    - "redis_mysql.run"
+    - "static_model.run"
+    - "synchro.run"
+    - "synchroData.run"
+    #- "notice.run"
 
 #配置日志
 logging:
@@ -22,13 +30,6 @@ logging:
   level:
     org.springfromework.web: info
     com.kd.xxhyf: info
-#  file:
-#    name: /logs/SYNC.log
-#    #path: logs\
-#  pattern:
-#    console: "%d{yyyy-MM-dd-HH:mm:ss} [%thread] %-5level :%msg%n"
-#    file: "%d{yyyy-MM-dd-HH:mm:ss}  [%thread]  %-5level  %msg%n"
-
 
 jdbc:
   ### -----------达梦-------------------
@@ -104,6 +105,7 @@ redis:
 
 kafka:
   kafkaservice: 192.100.1.71:9092,192.100.1.74:9092,192.100.1.77:9092
+  #CID
   groupIdStaticModel: CID_aue_sms
   #告警同步
   groupIdSynchro: CID_mre_sms
@@ -114,6 +116,7 @@ kafka:
   max_poll_records: 10
   queue_length: 2000000
   earliest: earliest
+  #topic
   topicStaticModel: kafkatransfer_aue_sms
   #告警同步
   topicSynchro: mysql_redis_sms

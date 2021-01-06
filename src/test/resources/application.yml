@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    # xinan,fujian,henan,xinanTest
+    active: xinanTest
+server:
+  port: 8081
+
+

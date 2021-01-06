@@ -28,16 +28,6 @@ public class ScheduledAop {
 
     private Map<String,List<String>> scheduledEnableMap = new HashMap<>();
 
-    /**
-     * 解析scheduledEnable文件为map文件
-     */
-    @PostConstruct
-    public void parsingScheduledEnable(){
-        if (scheduledEnable == null){
-            return;
-        }
-        //scheduledEnable.stream().map(e->scheduledEnableMap.put(e,e))
-    }
 
     @Pointcut("@annotation(org.springframework.scheduling.annotation.Scheduled)")
     public void scheduledAspect() {
@@ -50,9 +40,10 @@ public class ScheduledAop {
     @Around("scheduledAspect() || myAnnotationAspect()")
     public Object doInvoke(ProceedingJoinPoint joinPoint) throws Throwable {
         String className = joinPoint.getSignature().getDeclaringType().getSimpleName().toLowerCase();
-        String funName = joinPoint.getSignature().getName();
+        String methodName = joinPoint.getSignature().getName();
+        String fullName = className + "." + methodName;
         log.debug("拦截成功：className.funName");
-        if (!"run".equalsIgnoreCase(funName)||scheduledEnable.contains(className)){
+        if (scheduledEnable.contains(className)){
             joinPoint.proceed();
         }
         return null;

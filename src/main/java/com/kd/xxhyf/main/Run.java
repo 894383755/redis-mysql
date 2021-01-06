@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import com.kd.xxhyf.annotation.EnableAspectAnnotation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,22 +61,10 @@ public class Run {
 	private JedisCommands jedis;
 
 	/**
-	 * 服务启停
-	 */
-	public void start(){
-		LOGGER.info("开始执行所有任务");
-		init();
-		//redis_Mysql.run();//初始化静态信息同步到codis
-		//static_model.run();//静态模型入库
-		//synchro.run();//静态模型同步
-		//synchroData.run();
-		//notice.run();//待办任务
-	}
-
-	/**
 	 * 初始化codis中存储的静态模型的最大ID,用于静态模型入库时获取ID使用，避免多线程导致ID重复问题
 	 */
 	@PostConstruct
+	@EnableAspectAnnotation
 	public void init(){
 		LOGGER.info("开始执行初始化");
 		try  {
