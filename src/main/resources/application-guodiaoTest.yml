@@ -26,7 +26,7 @@ logging:
     com.kd.xxhyf: info
 
 jdbc:
-  prefix: sg_
+  prefix: SG_
   ### -----------连接-------------------
   url: jdbc:mysql://192.100.1.41:3306/sg_platform
   driverClass: com.mysql.jdbc.Driver
@@ -108,12 +108,12 @@ kafka:
   queue_length: 2000000
   earliest: earliest
   #topic
-  topicStaticModel: kafkatransfer_aue_sms
+  topicStaticModel: gd_kafkatransfer_aue_sms
   #告警同步
-  topicSynchro: mysql_redis_sms
-  topicNotice: kafkatransfer_notice_sms
+  topicSynchro: gd_mysql_redis_sms
+  topicNotice: gd_kafkatransfer_notice_sms
   #静态数据触发更新
-  topicSynchroData: kafkatransfer_data_sms
+  topicSynchroData: gd_kafkatransfer_data_sms
 
 thread:
   corePoolSize: 20

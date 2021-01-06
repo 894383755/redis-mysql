@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.kd.xxhyf.entity.ompse.SysRedisinfo;
+import com.kd.xxhyf.mapper.SysRedisInfoMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,18 +24,20 @@ import com.kd.xxhyf.util.Connection;
 import com.kd.xxhyf.util.Util;
 import redis.clients.jedis.JedisCommands;
 
+import javax.annotation.Resource;
+
 @Component
 @Slf4j
 public class Redis_MysqlImpl {
-
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(Redis_MysqlImpl.class);
 
 	@Value("${config.rediskey}")
 	private String REDISKEY;
 
 	@Autowired
 	private Connection connection;
+
+	@Resource
+	private SysRedisInfoMapper sysRedisInfoMapper;
 
 	private ObjectMapper objectmapper = new ObjectMapper();
 
@@ -46,9 +50,9 @@ public class Redis_MysqlImpl {
 		if (null == tableId || "null".equals(tableId) || "".equals(tableId))
 			return;
 		// 根据表ID查询表名，表字段和字段类型
-		String FIELDname = "SELECT B.FIELDNAME,B.TYPE,A.EN_TABLENAME,A.CHN_TABLENAME  FROM OMPSE.SYS_TABLEINFO AS A,OMPSE.SYS_FK AS B WHERE A.ID = B.TABLE_ID AND A.ID = '"
+		String FIELDname = "SELECT B.FIELDNAME,B.TYPE,A.EN_TABLENAME,A.CHN_TABLENAME  FROM SG_SYS_TABLEINFO AS A,SG_SYS_FK AS B WHERE A.ID = B.TABLE_ID AND A.ID = '"
 				+ tableId + "'";
-		LOGGER.debug(FIELDname);
+		log.debug(FIELDname);
 		List<Map<String, Object>> list = connection.findForDruid(FIELDname);
 
 		if (list.size() != 0) {
@@ -70,7 +74,7 @@ public class Redis_MysqlImpl {
 				jedis.hmset(REDISKEY + tableId + "", map); // {tableId:{tablename:server,id:int(20),name:varchat(20)}}
 				// 添加map
 			} catch (Exception e) {
-				LOGGER.error(e.getMessage());
+				log.error(e.getMessage());
 			}
 			if (tableId.substring(tableId.length() - 1, tableId.length())
 					.equals("0")) { // 判断是不是静态信表 0是静态表
@@ -78,7 +82,7 @@ public class Redis_MysqlImpl {
 				static_data(tableId + "");// 获取静态表数据
 			}
 		} else {
-			LOGGER.debug(Thread.currentThread().getStackTrace()[1]
+			log.debug(Thread.currentThread().getStackTrace()[1]
 					.getLineNumber() + "list.size()==0");
 		}
 	}
@@ -95,7 +99,7 @@ public class Redis_MysqlImpl {
 				tablename = "SYS_FK";// 在redis中获取表名
 			}
 
-			String sql = "SELECT * FROM OMPSE." + tablename; // 获取此表所有数据
+			String sql = "SELECT * FROM SG_" + tablename; // 获取此表所有数据
 			if (tablename.equals("SG_SCS_EQUIPMENT_B")) {
 				System.out.println("");
 			}
@@ -192,7 +196,7 @@ public class Redis_MysqlImpl {
 		// 同步 CONF_COLLECTION_INDB 的 tableId
 		try {
 
-			String iSql = "SELECT DEVTYPE,EVENT_ID,SUB_EVENT_ID,TABLE_ID FROM OMPSE.CONF_COLLECTION_INDB";
+			String iSql = "SELECT DEVTYPE,EVENT_ID,SUB_EVENT_ID,TABLE_ID FROM SG_CONF_COLLECTION_INDB";
 			List<Map<String, Object>> iList = connection.findForDruid(iSql);
 			for (Map<String, Object> map : iList) {
 				String devtype = map.get("DEVTYPE") + "";
@@ -207,7 +211,7 @@ public class Redis_MysqlImpl {
 			log.info("----同步 CONF_COLLECTION_INDB 的 tableId成功-----");
 
 			// 同步 AUS_APP_B表 的 Id
-			String appSql = "SELECT ID,VALUE,ENG_NAME FROM OMPSE.AUS_APP_B";
+			String appSql = "SELECT ID,VALUE,ENG_NAME FROM SG_AUS_APP_B";
 			List<Map<String, Object>> appList = connection.findForDruid(appSql);
 			for (Map<String, Object> map : appList) {
 				String id = map.get("ID") + "";
@@ -231,7 +235,7 @@ public class Redis_MysqlImpl {
 			log.info("----同步 AUS_APP_B表 的 Id成功-----");
 
 			// 同步 AUS_CONTEXT_B表 的 Id
-			String contextSql = "SELECT ID,VALUE,ENG_NAME FROM OMPSE.AUS_CONTEXT_B";
+			String contextSql = "SELECT ID,VALUE,ENG_NAME FROM SG_AUS_CONTEXT_B";
 			List<Map<String, Object>> contextList = connection
 					.findForDruid(contextSql);
 			for (Map<String, Object> map : contextList) {
@@ -257,7 +261,7 @@ public class Redis_MysqlImpl {
 			log.info("---- 同步 AUS_CONTEXT_B表 的 Id-----");
 
 			// 同步获取服务总线模型的最大ID AUS_SERVICE_BUS_SERVER_B表 的最大 Id
-			String serviceMaxIdSql = "SELECT MAX(ID) maxId FROM OMPSE.AUS_SERVICE_BUS_SERVER_B";
+			String serviceMaxIdSql = "SELECT MAX(ID) maxId FROM SG_AUS_SERVICE_BUS_SERVER_B";
 			List<Map<String, Object>> serviceMaxIdList = connection
 					.findForDruid(serviceMaxIdSql);
 			/*
@@ -266,10 +270,10 @@ public class Redis_MysqlImpl {
 			 */
 			jedis.set(REDISKEY + "MAX_ID_AUS_SERVICE_BUS_SERVER_B",
 					serviceMaxIdList.get(0).get("maxId") + "");
-			LOGGER.info("---同步获取服务总线模型的最大ID AUS_SERVICE_BUS_SERVER_B表 的最大 Id----");
+			log.info("---同步获取服务总线模型的最大ID AUS_SERVICE_BUS_SERVER_B表 的最大 Id----");
 
 			// 同步 获取判断服务总线模型中是否已存在该模型（List）AUS_SERVICE_BUS_SERVER_B
-			String serviceSql = "SELECT NODEID,SERVICE_NAME,P_NODE FROM OMPSE.AUS_SERVICE_BUS_SERVER_B";
+			String serviceSql = "SELECT NODEID,SERVICE_NAME,P_NODE FROM SG_AUS_SERVICE_BUS_SERVER_B";
 			List<Map<String, Object>> serviceList = connection
 					.findForDruid(serviceSql);
 			/*
@@ -286,7 +290,7 @@ public class Redis_MysqlImpl {
 			log.info("--- 同步 获取判断服务总线模型中是否已存在该模型（List）AUS_SERVICE_BUS_SERVER_B---");
 
 			// 同步应用节点模型的最大ID（AUS_APP_NODE_B）
-			String apMaxIdSql = "SELECT MAX(ID) maxId FROM OMPSE.AUS_APP_NODE_B";
+			String apMaxIdSql = "SELECT MAX(ID) maxId FROM SG_AUS_APP_NODE_B";
 			List<Map<String, Object>> apMaxIdIdList = connection
 					.findForDruid(apMaxIdSql);
 			/*
@@ -298,7 +302,7 @@ public class Redis_MysqlImpl {
 			log.info("--- 同步应用节点模型的最大ID（AUS_APP_NODE_B）成功------");
 
 			// 获取应用节点模型的最大ID（AUS_PROCESS_NODE_B）
-			String aproMaxIdSql = "SELECT MAX(ID) maxId FROM OMPSE.AUS_PROCESS_NODE_B";
+			String aproMaxIdSql = "SELECT MAX(ID) maxId FROM SG_AUS_PROCESS_NODE_B";
 			List<Map<String, Object>> aproMaxIdList = connection
 					.findForDruid(aproMaxIdSql);
 			/*
@@ -310,7 +314,7 @@ public class Redis_MysqlImpl {
 			log.info("--- 同步应用节点模型的最大ID（MAX_ID_AUS_PROCESS_NODE_B）成功------");
 
 			// 同步 获取判断应用节点模型中是否已存在该模型（List）AUS_APP_NODE_B
-			String appNodeSql = "SELECT CONTEXT_ID,APP_ID,NODEID,P_NODE FROM OMPSE.AUS_APP_NODE_B";
+			String appNodeSql = "SELECT CONTEXT_ID,APP_ID,NODEID,P_NODE FROM SG_AUS_APP_NODE_B";
 			List<Map<String, Object>> appNodeList = connection
 					.findForDruid(appNodeSql);
 			// if (jedis.exists("IN_AUS_APP_NODE_B")) // redis存在
@@ -326,7 +330,7 @@ public class Redis_MysqlImpl {
 			log.info("---同步应用节点模型的最大ID（AUS_APP_NODE_B）成功------");
 
 			// 获取判断应用节点模型中是否已存在该模型（List）AUS_PROCESS_NODE_B
-			String aproNodeSql = "SELECT CONTEXT_ID,APP_ID,NODEID,PROCESS_ID FROM OMPSE.AUS_PROCESS_NODE_B";
+			String aproNodeSql = "SELECT CONTEXT_ID,APP_ID,NODEID,PROCESS_ID FROM SG_AUS_PROCESS_NODE_B";
 			List<Map<String, Object>> aproNodeList = connection
 					.findForDruid(aproNodeSql);
 			/*
@@ -344,7 +348,7 @@ public class Redis_MysqlImpl {
 			log.info("---同步应用节点模型的最大ID（IN_AUS_PROCESS_NODE_B）成功------");
 
 			// 同步 （List）AUS_HISDB_SYSTEM_NODE_B 的id
-			String hisdbSql = "SELECT ID FROM OMPSE.AUS_HISDB_SYSTEM_NODE_B";
+			String hisdbSql = "SELECT ID FROM SG_AUS_HISDB_SYSTEM_NODE_B";
 			List<Map<String, Object>> hisdbList = connection
 					.findForDruid(hisdbSql);
 			/*
@@ -358,7 +362,7 @@ public class Redis_MysqlImpl {
 			log.info("---同步 （List）AUS_HISDB_SYSTEM_NODE_B 的id成功------");
 
 			// 同步NODEID(String类型) AUE_SERVER_B
-			String serverSql = "SELECT ID,IP,HOSTNAME,NAME FROM OMPSE.AUE_SERVER_B";
+			String serverSql = "SELECT ID,IP,HOSTNAME,NAME FROM SG_AUE_SERVER_B";
 			List<Map<String, Object>> serverList = connection
 					.findForDruid(serverSql);
 			for (Map<String, Object> map : serverList) {
@@ -378,7 +382,7 @@ public class Redis_MysqlImpl {
 			log.info("---同步NODEID(String类型) AUE_SERVER_B成功------");
 
 			// 获取ID(String类型)AUS_PROCESS_B表
-			String processSql = "SELECT ID,NAME,ENG_NAME FROM OMPSE.AUS_PROCESS_B";
+			String processSql = "SELECT ID,NAME,ENG_NAME FROM SG_AUS_PROCESS_B";
 			List<Map<String, Object>> processList = connection
 					.findForDruid(processSql);
 			for (Map<String, Object> map : processList) {
@@ -396,7 +400,7 @@ public class Redis_MysqlImpl {
 			log.info("---同步ID(String类型) AUS_PROCESS_B------");
 
 			// 同步采集项配置信息（Hash类型）CONF_COLLECTION_TARGET
-			String cSql = "SELECT * FROM OMPSE.CONF_COLLECTION_TARGET";
+			String cSql = "SELECT * FROM SG_CONF_COLLECTION_TARGET";
 			List<Map<String, Object>> cList = connection.findForDruid(cSql);
 
 			for (Map<String, Object> map : cList) {
@@ -436,7 +440,7 @@ public class Redis_MysqlImpl {
 
 		try {// 获取到可用的redis连接
 			// 同步ALARMMODEL
-			String amSql = "SELECT * FROM OMPSE.ALARMMODEL";
+			String amSql = "SELECT * FROM SG_ALARMMODEL";
 			List<Map<String, Object>> amList = connection.findForDruid(amSql);
 			Map<String, String> mapInfo = new HashMap<>();
 			if (jedis.exists(REDISKEY + "ALARMMODEL"))
@@ -452,10 +456,10 @@ public class Redis_MysqlImpl {
 					jedis.del(id);
 				jedis.hmset(id, mapInfo);
 			}
-			LOGGER.info("---同步视图ALARMMODEL成功------");
+			log.info("---同步视图ALARMMODEL成功------");
 
 			// 同步VIEW_HISDB_MODEL_DATA
-			String vhmSql = "SELECT * FROM OMPSE.VIEW_HISDB_MODEL_DATA";
+			String vhmSql = "SELECT * FROM SG_VIEW_HISDB_MODEL_DATA";
 			List<Map<String, Object>> vhmList = connection.findForDruid(vhmSql);
 			// Map<String, String> mapInfo = new HashMap<>();
 			if (jedis.exists(REDISKEY + "VIEW_HISDB_MODEL_DATA"))
@@ -466,10 +470,10 @@ public class Redis_MysqlImpl {
 						m.get("ID") + "", json);
 
 			}
-			LOGGER.info("---同步视图VIEW_HISDB_MODEL_DATA成功------");
+			log.info("---同步视图VIEW_HISDB_MODEL_DATA成功------");
 
 			// Hash类型同步数据库视图VIEW_REALDB_MODEL_DATA
-			String vrmSql = "SELECT * FROM OMPSE.VIEW_REALDB_MODEL_DATA";
+			String vrmSql = "SELECT * FROM SG_VIEW_REALDB_MODEL_DATA";
 			List<Map<String, Object>> vrmList = connection.findForDruid(vrmSql);
 			// Map<String, String> mapInfo = new HashMap<>();
 			if (jedis.exists(REDISKEY + "VIEW_REALDB_MODEL_DATA"))
@@ -479,10 +483,10 @@ public class Redis_MysqlImpl {
 				jedis.hset(REDISKEY + "VIEW_REALDB_MODEL_DATA", m.get("ID")
 						+ "", json);
 			}
-			LOGGER.info("---同步视图VIEW_HISDB_MODEL_DATA成功------");
+			log.info("---同步视图VIEW_HISDB_MODEL_DATA成功------");
 
 			// Hash类型同步数据库视图APPMODEL
-			String apmSql = "SELECT * FROM OMPSE.APPMODEL";
+			String apmSql = "SELECT * FROM SG_APPMODEL";
 			List<Map<String, Object>> apmList = connection.findForDruid(apmSql);
 			// Map<String, String> mapInfo = new HashMap<>();
 			if (jedis.exists(REDISKEY + "APPMODEL"))
@@ -491,10 +495,10 @@ public class Redis_MysqlImpl {
 				String json = objectmapper.writeValueAsString(m);
 				jedis.hset(REDISKEY + "APPMODEL", m.get("ID") + "", json);
 			}
-			LOGGER.info("---同步视图APPMODEL成功------");
+			log.info("---同步视图APPMODEL成功------");
 
 			// Hash类型同步数据库视图 PROCESSMODEL
-			String pmSql = "SELECT * FROM OMPSE.PROCESSMODEL";
+			String pmSql = "SELECT * FROM SG_PROCESSMODEL";
 			List<Map<String, Object>> pmList = connection.findForDruid(pmSql);
 			// Map<String, String> mapInfo = new HashMap<>();
 			if (jedis.exists(REDISKEY + "PROCESSMODEL"))
@@ -504,10 +508,10 @@ public class Redis_MysqlImpl {
 				jedis.hset(REDISKEY + "PROCESSMODEL", m.get("NODEPROCESSID")
 						+ "", json);
 			}
-			LOGGER.info("---同步视图PROCESSMODEL成功------");
+			log.info("---同步视图PROCESSMODEL成功------");
 
 			// Hash类型同步数据库视图 VIEW_SERVICE_FRIST
-			String vsfSql = "SELECT * FROM OMPSE.VIEW_SERVICE_FRIST";
+			String vsfSql = "SELECT * FROM SG_VIEW_SERVICE_FRIST";
 			List<Map<String, Object>> vsfList = connection.findForDruid(vsfSql);
 			// Map<String, String> mapInfo = new HashMap<>();
 			if (jedis.exists(REDISKEY + "VIEW_SERVICE_FRIST"))
@@ -517,10 +521,10 @@ public class Redis_MysqlImpl {
 				jedis.hset(REDISKEY + "VIEW_SERVICE_FRIST", m.get("SERVICEID")
 						+ "", json);
 			}
-			LOGGER.info("---同步视图PROCESSMODEL成功------");
+			log.info("---同步视图PROCESSMODEL成功------");
 
 			// 获取采集项配置信息（Hash类型）VIEW_REALDB_ALARM_MODEL_DATA
-			String vramdSql = "SELECT * FROM OMPSE.VIEW_REALDB_ALARM_MODEL_DATA";
+			String vramdSql = "SELECT * FROM SG_VIEW_REALDB_ALARM_MODEL_DATA";
 			List<Map<String, Object>> vramdList = connection
 					.findForDruid(vramdSql);
 			// Map<String, String> mapInfo = new HashMap<>();
@@ -531,10 +535,10 @@ public class Redis_MysqlImpl {
 				jedis.hset(REDISKEY + "VIEW_REALDB_ALARM_MODEL_DATA",
 						m.get("JUDGE_ID") + "", json);
 			}
-			LOGGER.info("---同步视图VIEW_REALDB_ALARM_MODEL_DATA成功------");
+			log.info("---同步视图VIEW_REALDB_ALARM_MODEL_DATA成功------");
 
 			// 获取采集项配置信息（Hash类型）VIEW_REALDB_ALARM_MODEL_DATA
-			String fkSql = "SELECT * FROM OMPSE.SYS_FK";
+			String fkSql = "SELECT * FROM SG_SYS_FK";
 			List<Map<String, Object>> fkList = connection.findForDruid(fkSql);
 			// Map<String, String> mapInfo = new HashMap<>();
 			if (jedis.exists(REDISKEY + "VIEW_SYS_FK"))
@@ -543,7 +547,7 @@ public class Redis_MysqlImpl {
 				String json = objectmapper.writeValueAsString(m);
 				jedis.hset(REDISKEY + "VIEW_SYS_FK", m.get("ID") + "", json);
 			}
-			LOGGER.info("---同步视图VIEW_SYS_FK成功------");
+			log.info("---同步视图VIEW_SYS_FK成功------");
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -556,20 +560,18 @@ public class Redis_MysqlImpl {
 	 *
 	 */
 	public void runing_data() {
-		String sql2 = "SELECT * FROM OMPSE.SYS_REDISINFO "; // 同步告警阈值的 codis查询表
-		List<Map<String, Object>> lists = connection.findForDruid(sql2);
+		List<SysRedisinfo> sysRedisinfos = sysRedisInfoMapper.selectList(null);// 同步告警阈值的 codis查询表
 		try {
 			jedis.del("running_model");
 			Map<String, String> fmap = new HashMap<String, String>();
-			for (int j = 0; j < lists.size(); j++) {
-				Map<String, Object> data = lists.get(j);
-				String id = data.get("ID") + "";// 主键
-				String descp = data.get("DESCP") + "";// 描述
-				String sql = (data.get("MYSQL") + "").toUpperCase();// SQL语句
-				String fid = data.get("PID") + "";
-				String key = data.get("KEY") + "";
-				String hkey = data.get("HKEY") + "";
-				String hvalue = data.get("HVALUE") + "";
+			for (SysRedisinfo sysRedisinfo : sysRedisinfos) {
+				String id = sysRedisinfo.getId();// 主键
+				String descp = sysRedisinfo.getDescp();// 描述
+				String sql = sysRedisinfo.getMysql().toUpperCase();// SQL语句
+				String fid = sysRedisinfo.getPid();
+				String key = sysRedisinfo.getKey();
+				String hkey = sysRedisinfo.getHkey();
+				String hvalue = sysRedisinfo.getHvalue();
 
 				if (jedis.exists(REDISKEY + id + "-SYS_REDISINFO"))
 					jedis.del(REDISKEY + id + "-SYS_REDISINFO");
@@ -644,7 +646,7 @@ public class Redis_MysqlImpl {
 	 * 同步server表
 	 */
 	public void server() {
-		String sql = "SELECT  *  FROM OMPSE.AUE_SERVER_B WHERE NAME IS NOT NULL";
+		String sql = "SELECT  *  FROM SG_AUE_SERVER_B WHERE NAME IS NOT NULL";
 		List<Map<String, Object>> list = connection.findForDruid(sql);
 		try {
 
@@ -671,7 +673,7 @@ public class Redis_MysqlImpl {
 	 */
 	public void synDeviceId() {
 		// String sql =
-		// "SELECT  *  FROM OMPSE.AUE_SERVER_B WHERE NAME IS NOT NULL";
+		// "SELECT  *  FROM SG_AUE_SERVER_B WHERE NAME IS NOT NULL";
 		// List<Map<String, Object>> list = connection.findForDruid(sql);
 		try {
 			List<String> deviceId = new ArrayList<String>();
@@ -684,14 +686,14 @@ public class Redis_MysqlImpl {
 				jedis.del(REDISKEY + "DEVICEID_" + safeAreaId);
 				// 获取deviceId
 				// 进程
-				String processSql = "SELECT APNB.ID  FROM OMPSE.AUE_SERVER_B AS ASB, OMPSE.AUS_PROCESS_NODE_B AS APNB WHERE ASB.ID=APNB.NODEID AND ASB.SECURITYAREA= '"
+				String processSql = "SELECT APNB.ID  FROM SG_AUE_SERVER_B AS ASB, SG_AUS_PROCESS_NODE_B AS APNB WHERE ASB.ID=APNB.NODEID AND ASB.SECURITYAREA= '"
 						+ safeAreaId + "'";
 				deviceList = connection.findForDruid(processSql);
 				for (int i = 0; i < deviceList.size(); i++) {
 					deviceId.add(deviceList.get(i).get("ID").toString());
 				}
 				// 历史库
-				String hisdbSql = "SELECT AHSNDB.ID  FROM OMPSE.AUE_SERVER_B AS ASB, OMPSE.AUS_HISDB_SYSTEM_NODE_B AS AHSNDB WHERE ASB.ID=AHSNDB.NODEID AND ASB.SECURITYAREA= '"
+				String hisdbSql = "SELECT AHSNDB.ID  FROM SG_AUE_SERVER_B AS ASB, SG_AUS_HISDB_SYSTEM_NODE_B AS AHSNDB WHERE ASB.ID=AHSNDB.NODEID AND ASB.SECURITYAREA= '"
 						+ safeAreaId + "'";
 
 				deviceList = connection.findForDruid(hisdbSql);
@@ -699,7 +701,7 @@ public class Redis_MysqlImpl {
 					deviceId.add(deviceList.get(i).get("ID").toString());
 				}
 				// 服务总线
-				String serviceSql = "SELECT ASBSB.ID  FROM OMPSE.AUE_SERVER_B AS ASB, OMPSE.AUS_SERVICE_BUS_SERVER_B AS ASBSB WHERE ASB.ID=ASBSB.NODEID AND ASB.SECURITYAREA= '"
+				String serviceSql = "SELECT ASBSB.ID  FROM SG_AUE_SERVER_B AS ASB, SG_AUS_SERVICE_BUS_SERVER_B AS ASBSB WHERE ASB.ID=ASBSB.NODEID AND ASB.SECURITYAREA= '"
 						+ safeAreaId + "'";
 				deviceList = connection.findForDruid(serviceSql);
 				for (int i = 0; i < deviceList.size(); i++) {
@@ -707,7 +709,7 @@ public class Redis_MysqlImpl {
 				}
 
 				// 应用
-				String appSql = "SELECT AANB.ID  FROM OMPSE.AUE_SERVER_B AS ASB, OMPSE.AUS_APP_NODE_B AS AANB WHERE ASB.ID=AANB.NODEID AND ASB.SECURITYAREA= '"
+				String appSql = "SELECT AANB.ID  FROM SG_AUE_SERVER_B AS ASB, SG_AUS_APP_NODE_B AS AANB WHERE ASB.ID=AANB.NODEID AND ASB.SECURITYAREA= '"
 						+ safeAreaId + "'";
 
 				deviceList = connection.findForDruid(appSql);
@@ -716,7 +718,7 @@ public class Redis_MysqlImpl {
 				}
 
 				// 服务器
-				String serverSql = "SELECT ID  FROM OMPSE.AUE_SERVER_B  WHERE SECURITYAREA= '"
+				String serverSql = "SELECT ID  FROM SG_AUE_SERVER_B  WHERE SECURITYAREA= '"
 						+ safeAreaId + "'";
 
 				deviceList = connection.findForDruid(serverSql);
@@ -725,7 +727,7 @@ public class Redis_MysqlImpl {
 				}
 
 				// 实时库
-				String realdbSql = "SELECT ARB.ID  FROM OMPSE.AUE_SERVER_B AS ASB, OMPSE.AUS_REALDB_B AS ARB WHERE ASB.ID=ARB.NODEID AND ASB.SECURITYAREA= '"
+				String realdbSql = "SELECT ARB.ID  FROM SG_AUE_SERVER_B AS ASB, SG_AUS_REALDB_B AS ARB WHERE ASB.ID=ARB.NODEID AND ASB.SECURITYAREA= '"
 						+ safeAreaId + "'";
 
 				deviceList = connection.findForDruid(realdbSql);

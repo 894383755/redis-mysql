@@ -91,8 +91,8 @@ public class StaticServiceImpl {
 				String update = "";//拼接更新SQL
 				Set<String> set = map.keySet();
 				String tablename = redismap.get("tablename");
-				String insert="INSERT INTO OMPSE."+tablename+" (";
-				String select = "SELECT * FROM OMPSE."+tablename+" WHERE 1=1 ";
+				String insert="INSERT INTO SG_"+tablename+" (";
+				String select = "SELECT * FROM SG_"+tablename+" WHERE 1=1 ";
 				/*if(type.equals("100010"))*/
 				String nodeid = "";//节点ID
 				
@@ -184,7 +184,7 @@ public class StaticServiceImpl {
 						String sql = select+where;
 						List<Map<String, Object>> list3 = 	connection.findForDruid(sql);
 						if(list3.size()>0){							//System.out.println(update.substring(0, update.length()-1));
-							String updateSql = "UPDATE OMPSE."+tablename+" SET "+update.substring(0, update.length()-1)+" WHERE 1=1 "+ where;
+							String updateSql = "UPDATE SG_"+tablename+" SET "+update.substring(0, update.length()-1)+" WHERE 1=1 "+ where;
 							connection.execute(updateSql);
 						}else{
 							Integer max_id = 0;
@@ -233,7 +233,7 @@ public class StaticServiceImpl {
 			for (int i = 0; i < list.size(); i++) {
 				Map<String, Object> map = list.get(i);
 				Set<String> set = map.keySet();
-				String update="UPDATE OMPSE."+redismap.get("tablename")+" SET ";//更新SQL
+				String update="UPDATE SG_"+redismap.get("tablename")+" SET ";//更新SQL
 				String value = "";//更新值
 				String nodeid = "";
 				String upMapCol = "";//where条件判断的字段 一般 是nodeid或者是ID
@@ -277,7 +277,7 @@ public class StaticServiceImpl {
 	}
 	
 	public void update(String device,String type,List<Map<String, Object>> list){
-		String update="UPDATE OMPSE.RUNNING_FILE_B SET STATUS=1 WHERE ID = '"+device+"'";
+		String update="UPDATE SG_RUNNING_FILE_B SET STATUS=1 WHERE ID = '"+device+"'";
 		try {
 			connection.execute(update);
 		} catch (Exception e) {
@@ -296,8 +296,8 @@ public class StaticServiceImpl {
 	 */
 	public String value(String tableid,String col,String value){
 		
-		//String sql ="SELECT * FROM OMPSE.SYS_FIELDINFO WHERE TABLE_ID = '"+tableid+"' AND FIELDNAME =  '"+col+"'";
-		String sql ="SELECT * FROM OMPSE.SYS_FK WHERE TABLE_ID = '"+tableid+"' AND FIELDNAME =  '"+col+"'";
+		//String sql ="SELECT * FROM SG_SYS_FIELDINFO WHERE TABLE_ID = '"+tableid+"' AND FIELDNAME =  '"+col+"'";
+		String sql ="SELECT * FROM SG_SYS_FK WHERE TABLE_ID = '"+tableid+"' AND FIELDNAME =  '"+col+"'";
 		
 		List<Map<String, Object>> list = connection.findForDruid(sql);
 		if(list.size()>0){
@@ -357,7 +357,7 @@ public class StaticServiceImpl {
 			
 			if("null".equals(fk_ids)||"null".equals(fk_fronts)){//判断本次的表数据是否是关联到其他的表数据,如果是将继续遍历,直到遍历到最后
 				
-				String sql = "SELECT * FROM OMPSE."+tableNameMap.get("tablename")+" WHERE "+FIELDNAMEMap.get("FIELDNAME")+"='"+value+"'";
+				String sql = "SELECT * FROM SG_"+tableNameMap.get("tablename")+" WHERE "+FIELDNAMEMap.get("FIELDNAME")+"='"+value+"'";
 
 				List<Map<String, Object>> list = connection.findForDruid(sql);
 				

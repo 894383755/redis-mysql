@@ -50,12 +50,12 @@
                 3. 将每条数据放入 REDISKEY + "SERVER_IP_DATA", m.get("IP") + "",m.get("ID")+""
             5. redis_MysqlImpl.syn_view() 同步视图
                 1. 同步ALARMMODEL
-                    1. 查询 OMPSE.ALARMMODEL
+                    1. 查询 ALARMMODEL
                     2. 每条数据 在 REDISKEY + "ALARMMODEL" 存放id
                     3. 每条数据 在 id 存放 结果map
                 2. 同步VIEW_HISDB_MODEL_DATA
             6. redis_MysqlImpl.synNowRunDateNeedStaticDataToCodis()
-                1. 同步OMPSE.CONF_COLLECTION_INDB
+                1. 同步CONF_COLLECTION_INDB
                     1. 
                 2. 同步AUS_APP_B表
                 3. 同步AUS_CONTEXT_B表

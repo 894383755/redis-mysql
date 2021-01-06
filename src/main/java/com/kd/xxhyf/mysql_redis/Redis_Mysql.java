@@ -3,6 +3,8 @@ package com.kd.xxhyf.mysql_redis;
 import java.util.List;
 import java.util.Map;
 
+import com.kd.xxhyf.entity.ompse.SysTableinfo;
+import com.kd.xxhyf.mapper.SysTableInfoMapper;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import com.kd.xxhyf.util.Connection;
 import com.kd.xxhyf.mysql_redis.core.Redis_MysqlImpl;
+
+import javax.annotation.Resource;
 
 /**
  * 处理redis-mysql数据同步
@@ -25,6 +29,9 @@ public class Redis_Mysql {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(Redis_Mysql.class);
 
+	@Resource
+	private SysTableInfoMapper sysTableInfoMapper;
+
 	@Autowired
 	private Connection connection;
 
@@ -34,11 +41,9 @@ public class Redis_Mysql {
 	@Scheduled(fixedDelay = 20000)
 	public void run(){
 		LOGGER.info("开始同步任务");
-	//	List<Map<String, Object>> list = connection.findForDruid("SELECT * FROM OMPSE.SYS_TABLEINFO WHERE ID LIKE '1%' "
-	//			+ "UNION ALL SELECT * FROM OMPSE.SYS_TABLEINFO  WHERE ID LIKE '2%'; ");
-		List<Map<String, Object>> list = connection.findForDruid("SELECT * FROM OMPSE.SYS_TABLEINFO");
-		for (int i = 0; i < list.size(); i++) {
-			redis_MysqlImpl.run(list.get(i).toString());
+		List<SysTableinfo> sysTableinfos = sysTableInfoMapper.selectList(null);
+		for (SysTableinfo sysTableinfo : sysTableinfos) {
+			redis_MysqlImpl.run(sysTableinfo.toString());
 		}
 		LOGGER.debug("开始同步告警配置信息");
 		redis_MysqlImpl.runing_data();

@@ -59,7 +59,7 @@ public class NoticeImpl {
 				
 				JSONObject jsonObject = JSONObject.fromObject(map2);//将数据转换成JSON字符串
 				
-				String sql = "SELECT * FROM OMPSE.SYS_NOTICE WHERE NOTICE_DESC='"+jsonObject.toString()+"' AND TABLE_ID='"+type+"'";//需要执行的SQL
+				String sql = "SELECT * FROM SG_SYS_NOTICE WHERE NOTICE_DESC='"+jsonObject.toString()+"' AND TABLE_ID='"+type+"'";//需要执行的SQL
 				
 				List<Map<String, Object>> list = connection.findForDruid(sql);//进行判断当前数据是否在数据库中存在
 				
@@ -68,19 +68,19 @@ public class NoticeImpl {
 					switch (oper_type) {
 					
 					case "1"://新增 add
-						sql = "INSERT INTO OMPSE.SYS_NOTICE (NOTICE_DESC,TABLE_ID,START_TIME,OPT,DATA_SOURCE) VALUES('"+jsonObject.toString()+"','"+type+"','"+sdf.format(new Date())+"','add','"+data_source+"');";
+						sql = "INSERT INTO SG_SYS_NOTICE (NOTICE_DESC,TABLE_ID,START_TIME,OPT,DATA_SOURCE) VALUES('"+jsonObject.toString()+"','"+type+"','"+sdf.format(new Date())+"','add','"+data_source+"');";
 						connection.execute(sql);
 						break;
 					case "2"://更新 update
-						sql = "INSERT INTO  OMPSE.SYS_NOTICE (NOTICE_DESC,TABLE_ID,START_TIME,OPT,DATA_SOURCE) VALUES('"+jsonObject.toString()+"','"+type+"','"+sdf.format(new Date())+"','update','"+data_source+"');";
+						sql = "INSERT INTO  SG_SYS_NOTICE (NOTICE_DESC,TABLE_ID,START_TIME,OPT,DATA_SOURCE) VALUES('"+jsonObject.toString()+"','"+type+"','"+sdf.format(new Date())+"','update','"+data_source+"');";
 						connection.execute(sql);
 						break;
 					case "3"://退运 back
-						sql = "INSERT INTO  OMPSE.SYS_NOTICE (NOTICE_DESC,TABLE_ID,START_TIME,OPT,DATA_SOURCE) VALUES('"+jsonObject.toString()+"','"+type+"','"+sdf.format(new Date())+"','back','"+data_source+"');";
+						sql = "INSERT INTO  SG_SYS_NOTICE (NOTICE_DESC,TABLE_ID,START_TIME,OPT,DATA_SOURCE) VALUES('"+jsonObject.toString()+"','"+type+"','"+sdf.format(new Date())+"','back','"+data_source+"');";
 						connection.execute(sql);
 						break;
 					case "4"://通知 notice
-						sql = "INSERT INTO  OMPSE.SYS_NOTICE (NOTICE_DESC,TABLE_ID,START_TIME,OPT,DATA_SOURCE) VALUES('"+jsonObject.toString()+"','"+type+"','"+sdf.format(new Date())+"','notice','"+data_source+"');";
+						sql = "INSERT INTO  SG_SYS_NOTICE (NOTICE_DESC,TABLE_ID,START_TIME,OPT,DATA_SOURCE) VALUES('"+jsonObject.toString()+"','"+type+"','"+sdf.format(new Date())+"','notice','"+data_source+"');";
 						connection.execute(sql);
 						break;
 					default:
