@@ -45,11 +45,7 @@ public class resolveXml {
 	              map.put(cName, cValue);
 	          } 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//System.err.println(xml);
-			LOGGER.error(xml);
-			LOGGER.error(e.getMessage());
-			//e.printStackTrace();
+			LOGGER.error("解析xml错误",e);
 		} // 将字符串转为XML
 		
 		return map;

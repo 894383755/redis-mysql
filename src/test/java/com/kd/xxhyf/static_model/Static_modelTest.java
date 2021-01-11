@@ -1,6 +1,8 @@
 package com.kd.xxhyf.static_model;
 
 import com.kd.redis.config.RedisConfig;
+import com.kd.xxhyf.config.MyAsyncConfigurer;
+import com.kd.xxhyf.config.MyTaskExecutorConfig;
 import com.kd.xxhyf.util.Connection;
 import com.kd.xxhyf.static_model.core.StaticServiceImpl;
 import org.junit.jupiter.api.AfterEach;
@@ -25,12 +27,22 @@ class Static_modelTest {
     @Autowired
     StaticServiceImpl staticService;
 
+
     @BeforeEach
     void setUp() {
+        System.err.println("开始停止");
+        //MyTaskExecutorConfig.shutdown();
     }
 
     @AfterEach
     void tearDown() {
+        while (MyAsyncConfigurer.getActiveCount() != 0){
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Test
@@ -73,23 +85,7 @@ class Static_modelTest {
                 "</list>\n" +
                 "</lists>";
 
-        staticService.run(str);
+        staticService.run(str3);
 
-
-/*        StaticServiceImpl staticService = new StaticServiceImpl();
-        Map<String, List<Map<String, Object>>> stringListMap = resolveXml.statusXml(str);
-        System.out.println(stringListMap);
-        HashMap<String, String> map = new HashMap<>();
-        map.put("tablename","aaa");
-        for (Map.Entry<String, List<Map<String, Object>>> stringListEntry : stringListMap.entrySet()) {
-            System.out.println("-------------------");
-            System.out.println(stringListEntry.getKey());
-            for (Map<String, Object> stringObjectMap : stringListEntry.getValue()) {
-                for (Map.Entry<String, Object> stringObjectEntry : stringObjectMap.entrySet()) {
-                    System.out.println(stringObjectEntry.getKey() + " : " + stringObjectEntry.getValue());
-                }
-            }
-            staticService.insert_data(null, null, stringListEntry.getValue(), map);
-        }*/
     }
 }

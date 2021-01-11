@@ -7,4 +7,6 @@ import org.apache.ibatis.annotations.Select;
 public interface CommonTableMapper {
     @Select("SELECT MAX(SUBSTR(ID,11,8)) AS NUM FROM ${tablename}")
     public Integer selectMaxSerialIdWhereTableName(String tablename);
+
+    //public Integer insertByTableNameAndId(String tableName,)
 }

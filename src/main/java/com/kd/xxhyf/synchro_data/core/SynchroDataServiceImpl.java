@@ -3,6 +3,8 @@ package com.kd.xxhyf.synchro_data.core;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.kd.xxhyf.entity.ompse.SysTableinfo;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import com.kd.xxhyf.util.resolveXml;
  * 2019年10月30日 下午2:28:36
  *
  */
+@Slf4j
 @Component
 public class SynchroDataServiceImpl {
 	
@@ -37,20 +40,10 @@ public class SynchroDataServiceImpl {
 
 	@Async
 	public void run(String receiveString) {
-		// TODO Auto-generated method stub
-			Map<String, Object> map = new HashMap<String, Object>();
-			try {		
-				map = resolveXml.alarmXml(receiveString);//解析XML
-				//System.out.println(receiveString);
-			} catch (Exception e) {
-				// TODO: handle exception
-				LOGGER.error(receiveString+"---"+e.getMessage());
-				//System.out.println(receiveString);
-			}
-			
-			
-			String tableOrSql = map.get("TABLEORSQL")+""; //获取到数据中表号
-			redis_MysqlImpl.run(tableOrSql);
+			Map<String, Object> map = resolveXml.alarmXml(receiveString);//解析XML
+			SysTableinfo sysTableinfo = new SysTableinfo();
+			sysTableinfo.setId(map.get("TABLEORSQL")+"");//获取到数据中表号
+			redis_MysqlImpl.run(sysTableinfo);
 			//redis_MysqlImpl.runing_data(tableOrSql);
 			redis_MysqlImpl.server();
 			redis_MysqlImpl.syn_view();

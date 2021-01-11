@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 
 import org.slf4j.Logger;
@@ -29,6 +30,7 @@ import redis.clients.jedis.JedisCommands;
  *
  */
 @Component
+@Slf4j
 public class StaticServiceImpl {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(StaticServiceImpl.class);
@@ -51,10 +53,9 @@ public class StaticServiceImpl {
 		Map<String, List<Map<String, Object>>> map = new HashMap<String, List<Map<String,Object>>>();
 		try {
 			map = resolveXml.statusXml(receiveString);//解析XML,组合成map集合
-			System.out.println("map=="+map);
+			log.info(map.toString());
 		} catch (Exception e) {
 			LOGGER.error(receiveString+"---"+e.getMessage());
-			System.err.println(receiveString);
 		}
 		int n=0;
 		Set<String> ids=map.keySet();//获取map中的所有key

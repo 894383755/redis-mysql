@@ -36,8 +36,7 @@ public class Synchro {
 	private ComsumerEntiy comsumerEntiy_t;
 
 	private KafkaConsumer<String, String> consumer = null;
-	
-	@Async
+
 	@Scheduled(fixedDelay = 20000)
 	public void run (){
 		try {
@@ -72,11 +71,7 @@ public class Synchro {
 			//	recive(consumer, comsumerEntiy.getTopic());
 			//	 ConsumerRecords<String, String> records = consumer.receive();
 				ConsumerRecords<String, String> records = consumer.poll(100);
-				
 				for (ConsumerRecord<String, String> record : records) {
-					// record.timestamp();
-					 //System.out.println(records.count()+"---------开始接收");
-					System.err.println("++++++++++++++++++++++++++++++++++++"+record.value());
 					 synchroServiceImpl.run(record.value());
 					count++;
 					LOGGER.info("修改Codis目前已接收："+count+"条数据");

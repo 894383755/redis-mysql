@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.stereotype.Component;
 
 
 @Configurable
@@ -22,8 +23,10 @@ public class MyTaskExecutorConfig {
     @Value("${thread.rejectedExecutionHandler}")
     private String rejectedExecutionHandler;
 
+    private static ThreadPoolTaskExecutor threadPoolTaskExecutor;
+
     @Bean
-    public TaskExecutor getTaskExecutor(){
+    public ThreadPoolTaskExecutor getThreadPoolTaskExecutor(){
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(corePoolSize);
         taskExecutor.setMaxPoolSize(maxPoolSize);
@@ -32,6 +35,11 @@ public class MyTaskExecutorConfig {
         if("CallerRunsPolicy".equalsIgnoreCase(rejectedExecutionHandler)){
             taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         }
+        threadPoolTaskExecutor = taskExecutor;
         return taskExecutor;
+    }
+
+    public static void shutdown(){
+        threadPoolTaskExecutor.shutdown();
     }
 }

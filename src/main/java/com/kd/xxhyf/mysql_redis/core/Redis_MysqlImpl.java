@@ -8,7 +8,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.kd.xxhyf.entity.ompse.AueServerB;
 import com.kd.xxhyf.entity.ompse.SysRedisinfo;
+import com.kd.xxhyf.entity.ompse.SysTableinfo;
+import com.kd.xxhyf.entity.sysdba.SysFiledinfo;
+import com.kd.xxhyf.mapper.AueServerBMapper;
+import com.kd.xxhyf.mapper.CommonTableMapper;
+import com.kd.xxhyf.mapper.SysFiledInfoMapper;
 import com.kd.xxhyf.mapper.SysRedisInfoMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -17,6 +23,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,6 +47,15 @@ public class Redis_MysqlImpl {
 	@Resource
 	private SysRedisInfoMapper sysRedisInfoMapper;
 
+	@Resource
+	private SysFiledInfoMapper filedInfoMapper;
+
+	@Resource
+	private AueServerBMapper aueServerBMapper;
+
+	@Resource
+	private CommonTableMapper commonTableMapper;
+
 	private ObjectMapper objectmapper = new ObjectMapper();
 
 	@Qualifier("getJedisCommands")
@@ -46,40 +63,34 @@ public class Redis_MysqlImpl {
 	private JedisCommands jedis;
 
 
-	public void run(String tableId) {
-		if (null == tableId || "null".equals(tableId) || "".equals(tableId))
+	@Async
+	public void run(SysTableinfo sysTableinfo) {
+		if (null == sysTableinfo )
 			return;
 		// 根据表ID查询表名，表字段和字段类型
-		String FIELDname = "SELECT B.FIELDNAME,B.TYPE,A.EN_TABLENAME,A.CHN_TABLENAME  FROM SG_SYS_TABLEINFO AS A,SG_SYS_FK AS B WHERE A.ID = B.TABLE_ID AND A.ID = '"
-				+ tableId + "'";
-		log.debug(FIELDname);
-		List<Map<String, Object>> list = connection.findForDruid(FIELDname);
-
-		if (list.size() != 0) {
+		List<SysFiledinfo> sysFiledinfos = filedInfoMapper.selectListByTableId(sysTableinfo.getId());
+		if (sysFiledinfos != null && !sysFiledinfos.isEmpty()) {
 			Map<String, String> map = new HashMap<String, String>();
-			for (int i = 0; i < list.size(); i++) {
-				Map<String, Object> map2 = list.get(i);
-				map.put(map2.get("FIELDNAME") + "", map2.get("TYPE") + "");// 将字段名作为KEY，字段类型作为
-				// value
-				// 存入map
-				map.put("tablename", map2.get("EN_TABLENAME") + ""); //
-				map.put("chn_tablename", map2.get("CHN_TABLENAME") + ""); //
+			map.put("tablename", sysTableinfo.getEnTablename()); //
+			map.put("chn_tablename",sysTableinfo.getChnTablename()); //
+			for (SysFiledinfo sysFiledinfo : sysFiledinfos) {
+				map.put(sysFiledinfo.getFiledname(), sysFiledinfo.getType());// 将字段名作为KEY，字段类型作为value存入map
 			}
 			try { // 获取jedis
-				if (!jedis.exists(REDISKEY + tableId + "_num")) { // 判断在redis是否存在
+				if (!jedis.exists(REDISKEY + sysTableinfo.getId() + "_num")) { // 判断在redis是否存在
 					// 不存在新建
-					jedis.set(REDISKEY + tableId + "_num", "0");
+					jedis.set(REDISKEY + sysTableinfo.getId() + "_num", "0");
 				}
-				jedis.del(REDISKEY + tableId);
-				jedis.hmset(REDISKEY + tableId + "", map); // {tableId:{tablename:server,id:int(20),name:varchat(20)}}
+				jedis.del(REDISKEY + sysTableinfo.getId());
+				jedis.hmset(REDISKEY + sysTableinfo.getId() + "", map); // {tableId:{tablename:server,id:int(20),name:varchat(20)}}
 				// 添加map
 			} catch (Exception e) {
 				log.error(e.getMessage());
 			}
-			if (tableId.substring(tableId.length() - 1, tableId.length())
+			if (sysTableinfo.getId().substring(sysTableinfo.getId().length() - 1, sysTableinfo.getId().length())
 					.equals("0")) { // 判断是不是静态信表 0是静态表
 				// log.info("-------------------------------");
-				static_data(tableId + "");// 获取静态表数据
+				static_data(sysTableinfo.getId() + "");// 获取静态表数据
 			}
 		} else {
 			log.debug(Thread.currentThread().getStackTrace()[1]
@@ -99,7 +110,7 @@ public class Redis_MysqlImpl {
 				tablename = "SYS_FK";// 在redis中获取表名
 			}
 
-			String sql = "SELECT * FROM SG_" + tablename; // 获取此表所有数据
+			String sql = "SELECT * FROM " + tablename; // 获取此表所有数据
 			if (tablename.equals("SG_SCS_EQUIPMENT_B")) {
 				System.out.println("");
 			}
@@ -107,16 +118,10 @@ public class Redis_MysqlImpl {
 			log.info("redis开始同步----" + tablename + "-----" + paramTableId);
 			String jedisTablename = REDISKEY + tablename;
 			List<Map<String, Object>> list = connection.findForDruid(sql);// 获取到tablename中的所有数据
-
 			if (!tablename.equals("SYS_TABLEINFO")) {// 除了表信息表的其他静态表
 
 				boolean is_have_key_2 = jedis.exists(jedisTablename);// 判断key是tablename的数据是否在redis中存在
 
-				/*
-				 * List<String> list2 = jedis.lrange(tablename, 0,
-				 * jedis.llen(tablename)); for (int i = 0; i < list2.size();
-				 * i++) { String keys = list2.get(i); jedis.del(keys); }
-				 */
 				if (is_have_key_2) {
 					jedis.del(jedisTablename);
 				}
@@ -435,6 +440,7 @@ public class Redis_MysqlImpl {
 
 	/**
 	 * 同步视图
+	 * FIXME
 	 */
 	public void syn_view() {
 
@@ -646,8 +652,7 @@ public class Redis_MysqlImpl {
 	 * 同步server表
 	 */
 	public void server() {
-		String sql = "SELECT  *  FROM SG_AUE_SERVER_B WHERE NAME IS NOT NULL";
-		List<Map<String, Object>> list = connection.findForDruid(sql);
+		List<AueServerB> aueServerBList = aueServerBMapper.selectListWhereNameNotNull();
 		try {
 
 			if (jedis.exists(REDISKEY + "AUE_SERVER_B_DATA")) {
@@ -658,13 +663,13 @@ public class Redis_MysqlImpl {
 				jedis.del(REDISKEY + "AUE_SERVER_B_DATA");
 			}
 
-			for (Map<String, Object> m : list) {
-				String json = objectmapper.writeValueAsString(m);
-				jedis.hset(REDISKEY + "AUE_SERVER_B_DATA", m.get("ID") + "",json);
-				jedis.hset(REDISKEY + "SERVER_IP_DATA", m.get("IP") + "",m.get("ID")+"");
+			for (AueServerB aueServerB : aueServerBList) {
+				String json = objectmapper.writeValueAsString(aueServerB);
+				jedis.hset(REDISKEY + "AUE_SERVER_B_DATA", aueServerB.getId(),json);
+				jedis.hset(REDISKEY + "SERVER_IP_DATA", aueServerB.getIp() + "",aueServerB.getId());
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			log.error("Redis_Mysql.server错误",e);
 		}
 	}
 

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,8 +40,7 @@ public class Connection {
 		try {
 			list2 = template.queryForList(sql);
 		} catch (Exception e) {
-			// TODO: handle exception
-			log.error(e.getMessage());
+			log.error("执行JDBCTemplate错误",e);
 		}
 		return list2;
 	}

@@ -43,7 +43,7 @@ public class Redis_Mysql {
 		LOGGER.info("开始同步任务");
 		List<SysTableinfo> sysTableinfos = sysTableInfoMapper.selectList(null);
 		for (SysTableinfo sysTableinfo : sysTableinfos) {
-			redis_MysqlImpl.run(sysTableinfo.toString());
+			redis_MysqlImpl.run(sysTableinfo);
 		}
 		LOGGER.debug("开始同步告警配置信息");
 		redis_MysqlImpl.runing_data();

@@ -1,23 +1,26 @@
 package com.kd.xxhyf.entity.sysdba;
 
 
-public class SysFieldinfo {
+public class SysFiledinfo {
 
   private String id;
   private String tableId;
-  private String fieldname;
+  private String filedname;
   private String type;
+  private long length;
   private String iskey;
   private String desc;
+  private String fkId;
   private String isShow;
   private String isEdit;
   private String isNull;
   private String deafultValue;
   private String fkDesc;
+  private String fkShowname;
   private String ifCollection;
+  private String fkFront;
   private long showShort;
   private String isWhole;
-  private String isfk;
 
 
   public String getId() {
@@ -38,12 +41,12 @@ public class SysFieldinfo {
   }
 
 
-  public String getFieldname() {
-    return fieldname;
+  public String getFiledname() {
+    return filedname;
   }
 
-  public void setFieldname(String fieldname) {
-    this.fieldname = fieldname;
+  public void setFiledname(String filedname) {
+    this.filedname = filedname;
   }
 
 
@@ -53,6 +56,15 @@ public class SysFieldinfo {
 
   public void setType(String type) {
     this.type = type;
+  }
+
+
+  public long getLength() {
+    return length;
+  }
+
+  public void setLength(long length) {
+    this.length = length;
   }
 
 
@@ -71,6 +83,15 @@ public class SysFieldinfo {
 
   public void setDesc(String desc) {
     this.desc = desc;
+  }
+
+
+  public String getFkId() {
+    return fkId;
+  }
+
+  public void setFkId(String fkId) {
+    this.fkId = fkId;
   }
 
 
@@ -119,12 +140,30 @@ public class SysFieldinfo {
   }
 
 
+  public String getFkShowname() {
+    return fkShowname;
+  }
+
+  public void setFkShowname(String fkShowname) {
+    this.fkShowname = fkShowname;
+  }
+
+
   public String getIfCollection() {
     return ifCollection;
   }
 
   public void setIfCollection(String ifCollection) {
     this.ifCollection = ifCollection;
+  }
+
+
+  public String getFkFront() {
+    return fkFront;
+  }
+
+  public void setFkFront(String fkFront) {
+    this.fkFront = fkFront;
   }
 
 
@@ -143,15 +182,6 @@ public class SysFieldinfo {
 
   public void setIsWhole(String isWhole) {
     this.isWhole = isWhole;
-  }
-
-
-  public String getIsfk() {
-    return isfk;
-  }
-
-  public void setIsfk(String isfk) {
-    this.isfk = isfk;
   }
 
 }

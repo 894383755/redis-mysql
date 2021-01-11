@@ -1,11 +1,15 @@
 package com.kd.xxhyf.entity.ompse;
 
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 public class SysRedisinfo {
 
   private String id;
   private String pid;
   private String mysql;
+  @TableField("'key'")
   private String key;
   private String hkey;
   private String hvalue;

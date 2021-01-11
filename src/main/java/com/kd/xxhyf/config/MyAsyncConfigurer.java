@@ -2,6 +2,7 @@ package com.kd.xxhyf.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -11,6 +12,7 @@ import java.lang.reflect.Method;
 import java.util.concurrent.Executor;
 
 @Slf4j
+@Configurable
 @Component
 public class MyAsyncConfigurer implements AsyncConfigurer {
 
@@ -26,6 +28,8 @@ public class MyAsyncConfigurer implements AsyncConfigurer {
     @Value("${thread.rejectedExecutionHandler}")
     private String rejectedExecutionHandler;
 
+    private static ThreadPoolTaskExecutor executor;
+
     @Override
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor threadPool = new ThreadPoolTaskExecutor();
@@ -37,12 +41,17 @@ public class MyAsyncConfigurer implements AsyncConfigurer {
         threadPool.setAwaitTerminationSeconds(60 * 15);
         threadPool.setThreadNamePrefix("MyAsync-");
         threadPool.initialize();
+        executor = threadPool;
         return threadPool;
     }
 
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return new MyAsyncExceptionHandler();
+    }
+
+    public static int getActiveCount() {
+        return executor.getActiveCount();
     }
 
     /**
