@@ -2,6 +2,8 @@ package com.kd.xxhyf.notice;
 
 import java.util.Properties;
 
+import com.kd.xxhyf.util.MykafkaUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.slf4j.Logger;
@@ -13,7 +15,6 @@ import org.springframework.stereotype.Component;
 import com.kd.kafkautill.service.DmqConsumer;
 import com.kd.kafkautill.utill.DmqFactory;
 import com.kd.xxhyf.notice.core.NoticeImpl;
-import com.kd.xxhyf.notice.entity.ComsumerEntiy;
 
 /**
  * 处理 待办任务
@@ -24,68 +25,32 @@ import com.kd.xxhyf.notice.entity.ComsumerEntiy;
  */
 
 @Component
+@Slf4j
 public class Notice {
 
-	private static final Logger LOGGER =  LoggerFactory.getLogger(Notice.class);
-	
 	@Autowired
 	private NoticeImpl noticeImpl;
 
 	@Autowired
-	private ComsumerEntiy comsumerEntiy_n;
-	
-	private DmqConsumer consumer = null;
-	
+	private MykafkaUtil mykafkaUtil;
+
 	@Async
 	@Scheduled(fixedDelay = 20000)
 	public void run (){
 		try {
-			Properties props = new Properties();
-			/* 定义kakfa 服务的地址，不需要将所有broker指定上 */
-			props.put("bootstrap.servers", comsumerEntiy_n.getKafkaservice());
-			// 相当于ConsumerID
-			//System.err.println("CID:" + comsumerEntiy.getGroup_id_t());
-			props.put("group.id", comsumerEntiy_n.getGroup_id());
-			// 如果true,consumer定期地往zookeeper写入每个分区的offset
-			/* 是否自动确认offset */
-			// 同一个消费者重启之后不会重复消费之前消费过的消息
-			/*props.put("enable.auto.commit", comsumerEntiy_t.getEnable_auto_commit());
-			// 设置一次拉取多少条消息
-			props.put("max.poll.records", comsumerEntiy_t.getMax_poll_records());
-			 key的序列化类 
-			props.put("key.deserializer",
-					"org.apache.kafka.common.serialization.StringDeserializer");
-			 value的序列化类 
-			props.put("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer");*/
-			// t同组消费者（消费者二）将会从头开始消费Topic下的消息 latest,earliest
-			//props.put("auto.offset.reset", comsumerEntiy.getEarliest());
-			consumer = DmqFactory.createConsumer(props);
-			//KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
-			//consumer.subscribe(Arrays.asList(comsumerEntiy_t.getTopic()));
-			consumer.subscribe(comsumerEntiy_n.getTopic());
-			int count = 0;
-			LOGGER.info("待办任务服务kafka注册成功");
+			DmqConsumer consumer = mykafkaUtil.getSynchroDataConsumer();
+			log.info("待办任务服务kafka注册成功");
 			while (true) {
-				// 从Broker拉取消息,拉取超时时间设置为100ms
 				ConsumerRecords<String, String> records = consumer.receive();
-				//ConsumerRecords<String, String> records = consumer.poll(100);
-				
+				log.info("修改Notice目前已接收："+records.count()+"条数据");
 				for (ConsumerRecord<String, String> record : records) {
-					// record.timestamp();
-					 //System.out.println(records.count()+"---------开始接收");
-					LOGGER.debug("待办收到的消息："+record.value());
+					log.debug("待办收到的消息："+record.value());
 					noticeImpl.run(record.value());
-					count++;
-					LOGGER.info("修改Notice目前已接收："+count+"条数据");
 				}
-				// 提交的是这一批的records的offset的最后一个
 				consumer.commitSync();
 			}
-			
 		} catch (Exception e) {
-			// TODO: handle exception
-			consumer = null;
-			LOGGER.warn("待办任务消费者出现异常信息",e);
+			log.warn("待办任务消费者出现异常信息",e);
 		}
 	}
 
