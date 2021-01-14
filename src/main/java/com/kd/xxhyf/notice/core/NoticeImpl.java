@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TimeZone;
 
+import com.kd.xxhyf.entity.ompse.SysNotice;
+import com.kd.xxhyf.mapper.SysNoticeMapper;
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import com.kd.xxhyf.util.Connection;
 import com.kd.xxhyf.util.resolveXml;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * 处理 待办任务service
@@ -29,9 +33,11 @@ public class NoticeImpl {
 	@Autowired
 	private Connection connection;
 
+	@Resource
+	private SysNoticeMapper sysNoticeMapper;
+
 	@Async
 	public void run(String receiveString) {//线程启动方法
-		// TODO Auto-generated method stub
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//转换时间格式
 		
@@ -58,34 +64,34 @@ public class NoticeImpl {
 				String data_source = map2.get("DATA_SOURCE")+"";
 				
 				JSONObject jsonObject = JSONObject.fromObject(map2);//将数据转换成JSON字符串
-				
-				String sql = "SELECT * FROM SG_SYS_NOTICE WHERE NOTICE_DESC='"+jsonObject.toString()+"' AND TABLE_ID='"+type+"'";//需要执行的SQL
-				
-				List<Map<String, Object>> list = connection.findForDruid(sql);//进行判断当前数据是否在数据库中存在
-				
-				if(list.size()==0){//只有在数据库中不存在时再执行
-					
+
+				List<SysNotice> sysNotices = sysNoticeMapper.selectListByNoticeDescAndTableId(jsonObject.toString(), type);
+
+				if(sysNotices.isEmpty()){//只有在数据库中不存在时再执行
+					String opt = null;
 					switch (oper_type) {
-					
 					case "1"://新增 add
-						sql = "INSERT INTO SG_SYS_NOTICE (NOTICE_DESC,TABLE_ID,START_TIME,OPT,DATA_SOURCE) VALUES('"+jsonObject.toString()+"','"+type+"','"+sdf.format(new Date())+"','add','"+data_source+"');";
-						connection.execute(sql);
+						opt = "add";
 						break;
 					case "2"://更新 update
-						sql = "INSERT INTO  SG_SYS_NOTICE (NOTICE_DESC,TABLE_ID,START_TIME,OPT,DATA_SOURCE) VALUES('"+jsonObject.toString()+"','"+type+"','"+sdf.format(new Date())+"','update','"+data_source+"');";
-						connection.execute(sql);
+						opt = "update";
 						break;
 					case "3"://退运 back
-						sql = "INSERT INTO  SG_SYS_NOTICE (NOTICE_DESC,TABLE_ID,START_TIME,OPT,DATA_SOURCE) VALUES('"+jsonObject.toString()+"','"+type+"','"+sdf.format(new Date())+"','back','"+data_source+"');";
-						connection.execute(sql);
+						opt = "back";
 						break;
 					case "4"://通知 notice
-						sql = "INSERT INTO  SG_SYS_NOTICE (NOTICE_DESC,TABLE_ID,START_TIME,OPT,DATA_SOURCE) VALUES('"+jsonObject.toString()+"','"+type+"','"+sdf.format(new Date())+"','notice','"+data_source+"');";
-						connection.execute(sql);
+						opt = "notice";
 						break;
 					default:
 						break;
 					}
+					SysNotice sysNotice = new SysNotice();
+					sysNotice.setNoticeDesc(jsonObject.toString());
+					sysNotice.setDataType(Long.getLong(type));
+					sysNotice.setTableId(type);
+					sysNotice.setStartTime(sdf.format(new Date()));
+					sysNotice.setOpt(opt);
+					sysNotice.setDataSource(Long.getLong(data_source));
 				}
 		    }
 		}
