@@ -2,7 +2,6 @@ package com.kd.xxhyf.util;
 
 import com.kd.kafkautill.service.DmqConsumer;
 import com.kd.kafkautill.utill.DmqFactory;
-import com.kd.xxhyf.synchro_data.entity.ComsumerEntiy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

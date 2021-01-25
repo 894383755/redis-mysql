@@ -503,16 +503,15 @@ public class Redis_MysqlImpl {
 			}
 			log.info("---同步视图APPMODEL成功------");
 
-			// Hash类型同步数据库视图 PROCESSMODEL
-			String pmSql = "SELECT * FROM SG_PROCESSMODEL";
+			// Hash类型同步数据库视图 PROCESS_MODEL
+			String pmSql = "SELECT * FROM SG_PROCESS_MODEL";
 			List<Map<String, Object>> pmList = connection.findForDruid(pmSql);
 			// Map<String, String> mapInfo = new HashMap<>();
 			if (jedis.exists(REDISKEY + "PROCESSMODEL"))
 				jedis.del(REDISKEY + "PROCESSMODEL");
 			for (Map<String, Object> m : pmList) {
 				String json = objectmapper.writeValueAsString(m);
-				jedis.hset(REDISKEY + "PROCESSMODEL", m.get("NODEPROCESSID")
-						+ "", json);
+				jedis.hset(REDISKEY + "PROCESSMODEL", m.get("NODEPROCESSID") + "", json);
 			}
 			log.info("---同步视图PROCESSMODEL成功------");
 

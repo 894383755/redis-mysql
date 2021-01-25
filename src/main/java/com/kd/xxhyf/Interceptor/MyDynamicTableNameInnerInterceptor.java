@@ -15,12 +15,21 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * mybatis 拦截器
+ */
 @Component
 public class MyDynamicTableNameInnerInterceptor extends DynamicTableNameInnerInterceptor {
 
     @Value("${jdbc.prefix}")
     private String prefix;
 
+    /**
+     * 在sql执行前拦截
+     * @param sh
+     * @param connection
+     * @param transactionTimeout
+     */
     @Override
     public void beforePrepare(StatementHandler sh, Connection connection, Integer transactionTimeout) {
         PluginUtils.MPStatementHandler mpSh = PluginUtils.mpStatementHandler(sh);
@@ -33,6 +42,11 @@ public class MyDynamicTableNameInnerInterceptor extends DynamicTableNameInnerInt
         }
     }
 
+    /**
+     * 加上库名
+     * @param sql
+     * @return
+     */
     protected String changeTable(String sql) {
         TableNameParser parser = new TableNameParser(sql);
         List<TableNameParser.SqlToken> names = new ArrayList<>();
