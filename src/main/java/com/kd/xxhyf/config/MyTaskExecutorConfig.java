@@ -10,7 +10,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 
-@Configuration
+//@Configuration
 public class MyTaskExecutorConfig {
 
     @Value("${thread.corePoolSize}")
@@ -26,7 +26,6 @@ public class MyTaskExecutorConfig {
 
     private static ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
-    @Bean
     public ThreadPoolTaskExecutor getThreadPoolTaskExecutor(){
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(corePoolSize);

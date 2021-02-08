@@ -14,7 +14,6 @@ import java.util.concurrent.Executor;
 
 @Slf4j
 @Configuration
-@Component
 public class MyAsyncConfigurer implements AsyncConfigurer {
 
 
@@ -60,8 +59,6 @@ public class MyAsyncConfigurer implements AsyncConfigurer {
      *
      */
     class MyAsyncExceptionHandler implements AsyncUncaughtExceptionHandler {
-
-
         @Override
         public void handleUncaughtException(Throwable throwable, Method method, Object... objects) {
             log.error("Method name - " + method.getName());
