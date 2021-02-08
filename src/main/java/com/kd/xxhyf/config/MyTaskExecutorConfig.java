@@ -4,12 +4,13 @@ import org.apache.tomcat.util.threads.ThreadPoolExecutor;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 
-@Configurable
+@Configuration
 public class MyTaskExecutorConfig {
 
     @Value("${thread.corePoolSize}")

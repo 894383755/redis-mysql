@@ -3,6 +3,7 @@ package com.kd.xxhyf.config;
 import com.kd.redis.config.RedisConfig;
 import com.kd.redis.config.RedisProperties;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.jboss.netty.util.internal.ReusableIterator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import redis.clients.jedis.JedisCommands;
 
 @Configuration
 @Data
+@Slf4j
 public class MyRedisConfig {
 
     @Value("${redis.nodes}")
@@ -55,6 +57,7 @@ public class MyRedisConfig {
         try {
             return redisConfig.getJedisCluster();
         }catch (Exception e){
+            log.warn("获取redis集群连接错误",e);
             return null;
         }
     }
@@ -64,6 +67,7 @@ public class MyRedisConfig {
         try {
             return redisConfig.getJedis();
         }catch (Exception e){
+            log.warn("获取redis连接错误",e);
             return null;
         }
     }
@@ -72,11 +76,17 @@ public class MyRedisConfig {
     public JedisCommands getJedisCommands(RedisConfig redisConfig){
         JedisCluster jedisCluster = redisConfig.getJedisCluster();
         if(jedisCluster != null){
+            log.info("使用redis集群模式");
             return jedisCluster;
-        }else {
-
-            return redisConfig.getJedis();
         }
+        Jedis jedis = redisConfig.getJedis();
+        if(jedis != null){
+            log.info("使用redis模式");
+            return jedis;
+        }
+        log.warn("无法获取redis或者jedisCluster连接");
+        return null;
+        //throw new RuntimeException("无法获取redis或者jedisCluster连接");
     }
 
 }

@@ -1,7 +1,7 @@
 spring:
   profiles:
-    # xinan,fujian,henan,xinanTest,guodiaoTest
-    active: guodiaoTest
+    # xinan,fujian,henan,xinanTest,guodiaoTest,guodiao
+    active: guodiao
 server:
   port: 8081
 

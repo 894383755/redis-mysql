@@ -492,7 +492,7 @@ public class Redis_MysqlImpl {
 			log.info("---同步视图VIEW_HISDB_MODEL_DATA成功------");
 
 			// Hash类型同步数据库视图APPMODEL
-			String apmSql = "SELECT * FROM SG_APPMODEL";
+			String apmSql = "SELECT * FROM SG_APP_MODEL";
 			List<Map<String, Object>> apmList = connection.findForDruid(apmSql);
 			// Map<String, String> mapInfo = new HashMap<>();
 			if (jedis.exists(REDISKEY + "APPMODEL"))
@@ -553,9 +553,9 @@ public class Redis_MysqlImpl {
 				jedis.hset(REDISKEY + "VIEW_SYS_FK", m.get("ID") + "", json);
 			}
 			log.info("---同步视图VIEW_SYS_FK成功------");
-
 		} catch (Exception e) {
-			// TODO: handle exception
+			log.error("redis_mysql.syn_view错误",e);
+			System.out.println("redis_mysql.syn_view错误");
 		}
 
 	}

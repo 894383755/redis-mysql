@@ -43,6 +43,8 @@ public class ScheduledInterceptor {
         String fullName = className + "." + methodName;
         if (scheduledEnable.contains(fullName)){
             joinPoint.proceed();
+        }else {
+            log.info(fullName + "被拦截，不予执行");
         }
         return null;
     }

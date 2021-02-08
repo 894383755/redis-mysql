@@ -37,6 +37,7 @@ public class Static_model {
 	@Scheduled(fixedDelay = 20000)
 	public void run(){
 		try {
+			LOGGER.info("静态数据开始运行");
 			DmqConsumer consumer = mykafkaUtil.getStaticModelConsumer();
 			LOGGER.info("静态数据服务kafka注册成功");
 			while (true) {

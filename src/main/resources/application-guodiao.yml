@@ -1,0 +1,123 @@
+spring:
+  profiles: guodiao
+
+server:
+  port: 8081
+grpc:
+  server:
+    port: 6669
+
+config:
+  rediskey: GuoDiao_
+  scheduledEnable:
+    - "Run.init"
+    - "redis_mysql.run"
+    - "static_model.run"
+    - "synchro.run"
+    - "synchroData.run"
+    #- "notice.run"
+
+#配置日志
+logging:
+  config: classpath:config/logback.xml
+  #配置日志文件路径
+  level:
+    org.springfromework.web: info
+    com.kd.xxhyf: info
+
+jdbc:
+  prefix: SG_
+  ### -----------连接-------------------
+  url: jdbc:mysql://10.19.13.183:3306/sg_platform?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull
+  driverClass: com.mysql.jdbc.Driver
+  username: root
+  password: omp.2021
+  ### ----------池---------------------
+  initialSize: 1
+  minIdle: 1
+  maxActive: 20
+  maxWait: 30000
+  timeBetweenEvictionRunsMillis: 6000
+  minEvictableIdleTimeMillis: 30000
+  testWhileIdle: true
+  testOnBorrow: true
+  testOnReturn: true
+  poolPreparedStatements: true
+  maxPoolPreparedStatementPerConnectionSize: 100
+  validationQuery: select 1
+  filters: stat
+
+
+redis:
+  #选择使用是单机redis还是集群codis  1、单机redis 2、集群codis
+  redis.type: 2
+  #<!--设置单节点 -->
+  redis.host: 10.35.227.266
+  redis.port: 6379
+  #codis连接
+  #密码
+  auth: 123456
+  #注册中心地址
+  #<!--设置单节点 -->
+  nodes: 192.100.1.87:7000,192.100.1.87:7001,192.100.1.15:7000,192.100.1.15:7001,192.100.1.39:7000,192.100.1.39:7001
+  #集群名称/在注册中心的路径
+  zkDir: /jodis/codis-tsd
+  maxRedirects: 3
+  #最大空闲连接数
+  maxIdle: 30
+  #最小空闲连接数
+  minIdle: 10
+  #最大连接数
+  maxTotal: 200
+  #获取连接时最大等待毫秒数,如果该值小于0,则阻塞不确定的时长,默认值-1
+  maxWaitMillis: -1
+  #在获取连接时检查连接有效性,默认为false
+  testOnBorrow: true
+  #
+  testOnReturn: true
+  #在连接空闲时检查连接有效性,默认为false
+  testWhileIdle: true
+  #释放连接的扫描间隔(单位:毫秒)
+  timeBetweenEvictionRunsMillis: 30000
+  #连接最小空闲时间(单位:毫秒)
+  minEvictableIdleTimeMillis: 100000
+  #每次释放连接的最大数目
+  numTestsPerEvictionRun: 1024
+  #连接空闲多久后释放,当空闲时间大于该值并且空闲连接大于最大空闲连接时直接释放连接
+  softMinEvictableIdleTimeMillis: 10000
+  #连接耗尽是否阻塞,false代表抛异常,true代表阻塞直到超时,默认为true
+  blockWhenExhausted: false
+  #设置连接超时时间
+  connectionTimeout: 0
+  #设置网络通信超时时间
+  soTimeout: 2000
+  #设置最大重试次数
+  maxAttempts: 5
+
+kafka:
+  kafkaservice: 192.100.1.85:9092,192.100.1.86:9092,192.100.1.40:9092
+  #CID
+  groupIdStaticModel: CID_aue_sms
+  #告警同步
+  groupIdSynchro: CID_mre_sms
+  groupIdNotice: CID_notice_sms
+  #静态数据触发更新
+  groupIdSynchroData: CID_data_sms
+  enable_auto_commit: true
+  max_poll_records: 10
+  queue_length: 2000000
+  earliest: earliest
+  #topic
+  topicStaticModel: gd_kafkatransfer_aue_sms
+  #告警同步
+  topicSynchro: gd_mysql_redis_sms
+  topicNotice: gd_kafkatransfer_notice_sms
+  #静态数据触发更新
+  topicSynchroData: gd_kafkatransfer_data_sms
+
+thread:
+  corePoolSize: 20
+  maxPoolSize: 50
+  queueCapacity: 1000
+  keepAliveSeconds: 30
+  rejectedExecutionHandler: CallerRunsPolicy
