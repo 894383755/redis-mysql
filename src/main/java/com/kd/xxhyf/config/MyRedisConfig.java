@@ -52,7 +52,7 @@ public class MyRedisConfig {
         return new RedisConfig(redisProperties);
     }
 
-    @Bean
+    //@Bean
     public JedisCluster getJedisCluster(RedisConfig redisConfig){
         try {
             return redisConfig.getJedisCluster();
@@ -62,7 +62,7 @@ public class MyRedisConfig {
         }
     }
 
-    @Bean
+    //@Bean
     public Jedis getJedis(RedisConfig redisConfig){
         try {
             return redisConfig.getJedis();
@@ -74,15 +74,15 @@ public class MyRedisConfig {
 
     @Bean
     public JedisCommands getJedisCommands(RedisConfig redisConfig){
-        JedisCluster jedisCluster = redisConfig.getJedisCluster();
-        if(jedisCluster != null){
-            log.info("使用redis集群模式");
-            return jedisCluster;
+        try {
+            return redisConfig.getJedis();
+        }catch (Exception e){
+            //log.warn("获取redis连接错误",e);
         }
-        Jedis jedis = redisConfig.getJedis();
-        if(jedis != null){
-            log.info("使用redis模式");
-            return jedis;
+        try {
+            return redisConfig.getJedisCluster();
+        }catch (Exception e){
+//            log.warn("获取redis集群连接错误",e);
         }
         log.warn("无法获取redis或者jedisCluster连接");
         return null;

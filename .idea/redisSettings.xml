@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RedisConfiguration">
+    <option name="serverConfigurations">
+      <list>
+        <ServerConfiguration>
+          <option name="databaseVendor" value="DatabaseVendor{name='RedisDB'}" />
+          <option name="defaultKeyFilter" value="*" />
+          <option name="label" value="国调" />
+          <option name="password" value="123456" />
+          <option name="redisCluster" value="true" />
+          <option name="sercurityInfo">
+            <SercurityInfo>
+              <option name="sshUsePassword" value="true" />
+            </SercurityInfo>
+          </option>
+          <option name="serverUrl" value="192.100.1.43:7000,192.100.1.43:7001,192.100.1.61:7000,192.100.1.61:7001,192.100.1.63:7000,192.100.1.63:7001" />
+        </ServerConfiguration>
+      </list>
+    </option>
+  </component>
+</project>
