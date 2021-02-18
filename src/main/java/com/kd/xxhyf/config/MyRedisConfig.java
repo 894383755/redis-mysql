@@ -85,8 +85,8 @@ public class MyRedisConfig {
 //            log.warn("获取redis集群连接错误",e);
         }
         log.warn("无法获取redis或者jedisCluster连接");
-        return null;
-        //throw new RuntimeException("无法获取redis或者jedisCluster连接");
+        //return null;
+        throw new RuntimeException("无法获取redis或者jedisCluster连接");
     }
 
 }
