@@ -1,7 +1,7 @@
 # 版本
 1.0
 # redis-mysql
-科东-同步服务
+科东-同步服务 - 仅仅用在 西南
 ## 转换操作
 ### 
 ## 各个包功能
@@ -10,18 +10,20 @@
 * xxhyf.annotation              注解包
 * xxhyf.entity                  实体包
 * xxhyf.config                  配置包
-* xxhyf.main   					同步服务的启动项
-* xxhyf.main.core.Run             控制启动那个功能模块
+* xxhyf.main   					同步服务的启动项初始化
 * xxhyf.mysql_redis				历史库MySQL同步到实时库redis
-* xxhyf.mysql_redis.core          历史库MySQL同步到实时库redis业务实现
 * xxhyf.notice					待办任务入库
-* xxhyf.notice.core               待办任务入库的业务实现
 * xxhyf.resolveXml				xml解析方法（工具）
 * xxhyf.static_model			  静态模型入库
-* xxhyf.static_model.core         静态模型入库服务业务实现
 * xxhyf.synchro					同步服务
-* xxhyf.synchro.core              同步服务业务实现
-* xxhyf.util                      工具类
+* xxhyf.util                    工具类
+
+## 主要功能
+1. 同步静态模型,和静态数据,:静态模型为入库程序(动态数据上送,负责人赵国卫)提供表信息数据,静态数据为(各个web服务提供了缓存的数据支撑)
+2. 同步静态模型中每张表里的最大ID : 为插入数据最自增ID做准备
+3. 模型上送: 用于福建放的硬件信息属于我们采集的,所以有了 模型的下发,和模型上送两个功能首先通过 模型下发功能生成规定格式的xml文件来下发模型,有采集程序解析后 第一次上送静态模型(举个例子: 服务器部署上采集之后,数据库里没有这台服服务器的磁盘 ,网卡等信息,需要有模型下发功能第一次下发空模型,有采集解析将模型静态信息存入kafka,在有模型同步程序进行模型入库).
+4. 待办任务:  待办是接入设备信息入库的 也是用kafka中拉取待办消息 ,消息会以xml的形式告诉 新增,修改,退运某一台设备, 待办任务解析入库.
+5. 静态模型触发式同步,添加删除修改了数据库的静态模型 需要 通知模型同步的模型同步功能同步数据库最新数据到redis
 
 ## 总体流程
 1. RedisMysqlApplication springboot启动

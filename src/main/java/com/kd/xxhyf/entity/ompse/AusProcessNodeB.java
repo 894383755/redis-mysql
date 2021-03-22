@@ -8,6 +8,7 @@ public class AusProcessNodeB {
   private String contextId;
   private String appId;
   private String serviceName;
+
   private String command;
   private String isService;
   private String processId;

@@ -74,7 +74,6 @@ public class StaticServiceImpl {
 			}else{
 				insert_data(device, type, map.get(key),redismap);//插入到静态模型表
 			}
-			
 		}
 	}
 	/**
@@ -92,8 +91,11 @@ public class StaticServiceImpl {
 				String update = "";//拼接更新SQL
 				Set<String> set = map.keySet();
 				String tablename = redismap.get("tablename");
-				String insert="INSERT INTO SG_"+tablename+" (";
-				String select = "SELECT * FROM SG_"+tablename+" WHERE 1=1 ";
+				if (!tablename.startsWith("SG_")){
+					tablename = "SG_" + tablename;
+				}
+				String insert="INSERT INTO "+tablename+" (";
+				String select = "SELECT * FROM "+tablename+" WHERE 1=1 ";
 				/*if(type.equals("100010"))*/
 				String nodeid = "";//节点ID
 				
@@ -185,7 +187,7 @@ public class StaticServiceImpl {
 						String sql = select+where;
 						List<Map<String, Object>> list3 = 	connection.findForDruid(sql);
 						if(list3.size()>0){							//System.out.println(update.substring(0, update.length()-1));
-							String updateSql = "UPDATE SG_"+tablename+" SET "+update.substring(0, update.length()-1)+" WHERE 1=1 "+ where;
+							String updateSql = "UPDATE "+tablename+" SET "+update.substring(0, update.length()-1)+" WHERE 1=1 "+ where;
 							connection.execute(updateSql);
 						}else{
 							Integer max_id = 0;

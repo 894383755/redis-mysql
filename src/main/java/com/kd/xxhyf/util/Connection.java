@@ -38,9 +38,13 @@ public class Connection {
 	public List<Map<String, Object>> findForDruid(String sql,Object ... obj){
 		List<Map<String, Object>> list2 = new ArrayList<Map<String, Object>>();
 		try {
+			if(sql.contains("SG_SG_")) {
+				System.out.println(sql);
+			}
+			sql = sql.replace("SG_SG_", "SG_");
 			list2 = template.queryForList(sql);
 		} catch (Exception e) {
-			log.error("执行JDBCTemplate错误",e);
+			log.error("执行JDBCTemplate错误" + e.getMessage());
 		}
 		return list2;
 	}
@@ -52,7 +56,15 @@ public class Connection {
 	 * @return
 	 */
 	public void execute(String sql){
-		template.execute(sql);
+		if(sql.contains("SG_SG_")) {
+			System.out.println(sql);
+		}
+		sql = sql.replace("SG_SG_", "SG_");
+		try {
+			template.execute(sql);
+		} catch (Exception e) {
+			log.error("执行JDBCTemplate错误: " + sql + "\n异常为: ",e.getMessage());
+		}
 	}
 	
 	/**
@@ -65,7 +77,6 @@ public class Connection {
 		boolean b = false;
 		for (int i = 0; i < sql.size(); i++) {
 			try {
-				
 				execute(sql.get(i));
 			} catch (Exception e) {
 				// TODO: handle exception

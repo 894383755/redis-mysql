@@ -1,5 +1,5 @@
 spring:
-  profiles: guodiaoTest
+  profiles: henan
 
 server:
   port: 8081
@@ -8,15 +8,13 @@ grpc:
     port: 6669
 
 config:
-  rediskey: GuoDiao_
+  rediskey: HeNan_
   scheduledEnable:
     - "Run.init"
     - "redis_mysql.run"
     - "static_model.run"
     - "synchro.run"
     - "synchroData.run"
-    - "synchrodata.run"
-    - "taskserviceimpl.work"
     #- "notice.run"
 
 #配置日志
@@ -30,10 +28,10 @@ logging:
 jdbc:
   prefix: SG_
   ### -----------连接-------------------
-  url: jdbc:mysql://192.100.1.41:3306/sg_platform
-  driverClass: com.mysql.jdbc.Driver
-  username: root
-  password: 123456
+  url: jdbc:dm://41.10.84.183:12345/OMPSE?characterEncoding=utf8
+  driverClass: dm.jdbc.driver.DmDriver
+  username: SYSDBA
+  password: SYSDBA
   ### ----------池---------------------
   initialSize: 1
   minIdle: 1
@@ -54,14 +52,14 @@ redis:
   #选择使用是单机redis还是集群codis  1、单机redis 2、集群codis
   redis.type: 2
   #<!--设置单节点 -->
-  redis.host: 123.56.70.34
+  redis.host: 10.35.227.266
   redis.port: 6379
   #codis连接
   #密码
   auth: 123456
   #注册中心地址
   #<!--设置单节点 -->
-  nodes: 192.100.1.43:7000,192.100.1.43:7001,192.100.1.61:7000,192.100.1.61:7001,192.100.1.63:7000,192.100.1.63:7001,
+  nodes: 41.10.84.180:7000,41.10.84.180:7001,41.10.84.181:7000,41.10.84.181:7001,41.10.84.182:7000,41.10.84.182:7001
   #集群名称/在注册中心的路径
   zkDir: /jodis/codis-tsd
   maxRedirects: 3
@@ -97,7 +95,7 @@ redis:
   maxAttempts: 5
 
 kafka:
-  kafkaservice: 192.100.1.43:9092,192.100.1.61:9092,192.100.1.63:9092
+  kafkaservice: 41.10.84.180:9092,41.10.84.181:9092,41.10.84.182:9092
   #CID
   groupIdStaticModel: CID_aue_sms
   #告警同步
