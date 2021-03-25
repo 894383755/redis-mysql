@@ -42,6 +42,9 @@ public class Static_model {
 			LOGGER.info("静态数据服务kafka注册成功");
 			while (true) {
 				ConsumerRecords<String, String> records = consumer.receive();
+				if (records.count() == 0){
+					continue;
+				}
 				LOGGER.info("静态数据目前已接收："+records.count()+"条数据");
 				for (ConsumerRecord<String, String> record : records) {
 						String value=record.value()+"";

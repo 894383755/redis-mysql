@@ -41,6 +41,9 @@ public class Synchro {
 			LOGGER.info("codis同步服务kafka注册成功");
 			while (true) {
 				ConsumerRecords<String, String> records = consumer.receive();
+				if (records.count() == 0){
+					continue;
+				}
 				LOGGER.info("修改Codis目前已接收："+records.count()+"条数据");
 				for (ConsumerRecord<String, String> record : records) {
 					synchroServiceImpl.run(record.value());

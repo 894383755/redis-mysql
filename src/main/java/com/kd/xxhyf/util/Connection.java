@@ -38,9 +38,6 @@ public class Connection {
 	public List<Map<String, Object>> findForDruid(String sql,Object ... obj){
 		List<Map<String, Object>> list2 = new ArrayList<Map<String, Object>>();
 		try {
-			if(sql.contains("SG_SG_")) {
-				System.out.println(sql);
-			}
 			sql = sql.replace("SG_SG_", "SG_");
 			list2 = template.queryForList(sql);
 		} catch (Exception e) {
@@ -56,9 +53,6 @@ public class Connection {
 	 * @return
 	 */
 	public void execute(String sql){
-		if(sql.contains("SG_SG_")) {
-			System.out.println(sql);
-		}
 		sql = sql.replace("SG_SG_", "SG_");
 		try {
 			template.execute(sql);

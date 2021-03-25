@@ -36,7 +36,10 @@ public class SynchroData {
 			DmqConsumer consumer = mykafkaUtil.getSynchroDataConsumer();
 			log.info("codis同步服务kafka注册成功");
 			while (true) {
-			ConsumerRecords<String, String> records = consumer.receive();
+				ConsumerRecords<String, String> records = consumer.receive();
+				if (records.count() == 0){
+					continue;
+				}
 				log.info("修改Codis目前已接收："+records.count()+"条数据");
 				for (ConsumerRecord<String, String> record : records) {
 					synchroDataServiceImpl.run(record.value());
