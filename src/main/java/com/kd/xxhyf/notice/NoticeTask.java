@@ -26,7 +26,7 @@ import com.kd.xxhyf.notice.core.NoticeImpl;
 
 @Component
 @Slf4j
-public class Notice {
+public class NoticeTask {
 
 	@Autowired
 	private NoticeImpl noticeImpl;

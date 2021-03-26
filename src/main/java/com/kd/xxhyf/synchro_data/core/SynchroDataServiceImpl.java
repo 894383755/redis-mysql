@@ -1,6 +1,5 @@
 package com.kd.xxhyf.synchro_data.core;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.kd.xxhyf.entity.ompse.SysTableinfo;
@@ -12,8 +11,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import com.kd.redis.config.RedisConfig;
 import com.kd.xxhyf.util.Connection;
-import com.kd.xxhyf.mysql_redis.core.Redis_MysqlImpl;
-import com.kd.xxhyf.util.resolveXml;
+import com.kd.xxhyf.mysql_redis.core.RedisToMysqlImpl;
+import com.kd.xxhyf.util.XmlUtil;
 
 /**
  * 
@@ -36,19 +35,19 @@ public class SynchroDataServiceImpl {
 	private Connection connection;
 
 	@Autowired
-	private Redis_MysqlImpl redis_MysqlImpl;
+	private RedisToMysqlImpl redis_To_MysqlImpl;
 
 	@Async
 	public void run(String receiveString) {
-			Map<String, Object> map = resolveXml.alarmXml(receiveString);//解析XML
+			Map<String, Object> map = XmlUtil.alarmXml(receiveString);//解析XML
 			SysTableinfo sysTableinfo = new SysTableinfo();
 			sysTableinfo.setId(map.get("TABLEORSQL")+"");//获取到数据中表号
-			redis_MysqlImpl.run(sysTableinfo);
+			redis_To_MysqlImpl.run(sysTableinfo);
 			//redis_MysqlImpl.runing_data(tableOrSql);
-			redis_MysqlImpl.server();
-			redis_MysqlImpl.syn_view();
-			redis_MysqlImpl.synNowRunDateNeedStaticDataToCodis();
-			redis_MysqlImpl.synDeviceId();
+			redis_To_MysqlImpl.server();
+			redis_To_MysqlImpl.syn_view();
+			redis_To_MysqlImpl.synNowRunDateNeedStaticDataToCodis();
+			redis_To_MysqlImpl.synDeviceId();
 	}
 	
 }

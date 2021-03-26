@@ -13,8 +13,8 @@ import org.dom4j.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class resolveXml {
-	private static final Logger LOGGER = LoggerFactory.getLogger(resolveXml.class);
+public class XmlUtil {
+	private static final Logger LOGGER = LoggerFactory.getLogger(XmlUtil.class);
 	/**
 	 * 解析告警的xml
 	 * @param xml

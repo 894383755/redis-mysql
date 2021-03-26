@@ -1,7 +1,6 @@
 package com.kd.xxhyf.mysql_redis;
 
 import java.util.List;
-import java.util.Map;
 
 import com.kd.xxhyf.entity.ompse.SysTableinfo;
 import com.kd.xxhyf.mapper.SysTableInfoMapper;
@@ -9,11 +8,10 @@ import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import com.kd.xxhyf.util.Connection;
-import com.kd.xxhyf.mysql_redis.core.Redis_MysqlImpl;
+import com.kd.xxhyf.mysql_redis.core.RedisToMysqlImpl;
 
 import javax.annotation.Resource;
 
@@ -26,9 +24,9 @@ import javax.annotation.Resource;
  */
 @Component
 @Data
-public class Redis_Mysql {
+public class RedisToMysqlTask {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(Redis_Mysql.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RedisToMysqlTask.class);
 
 	@Resource
 	private SysTableInfoMapper sysTableInfoMapper;
@@ -37,21 +35,21 @@ public class Redis_Mysql {
 	private Connection connection;
 
 	@Autowired
-	Redis_MysqlImpl redis_MysqlImpl;
+	RedisToMysqlImpl redis_To_MysqlImpl;
 
 	@Scheduled(fixedDelay = 20000)
 	public void run(){
 		LOGGER.info("开始同步任务");
 		List<SysTableinfo> sysTableinfos = sysTableInfoMapper.selectList(null);
 		for (SysTableinfo sysTableinfo : sysTableinfos) {
-			redis_MysqlImpl.run(sysTableinfo);
+			redis_To_MysqlImpl.run(sysTableinfo);
 		}
 		LOGGER.debug("开始同步告警配置信息");
-		redis_MysqlImpl.runing_data();
-		redis_MysqlImpl.server();//t同步服务器数据
-		redis_MysqlImpl.syn_view();//同步视图
-		redis_MysqlImpl.synNowRunDateNeedStaticDataToCodis();
-		redis_MysqlImpl.synDeviceId();
+		redis_To_MysqlImpl.runing_data();
+		redis_To_MysqlImpl.server();//t同步服务器数据
+		redis_To_MysqlImpl.syn_view();//同步视图
+		redis_To_MysqlImpl.synNowRunDateNeedStaticDataToCodis();
+		redis_To_MysqlImpl.synDeviceId();
 		LOGGER.info("结束同步任务");
 	}
 

@@ -16,7 +16,7 @@ import java.util.List;
 
 @SpringBootTest()
 @RunWith(SpringRunner.class)
-class RunTest {
+class MaxIdServerTest {
 
     @Resource
     private SysTableInfoMapper sysTableInfoMapper;

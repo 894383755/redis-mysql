@@ -8,6 +8,8 @@ grpc:
     port: 6669
 
 config:
+  # xinan(以西南为主),fujian(以福建为主)
+  implementType: xinan
   rediskey: HeNan_
   scheduledEnable:
     - "Run.init"

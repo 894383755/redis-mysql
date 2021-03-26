@@ -17,26 +17,27 @@ import com.kd.xxhyf.mapper.CommonTableMapper;
 import com.kd.xxhyf.mapper.SysFiledInfoMapper;
 import com.kd.xxhyf.mapper.SysRedisInfoMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Primary;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kd.xxhyf.util.Connection;
-import com.kd.xxhyf.util.Util;
+import com.kd.xxhyf.util.MD5Util;
 import redis.clients.jedis.JedisCommands;
 
 import javax.annotation.Resource;
 
 @Component
 @Slf4j
-public class Redis_MysqlImpl {
+@ConditionalOnProperty(name="config.implementType",havingValue = "xinan")
+@Primary
+public class RedisToMysqlImpl implements RedisToMysql{
 
 	@Value("${config.rediskey}")
 	private String REDISKEY;
@@ -64,6 +65,7 @@ public class Redis_MysqlImpl {
 
 
 	@Async
+	@Override
 	public void run(SysTableinfo sysTableinfo) {
 		if (null == sysTableinfo )
 			return;
@@ -103,6 +105,7 @@ public class Redis_MysqlImpl {
 	 *
 	 * @param paramTableId
 	 */
+	@Override
 	public void static_data(String paramTableId) {
 		try {// 获取到可用的redis连接
 			String tablename = jedis.hget(REDISKEY + paramTableId, "tablename");// 在redis中获取表名
@@ -197,6 +200,7 @@ public class Redis_MysqlImpl {
 
 	}
 
+	@Override
 	public void synNowRunDateNeedStaticDataToCodis() {
 		// 同步 CONF_COLLECTION_INDB 的 tableId
 		try {
@@ -374,7 +378,7 @@ public class Redis_MysqlImpl {
 				String id = map.get("ID") + "";
 				String name = REDISKEY + map.get("HOSTNAME");
 				String ip = REDISKEY
-						+ Util.getMD5String("OMPSE" + map.get("IP"));
+						+ MD5Util.getMD5String("OMPSE" + map.get("IP"));
 
 				if (jedis.exists(name)) // redis存在
 					jedis.del(name);
@@ -442,6 +446,7 @@ public class Redis_MysqlImpl {
 	 * 同步视图
 	 * FIXME
 	 */
+	@Override
 	public void syn_view() {
 
 		try {// 获取到可用的redis连接
@@ -564,6 +569,7 @@ public class Redis_MysqlImpl {
 	 * 获取配置信息
 	 *
 	 */
+	@Override
 	public void runing_data() {
 		List<SysRedisinfo> sysRedisinfos = sysRedisInfoMapper.selectList(null);// 同步告警阈值的 codis查询表
 		try {
@@ -650,6 +656,7 @@ public class Redis_MysqlImpl {
 	/**
 	 * 同步server表
 	 */
+	@Override
 	public void server() {
 		List<AueServerB> aueServerBList = aueServerBMapper.selectListWhereNameNotNull();
 		try {
@@ -675,6 +682,7 @@ public class Redis_MysqlImpl {
 	/**
 	 * 同步deviceId
 	 */
+	@Override
 	public void synDeviceId() {
 		// String sql =
 		// "SELECT  *  FROM SG_AUE_SERVER_B WHERE NAME IS NOT NULL";

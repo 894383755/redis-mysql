@@ -8,7 +8,11 @@ grpc:
     port: 6669
 
 config:
+  # xinan(以西南为主),fujian(以福建为主)
+  implementType: fujian
   rediskey: GuoDiao_
+  #SYS_FK #SYS_FILEDINFO
+  fkTableName: SYS_FILEDINFO
   scheduledEnable:
     - "Run.init"
     - "redis_mysql.run"

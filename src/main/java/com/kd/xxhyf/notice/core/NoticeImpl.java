@@ -14,7 +14,9 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kd.xxhyf.util.Connection;
-import com.kd.xxhyf.util.resolveXml;
+import com.kd.xxhyf.util.XmlUtil;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Primary;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +30,9 @@ import javax.annotation.Resource;
  *
  */
 @Component
-public class NoticeImpl {
+@ConditionalOnProperty(name="config.implementType",havingValue = "xinan")
+@Primary
+public class NoticeImpl implements Notice {
 
 	@Autowired
 	private Connection connection;
@@ -37,13 +41,14 @@ public class NoticeImpl {
 	private SysNoticeMapper sysNoticeMapper;
 
 	@Async
+	@Override
 	public void run(String receiveString) {//线程启动方法
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//转换时间格式
 		
 		sdf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));//确定获取的当前时间是北京、上海时间
 		
-		Map<String, List<Map<String, Object>>> map = resolveXml.statusXml(receiveString);//解析XML
+		Map<String, List<Map<String, Object>>> map = XmlUtil.statusXml(receiveString);//解析XML
 		
 		Set<String> ids=map.keySet();//获取typeid deviceid
 		

@@ -14,6 +14,9 @@ grpc:
     port: 6669
 
 config:
+  # xinan(以西南为主),fujian(以福建为主)
+  implementType: xinan
+  fkTableName: SYS_FILEDINFO
   rediskey: XiNan_
   scheduledEnable:
     - "Run.init"
@@ -32,6 +35,7 @@ logging:
     com.kd.xxhyf: info
 
 jdbc:
+  prefix: SG_
   ### -----------达梦-------------------
   url: jdbc:dm://192.100.1.82:12345/OMPSE_XINAN
   driverClass: dm.jdbc.driver.DmDriver

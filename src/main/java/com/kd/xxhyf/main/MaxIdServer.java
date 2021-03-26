@@ -1,7 +1,6 @@
 package com.kd.xxhyf.main;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -11,19 +10,13 @@ import com.kd.xxhyf.entity.ompse.SysTableinfo;
 import com.kd.xxhyf.mapper.CommonTableMapper;
 import com.kd.xxhyf.mapper.SysTableInfoMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-import com.kd.xxhyf.util.Connection;
-import com.kd.xxhyf.mysql_redis.Redis_Mysql;
-import com.kd.xxhyf.notice.Notice;
-import com.kd.xxhyf.static_model.Static_model;
-import com.kd.xxhyf.synchro.Synchro;
-import com.kd.xxhyf.synchro_data.SynchroData;
 import redis.clients.jedis.JedisCommands;
 
 
@@ -35,7 +28,9 @@ import redis.clients.jedis.JedisCommands;
 
 @Component
 @Slf4j
-public class Run {
+@ConditionalOnProperty(name="config.implementType",havingValue = "xinan")
+@Primary
+public class MaxIdServer {
 
 	@Resource
 	private SysTableInfoMapper sysTableInfoMapper;

@@ -1,18 +1,14 @@
 package com.kd.xxhyf.static_model;
 
-import java.util.Properties;
-
 import com.kd.xxhyf.util.MykafkaUtil;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import com.kd.kafkautill.service.DmqConsumer;
-import com.kd.kafkautill.utill.DmqFactory;
 import com.kd.xxhyf.static_model.core.StaticServiceImpl;
 
 /**
@@ -24,9 +20,9 @@ import com.kd.xxhyf.static_model.core.StaticServiceImpl;
  */
 
 @Component
-public class Static_model { 
+public class StaticModelTask {
 
-	private static final Logger LOGGER =  LoggerFactory.getLogger(Static_model.class);
+	private static final Logger LOGGER =  LoggerFactory.getLogger(StaticModelTask.class);
 
 	@Autowired
 	private MykafkaUtil mykafkaUtil;
